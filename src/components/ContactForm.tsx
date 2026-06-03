@@ -1,7 +1,7 @@
 "use client";
 
 import { Loader2, Upload } from "lucide-react";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useRef, useState } from "react";
 
 type FormState = {
   name: string;
@@ -20,6 +20,10 @@ const initialFormState: FormState = {
 };
 
 const maxAttachmentSize = 8 * 1024 * 1024;
+const successMessage =
+  "Request received. We\u2019ll review your submission and follow up shortly.";
+const failureMessage =
+  "Something went wrong while sending your request. Please email contact@epyk-systems.com directly.";
 
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(initialFormState);
@@ -29,6 +33,7 @@ export function ContactForm() {
     "idle"
   );
   const [statusMessage, setStatusMessage] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   function updateField(field: keyof FormState, value: string) {
     setForm((current) => ({ ...current, [field]: value }));
@@ -38,7 +43,6 @@ export function ContactForm() {
   function validate() {
     const nextErrors: FormErrors = {};
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phonePattern = /^[0-9+\-().\s]{7,}$/;
 
     if (!form.name.trim()) {
       nextErrors.name = "Name is required.";
@@ -48,12 +52,8 @@ export function ContactForm() {
       nextErrors.email = "Enter a valid email address.";
     }
 
-    if (form.phone.trim() && !phonePattern.test(form.phone.trim())) {
-      nextErrors.phone = "Enter a valid phone number.";
-    }
-
-    if (form.message.trim().length < 20) {
-      nextErrors.message = "Please include at least 20 characters.";
+    if (!form.message.trim()) {
+      nextErrors.message = "Message is required.";
     }
 
     if (attachment && attachment.size > maxAttachmentSize) {
@@ -67,6 +67,10 @@ export function ContactForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatusMessage("");
+
+    if (status === "submitting") {
+      return;
+    }
 
     if (!validate()) {
       setStatus("idle");
@@ -86,34 +90,27 @@ export function ContactForm() {
     }
 
     try {
-      // TODO: Replace this placeholder path with Formspree, Resend, Supabase,
-      // Cloudflare Workers, or a custom production API route when credentials
-      // and storage are ready.
       const response = await fetch("/api/contact", {
         method: "POST",
         body: payload
       });
 
-      const result = (await response.json()) as { message?: string };
-
       if (!response.ok) {
-        throw new Error(result.message || "Submission failed.");
+        throw new Error("Submission failed.");
       }
 
       setStatus("success");
-      setStatusMessage(
-        result.message ||
-          "Request validated. Delivery backend can now be connected."
-      );
+      setStatusMessage(successMessage);
       setForm(initialFormState);
       setAttachment(null);
-    } catch (error) {
+      setErrors({});
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    } catch {
       setStatus("error");
-      setStatusMessage(
-        error instanceof Error
-          ? error.message
-          : "Unable to submit the form right now."
-      );
+      setStatusMessage(failureMessage);
     }
   }
 
@@ -185,6 +182,7 @@ export function ContactForm() {
                 : "Optional upload: PDF, image, spreadsheet, or document"}
             </span>
             <input
+              ref={fileInputRef}
               type="file"
               className="sr-only"
               accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx,.xlsx,.csv"
@@ -219,9 +217,8 @@ export function ContactForm() {
 
       <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-5 text-[#7B8794]">
-          Attachments are validated on the frontend for now. Production file
-          handling should use object storage such as Supabase Storage, S3/R2, or
-          Cloudflare R2.
+          Optional attachments may include workflow screenshots, inventory sheets,
+          diagrams, or supporting documents.
         </p>
         <button
           type="submit"

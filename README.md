@@ -72,7 +72,7 @@ npm run build
 npm run lint
 ```
 
-## Contact Form Backend
+## Contact Form Email Delivery
 
 The contact form frontend is implemented with validation and posts to:
 
@@ -80,35 +80,32 @@ The contact form frontend is implemented with validation and posts to:
 /api/contact
 ```
 
-The API route currently validates the request and returns a stubbed success response. It does not send email or store attachments yet.
+Cloudflare Email Routing handles receiving email for:
 
-Recommended production options:
+```text
+contact@epyk-systems.com
+```
 
-- Resend or SendGrid for email delivery
-- Formspree for a hosted form endpoint
-- Supabase for lead storage
-- Supabase Storage, S3/R2, or Cloudflare R2 for attachments
-- Cloudflare Workers or Pages Functions for custom backend handling
+Resend handles sending website form submissions from the `/api/contact` route to the contact inbox.
 
-Suggested future environment variables:
+Required Vercel environment variables:
 
 ```bash
-CONTACT_TO_EMAIL=contact@epyk-systems.com
 RESEND_API_KEY=
-SUPABASE_URL=
-SUPABASE_SERVICE_ROLE_KEY=
-R2_ACCOUNT_ID=
-R2_ACCESS_KEY_ID=
-R2_SECRET_ACCESS_KEY=
-R2_BUCKET=
+CONTACT_TO_EMAIL=contact@epyk-systems.com
+CONTACT_FROM_EMAIL=Epyk Systems <onboarding@resend.dev>
 ```
+
+Use `onboarding@resend.dev` for initial testing unless the Resend domain is fully verified for `epyk-systems.com`.
+
+Attachments are currently filename-only in the delivered email until object storage is connected. Future attachment support can use Cloudflare R2, Supabase Storage, or S3.
 
 ## Deploy to Vercel
 
 1. Push the project to a Git repository.
 2. Import the repository in Vercel.
 3. Use the default Next.js settings.
-4. Add future contact/email environment variables when the backend is connected.
+4. Add the contact form email environment variables listed above.
 5. Add the custom domain:
 
 ```text
@@ -163,12 +160,12 @@ Typical DNS will be either a CNAME to the Pages project hostname or the records 
 npm run build
 ```
 
-4. Add environment variables when the real contact backend is connected.
+4. Add the contact form email environment variables listed above.
 5. Connect `epyk-systems.com` under domain settings.
 
 ## Notes
 
 - The npm override for `postcss` keeps the nested dependency on a patched version.
-- No paid APIs are required for the site to build or run locally.
-- The contact route is intentionally safe as a validation stub until production email and storage decisions are made.
+- No paid APIs are required for the site to build or run locally, but contact form email delivery requires a Resend API key at runtime.
+- The contact route returns public-safe messages and does not expose provider errors to users.
 - Vercel is the simplest deployment path if you want the included Next.js API route to work without adding a separate Cloudflare Worker or Pages Function.

@@ -16,7 +16,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Discuss an operational system, prototype, or workflow problem."
-        description="Use the form to describe the business context, workflow friction, inventory issue, or technical foundation you want to explore. The form is ready for frontend validation and a backend delivery integration."
+        description="Use the form to describe the business context, workflow friction, inventory issue, or technical foundation you want to explore."
       />
 
       <section className="relative py-20 sm:py-24">
