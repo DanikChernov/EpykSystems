@@ -37,6 +37,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={isActive ? "page" : undefined}
                 className={cn(
                   "rounded-md px-3 py-2 text-sm font-medium text-[#A7B0BE] transition hover:bg-white/[0.045] hover:text-[#F4F7FB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/60",
                   isActive &&
@@ -86,6 +87,7 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
+                  aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "rounded-md px-3 py-3 text-sm font-medium text-[#A7B0BE] transition hover:bg-white/[0.045] hover:text-[#F4F7FB]",
                     isActive && "bg-[#2D7CFF]/10 text-[#F4F7FB]"

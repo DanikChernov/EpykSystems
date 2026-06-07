@@ -4,13 +4,15 @@ import { CTASection } from "@/components/CTASection";
 import { PageHeader } from "@/components/PageHeader";
 import { PortfolioCard } from "@/components/PortfolioCard";
 import { Section } from "@/components/Section";
-import { portfolioItems } from "@/lib/site";
+import { createPageMetadata } from "@/lib/metadata";
+import { portfolioSections } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Portfolio",
+export const metadata: Metadata = createPageMetadata({
+  title: "Portfolio | Epyk Systems",
   description:
-    "A business-safe overview of Epyk Systems project categories, prototypes, internal systems, reusable modules, operational concepts, and technical foundations."
-};
+    "Sanitized examples of Epyk Systems operational systems, industrial prototypes, technical foundations, and computer vision concepts.",
+  path: "/portfolio"
+});
 
 export default function PortfolioPage() {
   return (
@@ -18,14 +20,41 @@ export default function PortfolioPage() {
       <PageHeader
         eyebrow="Portfolio"
         title="Operational systems, prototypes, and technical foundations."
-        description="This portfolio describes project categories and examples without exposing proprietary code. The emphasis is on reusable operating patterns, practical system design, and technical foundations that can mature into client-ready deployments."
+        description="Public examples are sanitized and intentionally avoid exposing proprietary code, private client details, or unsupported claims. The emphasis is on relevant operating patterns and technical foundations."
       />
 
-      <Section>
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {portfolioItems.map((item) => (
-            <PortfolioCard key={item.title} {...item} />
-          ))}
+      <Section
+        eyebrow="Sanitized examples"
+        title="Relevant work organized by operational purpose."
+        intro="The current portfolio separates client-facing operational systems from technical foundations that support future product capabilities."
+      >
+        <div className="mt-12 grid gap-12">
+          {portfolioSections.map((section) => {
+            const sectionId = section.title.toLowerCase().replace(/\s+/g, "-");
+
+            return (
+              <section key={section.title} aria-labelledby={sectionId}>
+                <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <h2
+                      id={sectionId}
+                      className="text-2xl font-semibold tracking-tight text-[#F4F7FB]"
+                    >
+                      {section.title}
+                    </h2>
+                    <p className="mt-2 max-w-2xl text-sm leading-6 text-[#A7B0BE]">
+                      {section.description}
+                    </p>
+                  </div>
+                </div>
+                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                  {section.items.map((item) => (
+                    <PortfolioCard key={item.title} {...item} />
+                  ))}
+                </div>
+              </section>
+            );
+          })}
         </div>
       </Section>
 
@@ -38,9 +67,9 @@ export default function PortfolioPage() {
             Business-safe by design.
           </h2>
           <p className="mt-5 text-base leading-7 text-[#A7B0BE]">
-            Some systems are internal prototypes or private builds. Public demos
-            and sanitized case studies will be added as client deployments
-            mature.
+            Some systems are internal prototypes, technical foundations, or
+            private builds. Public demos and sanitized case studies will be
+            added as deployments mature.
           </p>
         </div>
       </Section>

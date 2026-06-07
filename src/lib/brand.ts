@@ -4,7 +4,7 @@ export const brand = {
   descriptor: "SYSTEMS",
   tagline: "Built for Real Operations.",
   domain: "epyk-systems.com",
-  url: "https://epyk-systems.com",
+  url: "https://www.epyk-systems.com",
   email: "contact@epyk-systems.com",
   assets: {
     logo: "/brand/epyk-systems-logo.png",

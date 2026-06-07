@@ -10,12 +10,15 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(brand.url),
   title: {
-    default: "Epyk Systems | Operational Systems for Industrial Work",
+    default: "Epyk Systems | Operational Software for Industrial Teams",
     template: "%s | Epyk Systems"
   },
   description:
-    "Practical software infrastructure for workflow visibility, inventory control, industrial operations, and computer vision.",
+    "Founder-led industrial software for workflow visibility, inventory and material tracking, operational automation, and practical computer vision.",
   applicationName: "Epyk Systems",
+  alternates: {
+    canonical: "/"
+  },
   keywords: [
     "industrial software",
     "workflow automation",
@@ -31,9 +34,9 @@ export const metadata: Metadata = {
     type: "website",
     url: brand.url,
     siteName: brand.name,
-    title: "Epyk Systems | Operational Systems for Industrial Work",
+    title: "Epyk Systems | Operational Software for Industrial Teams",
     description:
-      "Practical software infrastructure for workflow visibility, inventory control, industrial operations, and computer vision.",
+      "Founder-led industrial software for workflow visibility, inventory and material tracking, operational automation, and practical computer vision.",
     images: [
       {
         url: brand.assets.logo,
@@ -45,9 +48,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Epyk Systems | Operational Systems for Industrial Work",
+    title: "Epyk Systems | Operational Software for Industrial Teams",
     description:
-      "Practical software infrastructure for workflow visibility, inventory control, industrial operations, and computer vision.",
+      "Founder-led industrial software for workflow visibility, inventory and material tracking, operational automation, and practical computer vision.",
     images: [brand.assets.logo]
   },
   icons: {

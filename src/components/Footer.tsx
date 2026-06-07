@@ -9,46 +9,36 @@ export function Footer() {
 
   return (
     <footer className="border-t border-white/10 bg-[#05070B]/92">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
-        <div>
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.15fr_0.85fr] md:items-start lg:px-8">
+        <div className="max-w-xl">
           <Logo variant="full" imageClassName="h-16 w-[230px] sm:w-[270px]" />
           <p className="mt-5 max-w-sm text-sm leading-6 text-[#A7B0BE]">
-            {brand.tagline} Practical software infrastructure for operational
-            clarity, workflow visibility, and inventory control.
+            {brand.tagline} Practical software for industrial workflows,
+            inventory control, and operational visibility.
           </p>
           <a
             href={`mailto:${brand.email}`}
-            className="mt-5 inline-flex text-sm font-medium text-[#DDE3EA] transition hover:text-[#2D7CFF]"
+            className="mt-5 inline-flex rounded-sm text-sm font-medium text-[#DDE3EA] transition hover:text-[#2D7CFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70"
           >
             {brand.email}
           </a>
         </div>
 
-        <div>
+        <div className="md:justify-self-end">
           <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-[#DDE3EA]">
             Navigation
           </h2>
-          <div className="mt-4 grid grid-cols-2 gap-2">
+          <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-2 sm:gap-x-10">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-[#A7B0BE] transition hover:text-[#F4F7FB]"
+                className="rounded-sm text-sm text-[#A7B0BE] transition hover:text-[#F4F7FB] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70"
               >
                 {item.label}
               </Link>
             ))}
           </div>
-        </div>
-
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-[#DDE3EA]">
-            Deployment
-          </h2>
-          <p className="mt-4 text-sm leading-6 text-[#A7B0BE]">
-            Built for deployment to Cloudflare Pages, Vercel, or Netlify with a
-            custom domain at {brand.domain}.
-          </p>
         </div>
       </div>
       <div className="border-t border-white/10 px-5 py-5">

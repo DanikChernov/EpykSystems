@@ -6,13 +6,15 @@ import { CTASection } from "@/components/CTASection";
 import { FeatureCard } from "@/components/FeatureCard";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
+import { createPageMetadata } from "@/lib/metadata";
 import { visionFeatures } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Epyk Vision",
+export const metadata: Metadata = createPageMetadata({
+  title: "Epyk Vision | Industrial Computer Vision and Process Evidence",
   description:
-    "Epyk Vision is the industrial computer vision and operational perception layer for visual workflow verification, process evidence, safety awareness, and integration with operations and inventory systems."
-};
+    "Industrial computer vision for object and equipment tracking, workflow verification, process evidence, edge-ready pipelines, and operational system integration.",
+  path: "/vision"
+});
 
 const useCases = [
   "Detecting whether materials or bins are present",
@@ -36,11 +38,11 @@ export default function VisionPage() {
       <PageHeader
         eyebrow="Epyk Vision"
         title="Visual context for real operations."
-        description="Epyk Vision brings visual context into operations, helping teams understand what happened, where it happened, and how workflows are moving in the real world."
+        description="Epyk Vision connects camera-based signals to operational context so teams can understand what happened, where it happened, and whether the process moved as expected."
       >
         <Link
           href="/contact"
-          className="inline-flex items-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_26px_rgba(45,124,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(45,124,255,0.34)]"
+          className="inline-flex items-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_26px_rgba(45,124,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(45,124,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070B]"
         >
           Discuss Vision
           <ArrowRight aria-hidden size={17} className="ml-2" />
@@ -50,7 +52,7 @@ export default function VisionPage() {
       <Section
         eyebrow="Operational perception"
         title="A future-facing product line for process evidence, object tracking, and floor visibility."
-        intro="Epyk Vision is positioned as an industrial computer vision layer that can integrate with operations and inventory systems. It is not framed as surveillance. It is built around clear operational purpose, appropriate permissions, and practical boundaries."
+        intro="Epyk Vision is an industrial computer vision direction that can integrate with operations and inventory systems. It is built around clear purpose, appropriate permissions, and practical privacy boundaries."
       >
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {visionFeatures.map((feature) => (
@@ -63,7 +65,7 @@ export default function VisionPage() {
         className="border-y border-white/10 bg-[#080D14]/54"
         eyebrow="Vision that supports operations"
         title="Cameras should support operational clarity, not replace human judgment."
-        intro="Vision systems should be deployed with a clear purpose, appropriate permissions, practical boundaries, and business-focused outcomes. The goal is to reduce uncertainty, improve documentation, and connect visual events to operational workflows."
+        intro="The goal is to reduce uncertainty, improve documentation, and connect visual events to operational workflows without turning the system into a monitoring culture."
       >
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[

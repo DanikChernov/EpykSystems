@@ -3,31 +3,33 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { PageHeader } from "@/components/PageHeader";
 import { brand } from "@/lib/brand";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Contact",
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact | Epyk Systems",
   description:
-    "Contact Epyk Systems to discuss workflow modernization, inventory tracking, industrial operations software, computer vision, or practical automation projects."
-};
+    "Contact Epyk Systems to discuss workflow problems, inventory tracking, industrial software, computer vision feasibility, or focused operational automation.",
+  path: "/contact"
+});
 
 export default function ContactPage() {
   return (
     <>
       <PageHeader
         eyebrow="Contact"
-        title="Discuss an operational system, prototype, or workflow problem."
-        description="Use the form to describe the business context, workflow friction, inventory issue, or technical foundation you want to explore."
+        title="Start with the workflow that is causing friction."
+        description="Use the form to describe the operational problem, current manual process, spreadsheet, approval path, inventory issue, or system idea you want to explore."
       />
 
-      <section className="relative py-20 sm:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
+      <section className="relative py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10 lg:px-8">
           <aside className="rounded-lg border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] backdrop-blur">
             <h2 className="text-xl font-semibold tracking-tight text-[#F4F7FB]">
               Epyk Systems
             </h2>
             <p className="mt-4 text-sm leading-6 text-[#A7B0BE]">
-              Practical operational software for industrial teams, contractors,
-              manufacturers, warehouses, and operations-heavy businesses.
+              Practical operational software for manufacturers, contractors,
+              warehouses, field teams, and operations-heavy businesses.
             </p>
             <div className="mt-6 border-t border-white/10 pt-6">
               <p className="text-sm font-medium text-[#DDE3EA]">Email</p>
@@ -40,14 +42,13 @@ export default function ContactPage() {
             </div>
             <div className="mt-6 border-t border-white/10 pt-6">
               <p className="text-sm font-medium text-[#DDE3EA]">
-                Good fit conversations
+                Helpful starting points
               </p>
               <ul className="mt-3 grid gap-2 text-sm leading-6 text-[#A7B0BE]">
-                <li>Workflow modernization</li>
-                <li>Inventory and material tracking</li>
-                <li>Industrial automation concepts</li>
-                <li>Computer vision feasibility</li>
-                <li>Prototype and system architecture</li>
+                <li>A workflow that gets repeated manually</li>
+                <li>A spreadsheet or approval path that no longer holds up</li>
+                <li>An inventory or material tracking gap</li>
+                <li>A vision or automation idea that needs feasibility review</li>
               </ul>
             </div>
           </aside>

@@ -5,21 +5,23 @@ import Link from "next/link";
 import { CTASection } from "@/components/CTASection";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
+import { createPageMetadata } from "@/lib/metadata";
 import { aboutPoints } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata: Metadata = createPageMetadata({
+  title: "About | Epyk Systems",
   description:
-    "Epyk Systems is a founder-led industrial systems company shaped by hands-on CNC, manufacturing, workflow, inventory, automation, computer vision, and operations-first software experience."
-};
+    "Founder-led industrial software company grounded in CNC and manufacturing familiarity, shop-floor friction, practical automation, and operations-first system design.",
+  path: "/about"
+});
 
 const bridgePoints = [
-  "Industrial workflows",
-  "CNC and manufacturing background",
-  "Practical automation",
-  "Operations-first software",
-  "Shop-floor reality connected to modern systems",
-  "Computer vision and AI as supporting tools"
+  "CNC and manufacturing familiarity",
+  "Shop-floor friction",
+  "Workflow and inventory systems",
+  "Cloud, local-first, and edge options",
+  "Automation and AI as support tools",
+  "Focused early-stage builds"
 ];
 
 export default function AboutPage() {
@@ -28,11 +30,11 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About Epyk Systems"
         title="Built by someone who understands operational friction firsthand."
-        description="Epyk Systems is founder-led and grounded in the kind of industrial work where software has to be useful under real constraints: busy floors, shifting schedules, material confusion, approvals, evidence, and the daily pressure to keep work moving."
+        description="Epyk Systems is founder-led and grounded in industrial work where software has to be useful under real constraints: busy floors, shifting schedules, material confusion, approvals, evidence, and the pressure to keep work moving."
       >
         <Link
           href="/contact"
-          className="inline-flex items-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_26px_rgba(45,124,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(45,124,255,0.34)]"
+          className="inline-flex items-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_26px_rgba(45,124,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(45,124,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070B]"
         >
           Start a Conversation
           <ArrowRight aria-hidden size={17} className="ml-2" />
@@ -42,7 +44,7 @@ export default function AboutPage() {
       <Section
         eyebrow="Operating perspective"
         title="Software designed for the floor, not just the office."
-        intro="The company is built from a builder/operator perspective. The point is not to sell oversized software into small and mid-sized industrial teams. The point is to understand the actual friction, then design systems that fit the workflow."
+        intro="The work starts with the actual friction, then turns it into systems people can use without forcing a large-enterprise process onto a smaller operation."
       >
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           {aboutPoints.map((point) => (
@@ -50,9 +52,9 @@ export default function AboutPage() {
               key={point.title}
               className="rounded-lg border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] backdrop-blur"
             >
-              <h2 className="text-xl font-semibold tracking-tight text-[#F4F7FB]">
+              <h3 className="text-xl font-semibold tracking-tight text-[#F4F7FB]">
                 {point.title}
-              </h2>
+              </h3>
               <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
                 {point.description}
               </p>
@@ -72,7 +74,7 @@ export default function AboutPage() {
             </h2>
             <p className="mt-5 text-base leading-7 text-[#A7B0BE]">
               Epyk Systems uses automation, computer vision, and assistant-style
-              infrastructure where they support the business case. These tools
+              infrastructure where they support the business case. Those tools
               matter, but they are not a substitute for clean data, reliable
               workflows, clear permissions, and systems people can actually use.
             </p>
@@ -99,14 +101,14 @@ export default function AboutPage() {
 
       <Section
         eyebrow="Company stage"
-        title="Early-stage, serious, and built to mature with deployments."
-        intro="Epyk Systems is intentionally presented as a focused industrial systems company, not a giant enterprise vendor. The direction is scalable, but the work starts with practical systems, clear requirements, and measurable operational improvement."
+        title="Early-stage, serious, and built to mature with real use."
+        intro="Epyk Systems is a focused industrial systems company, not a large enterprise vendor. The direction is scalable, but the work starts with practical requirements and a contained operational problem."
       >
         <div className="mt-10 rounded-lg border border-white/10 bg-white/[0.03] p-6 text-base leading-7 text-[#A7B0BE] sm:p-8">
           The best systems usually start by solving one painful workflow well.
           From there, they can grow into connected operations, inventory,
-          reporting, vision, and automation infrastructure that reflects how the
-          business actually runs.
+          reporting, vision, and automation infrastructure when the added scope
+          is justified by the business.
         </div>
       </Section>
 

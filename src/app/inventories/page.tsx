@@ -6,13 +6,15 @@ import { CTASection } from "@/components/CTASection";
 import { FeatureCard } from "@/components/FeatureCard";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
+import { createPageMetadata } from "@/lib/metadata";
 import { inventoryFeatures } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Epyk Inventories",
+export const metadata: Metadata = createPageMetadata({
+  title: "Epyk Inventories | Industrial Inventory and Material Tracking",
   description:
-    "Epyk Inventories is a material and inventory tracking product direction for live visibility, approvals, barcode/QR workflows, low-stock alerts, job-linked usage, and audit logs."
-};
+    "Industrial inventory and material tracking for requests, approvals, barcode and QR workflows, low-stock alerts, job-linked usage, permissions, and audit history.",
+  path: "/inventories"
+});
 
 const inventoryPain = [
   "Counts change without a reliable history.",
@@ -37,11 +39,11 @@ export default function InventoriesPage() {
       <PageHeader
         eyebrow="Epyk Inventories"
         title="Inventory systems that match how work actually happens."
-        description="Epyk Inventories is the material tracking product direction for industrial teams that need live inventory visibility, request and approval flow, barcode/QR support, low-stock alerts, permissions, and audit history across different operational environments."
+        description="Epyk Inventories helps industrial teams track materials, requests, approvals, barcode/QR workflows, low-stock risk, permissions, and audit history across real operating environments."
       >
         <Link
           href="/contact"
-          className="inline-flex items-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_26px_rgba(45,124,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(45,124,255,0.34)]"
+          className="inline-flex items-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_26px_rgba(45,124,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(45,124,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070B]"
         >
           Discuss Inventory
           <ArrowRight aria-hidden size={17} className="ml-2" />
@@ -51,7 +53,7 @@ export default function InventoriesPage() {
       <Section
         eyebrow="Material visibility"
         title="Built for real-world inventory pain in industrial environments."
-        intro="This product direction is inspired by practical inventory problems: materials moving faster than the spreadsheet, approvals happening outside the system, and counts becoming unreliable when daily work gets busy."
+        intro="The product direction is shaped around common inventory failure points: material moving faster than the spreadsheet, approvals happening outside the system, and counts losing trust during busy work."
       >
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {inventoryFeatures.map((feature) => (
@@ -71,10 +73,10 @@ export default function InventoriesPage() {
               accountability.
             </h2>
             <p className="mt-5 text-base leading-7 text-[#A7B0BE]">
-              Epyk Inventories is meant to support material requests, approval
-              rules, job-based pulls, attachments, image evidence, permissions,
-              and warehouse visibility without forcing teams into a rigid
-              enterprise system.
+              Epyk Inventories supports material requests, approval rules,
+              job-based pulls, attachments, image evidence, permissions, and
+              warehouse visibility without forcing teams into a rigid enterprise
+              system.
             </p>
           </div>
           <div className="grid gap-3">
@@ -98,7 +100,7 @@ export default function InventoriesPage() {
       <Section
         eyebrow="Multiple inventory systems"
         title="Designed for different operational environments."
-        intro="The name Epyk Inventories is intentional. Different teams track different kinds of inventory, and the system should support the environment instead of pretending every business uses material the same way."
+        intro="Different teams track different kinds of inventory. The system should fit the environment instead of pretending every business uses material the same way."
       >
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {environmentTypes.map((type) => (

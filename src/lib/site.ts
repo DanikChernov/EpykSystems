@@ -7,7 +7,6 @@ import {
   ChartNoAxesCombined,
   ClipboardCheck,
   Eye,
-  Factory,
   FileClock,
   GitBranch,
   History,
@@ -34,18 +33,26 @@ export type Feature = {
   href?: string;
 };
 
+export type PortfolioItem = {
+  title: string;
+  category: string;
+  summary: string;
+  tags: string[];
+  icon: LucideIcon;
+};
+
 export const homePillars: Feature[] = [
   {
     title: "Epyk Operations",
     description:
-      "Workflow visibility, job tracking, approvals, dashboards, and operational automation.",
+      "Job tracking, approvals, scheduling visibility, dashboards, audit history, and practical workflow control.",
     icon: Workflow,
     href: "/operations"
   },
   {
     title: "Epyk Inventories",
     description:
-      "Inventory visibility, material requests, barcode workflows, low-stock alerts, and audit history.",
+      "Material tracking, request workflows, barcode/QR support, low-stock alerts, permissions, and audit history.",
     icon: Boxes,
     href: "/inventories"
   },
@@ -55,15 +62,21 @@ export const homePillars: Feature[] = [
       "Computer vision and operational perception for tracking objects, verifying processes, and connecting visual context to workflows.",
     icon: Eye,
     href: "/vision"
-  },
-  {
-    title: "Practical Automation",
-    description:
-      "Automation that reduces repeated work, missed steps, handoff confusion, and preventable operational mistakes.",
-    icon: SlidersHorizontal,
-    href: "/contact"
   }
 ];
+
+export const automationSupport = {
+  title: "Practical automation supports the product pillars.",
+  description:
+    "Automation is not treated as a separate product line. It is added where it reduces repeated work, missed handoffs, unclear approvals, or avoidable manual updates inside Operations, Inventories, and Vision.",
+  details: [
+    "Status updates and notifications",
+    "Approval routing and reminders",
+    "Inventory thresholds and request flow",
+    "Vision-triggered workflow events"
+  ],
+  icon: SlidersHorizontal
+};
 
 export const operationsFeatures: Feature[] = [
   {
@@ -193,106 +206,115 @@ export const industryFit = [
 
 export const aboutPoints = [
   {
-    title: "Built from real operational experience",
+    title: "Grounded in industrial work",
     description:
-      "Epyk Systems is shaped by hands-on industrial work, including CNC and manufacturing environments where software has to respect the floor."
+      "Epyk Systems is shaped by hands-on CNC and manufacturing exposure, where software has to respect real constraints and daily production pressure."
   },
   {
-    title: "Software designed for the floor, not just the office",
+    title: "Built around shop-floor friction",
     description:
-      "The goal is not to make another dashboard. It is to help operators, managers, owners, and crews see the work clearly and move it forward."
+      "The work starts with material confusion, unclear approvals, schedule pressure, status gaps, and the small handoff problems that compound over time."
   },
   {
-    title: "Practical AI and automation without hype",
+    title: "Automation and AI without hype",
     description:
-      "Automation, computer vision, and assistant-style tools are treated as supporting infrastructure, not the whole identity of the company."
+      "Automation, computer vision, and assistant-style tools are used as supporting infrastructure when they make the operation easier to run."
   },
   {
-    title: "Local-first and custom-fit systems where needed",
+    title: "Deployment matched to the operation",
     description:
-      "Some operations need cloud workflows. Others need local-first systems, edge processing, or custom deployment around facility constraints."
+      "Some teams need cloud workflows. Others need local-first tools, edge processing, or architecture shaped around facility constraints."
   },
   {
-    title: "Bridging physical operations and modern software",
+    title: "Modern software for physical work",
     description:
-      "Epyk Systems connects shop-floor reality with modern software architecture so teams can reduce friction without losing operational context."
+      "The goal is to connect physical operations with reliable software structure without forcing industrial teams into unnecessary complexity."
   }
 ];
 
-export const portfolioItems = [
+export const portfolioSections: {
+  title: string;
+  description: string;
+  items: PortfolioItem[];
+}[] = [
   {
-    title: "Industrial Inventory System",
-    type: "Internal system",
+    title: "Operational Systems",
     description:
-      "A structured material tracking foundation for industrial environments with permissions, approval flow, low-stock visibility, and audit history.",
-    details: [
-      "Role-based permissions",
-      "Material tracking",
-      "Approval flows",
-      "Low-stock alerts",
-      "Audit logs"
-    ],
-    icon: Boxes
+      "Sanitized examples focused on inventory, workflow, job coordination, and operational control.",
+    items: [
+      {
+        title: "Industrial Inventory System",
+        category: "Internal system",
+        summary:
+          "A structured material tracking foundation for industrial environments with role-based access, request flow, low-stock visibility, and defensible history.",
+        tags: [
+          "Material tracking",
+          "Approval flow",
+          "Permissions",
+          "Low-stock visibility",
+          "Audit history"
+        ],
+        icon: Boxes
+      },
+      {
+        title: "Plumbing Operations Prototype",
+        category: "Prototype",
+        summary:
+          "An operations concept for job-based material requests, inventory planning, and simple approval workflows for a service-heavy trade environment.",
+        tags: [
+          "Job-based requests",
+          "Inventory planning",
+          "Approvals",
+          "Field workflow"
+        ],
+        icon: Wrench
+      },
+      {
+        title: "Flooring Operations Prototype",
+        category: "Prototype",
+        summary:
+          "A project and material coordination prototype focused on clearer handoffs, work status, and job-level visibility.",
+        tags: [
+          "Project coordination",
+          "Material planning",
+          "Job tracking",
+          "Handoff visibility"
+        ],
+        icon: Layers3
+      }
+    ]
   },
   {
-    title: "Plumbing Operations Prototype",
-    type: "Prototype",
+    title: "Technical Foundations",
     description:
-      "A startup-focused operations concept for job-based material requests, inventory planning, and simple approval workflows.",
-    details: [
-      "Job-based material requests",
-      "Inventory planning",
-      "Approval workflows",
-      "Startup-focused simplicity"
-    ],
-    icon: Wrench
-  },
-  {
-    title: "Flooring Operations Prototype",
-    type: "Prototype",
-    description:
-      "A project and material coordination prototype focused on work visibility, job tracking, and cleaner operational handoffs.",
-    details: [
-      "Project/material coordination",
-      "Job tracking",
-      "Operational visibility"
-    ],
-    icon: Layers3
-  },
-  {
-    title: "Multimodal AI / Operations Skeleton",
-    type: "Technical foundation",
-    description:
-      "A modular pipeline structure designed around swappable datasets and reusable operational intelligence concepts.",
-    details: [
-      "Modular pipeline structure",
-      "Dataset-swappable architecture",
-      "Reusable beyond CNC when restructured"
-    ],
-    icon: BrainCircuit
-  },
-  {
-    title: "Plex-style System Rebuild",
-    type: "System architecture example",
-    description:
-      "A full-stack rebuilding exercise that demonstrates system design, interface thinking, and complex application structure.",
-    details: [
-      "Media/system architecture",
-      "Full-stack rebuilding",
-      "System design ability"
-    ],
-    icon: Factory
-  },
-  {
-    title: "Vision / Perception Systems",
-    type: "Operational concept",
-    description:
-      "Computer vision experiments and object tracking concepts forming the early base for an operational perception layer.",
-    details: [
-      "Object tracking",
-      "Computer vision experiments",
-      "Future operational perception layer"
-    ],
-    icon: Eye
+      "Early foundations and operational concepts that support future system capabilities without exposing private implementation details.",
+    items: [
+      {
+        title: "Multimodal AI / Operations Skeleton",
+        category: "Technical foundation",
+        summary:
+          "A modular pipeline structure designed around swappable datasets and reusable operational intelligence patterns.",
+        tags: [
+          "Modular pipelines",
+          "Dataset-swappable architecture",
+          "Operational intelligence",
+          "Reusable structure"
+        ],
+        icon: BrainCircuit
+      },
+      {
+        title: "Vision / Perception Systems",
+        category: "Operational concept",
+        summary:
+          "Computer vision experiments and object tracking concepts forming an early base for operational perception and process evidence.",
+        tags: [
+          "Object tracking",
+          "Process evidence",
+          "Computer vision",
+          "Operational perception"
+        ],
+        icon: Eye
+      }
+    ]
   }
 ];

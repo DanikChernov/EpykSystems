@@ -202,11 +202,15 @@ export function ContactForm() {
           <span className="text-sm font-medium text-[#DDE3EA]">
             Description / message
           </span>
+          <span className="text-xs leading-5 text-[#7B8794]">
+            Describe the workflow problem, current manual process or
+            spreadsheet, team involved, and the improvement you want.
+          </span>
           <textarea
             value={form.message}
             onChange={(event) => updateField("message", event.target.value)}
             className="min-h-40 rounded-md border border-white/10 bg-[#05070B]/70 px-4 py-3 text-sm leading-6 text-[#F4F7FB] outline-none transition placeholder:text-[#7B8794] focus:border-[#2D7CFF]/60 focus:ring-2 focus:ring-[#2D7CFF]/14"
-            placeholder="Describe the operation, workflow, inventory problem, prototype need, or system idea."
+            placeholder="Example: approvals happen by text, material requests live in a spreadsheet, and the shop manager needs clearer status before scheduling work."
             aria-invalid={Boolean(errors.message)}
           />
           {errors.message ? (
@@ -223,7 +227,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex min-h-12 items-center justify-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(45,124,255,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(45,124,255,0.34)] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex min-h-12 items-center justify-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(45,124,255,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(45,124,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070B] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === "submitting" ? (
             <>

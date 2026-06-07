@@ -6,13 +6,15 @@ import { CTASection } from "@/components/CTASection";
 import { FeatureCard } from "@/components/FeatureCard";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
+import { createPageMetadata } from "@/lib/metadata";
 import { operationsFeatures } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Epyk Operations",
+export const metadata: Metadata = createPageMetadata({
+  title: "Epyk Operations | Workflow Visibility and Job Tracking",
   description:
-    "Epyk Operations is the workflow and operations platform for job tracking, approvals, scheduling visibility, dashboards, audit logs, and operational automation."
-};
+    "Workflow visibility, job tracking, approvals, scheduling visibility, dashboards, audit logs, and practical operational automation for industrial teams.",
+  path: "/operations"
+});
 
 const workflowOutcomes = [
   "Jobs move through visible stages instead of disappearing into messages.",
@@ -36,11 +38,11 @@ export default function OperationsPage() {
       <PageHeader
         eyebrow="Epyk Operations"
         title="Workflow visibility for work that cannot be managed from memory."
-        description="Epyk Operations is the core workflow and operations platform for teams that need job tracking, approvals, scheduling visibility, dashboards, audit logs, and practical automation around real work."
+        description="Epyk Operations gives teams a structured way to track jobs, approvals, schedules, progress, and activity history around real operational work."
       >
         <Link
           href="/contact"
-          className="inline-flex items-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_26px_rgba(45,124,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(45,124,255,0.34)]"
+          className="inline-flex items-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_26px_rgba(45,124,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(45,124,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070B]"
         >
           Discuss Operations
           <ArrowRight aria-hidden size={17} className="ml-2" />
@@ -50,7 +52,7 @@ export default function OperationsPage() {
       <Section
         eyebrow="Core platform"
         title="A practical operating layer for jobs, approvals, teams, and progress."
-        intro="The platform is designed around the daily reality of operations-heavy businesses: changing priorities, missing context, repeated approvals, status uncertainty, and a constant need to know what is happening now."
+        intro="The platform is designed for changing priorities, missing context, repeated approvals, and status uncertainty."
       >
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {operationsFeatures.map((feature) => (
@@ -69,10 +71,10 @@ export default function OperationsPage() {
               Make operational progress easier to see, prove, and improve.
             </h2>
             <p className="mt-5 text-base leading-7 text-[#A7B0BE]">
-              Epyk Operations brings job status, team activity, production or
-              field progress, and approval decisions into one structured system.
-              The value is not just reporting. It is reducing the uncertainty
-              that causes missed steps, rework, and stalled decisions.
+              Epyk Operations brings job status, team activity, field or
+              production progress, and approval decisions into one operating
+              structure. The goal is to reduce the uncertainty that causes
+              missed steps, rework, and stalled decisions.
             </p>
           </div>
           <div className="grid gap-3">
@@ -96,9 +98,12 @@ export default function OperationsPage() {
         <div className="mt-12 grid gap-3 rounded-lg border border-white/10 bg-[#05070B]/58 p-4 md:grid-cols-5">
           {["Intake", "Approve", "Schedule", "Progress", "Audit"].map(
             (step, index) => (
-              <div key={step} className="relative rounded-md bg-white/[0.03] p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#7B8794]">
-                  0{index + 1}
+              <div
+                key={step}
+                className="relative rounded-md border border-white/10 bg-white/[0.03] p-4"
+              >
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[#7B8794]">
+                  Step 0{index + 1}
                 </p>
                 <p className="mt-3 text-sm font-semibold text-[#DDE3EA]">
                   {step}
@@ -116,9 +121,9 @@ export default function OperationsPage() {
       </Section>
 
       <Section
-        eyebrow="Custom-fit operations"
+        eyebrow="Operational fit"
         title="Configured around the way the business actually runs."
-        intro="Epyk Operations can be shaped for manufacturing, construction, fabrication, service teams, internal departments, and hybrid operations where office decisions and floor activity need to stay connected."
+        intro="The same operating layer can support shop schedules, jobsite coordination, service activity, or internal approval flows."
       >
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {customizableFits.map((fit) => (
