@@ -5,7 +5,7 @@ import Link from "next/link";
 import { CTASection } from "@/components/CTASection";
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
-import { createPageMetadata } from "@/lib/metadata";
+import { createPageMetadata } from "@/lib/brand";
 import { aboutPoints } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({

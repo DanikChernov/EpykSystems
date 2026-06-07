@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 
 import { ContactForm } from "@/components/ContactForm";
 import { PageHeader } from "@/components/PageHeader";
-import { brand } from "@/lib/brand";
-import { createPageMetadata } from "@/lib/metadata";
+import { brand, createPageMetadata } from "@/lib/brand";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Contact | Epyk Systems",

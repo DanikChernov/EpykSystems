@@ -7,8 +7,7 @@ import { GradientGlow } from "@/components/GradientGlow";
 import { Logo } from "@/components/Logo";
 import { ProductCard } from "@/components/ProductCard";
 import { Section } from "@/components/Section";
-import { brand } from "@/lib/brand";
-import { createPageMetadata } from "@/lib/metadata";
+import { brand, createPageMetadata } from "@/lib/brand";
 import { automationSupport, homePillars, industryFit } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({

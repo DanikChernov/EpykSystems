@@ -4,7 +4,7 @@ import { CTASection } from "@/components/CTASection";
 import { PageHeader } from "@/components/PageHeader";
 import { PortfolioCard } from "@/components/PortfolioCard";
 import { Section } from "@/components/Section";
-import { createPageMetadata } from "@/lib/metadata";
+import { createPageMetadata } from "@/lib/brand";
 import { portfolioSections } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({

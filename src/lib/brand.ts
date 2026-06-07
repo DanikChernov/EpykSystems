@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 export const brand = {
   name: "Epyk Systems",
   wordmark: "EPYK",
@@ -36,3 +38,46 @@ export const navItems = [
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" }
 ] as const;
+
+type PageMetadataOptions = {
+  title: string;
+  description: string;
+  path: string;
+};
+
+export function createPageMetadata({
+  title,
+  description,
+  path
+}: PageMetadataOptions): Metadata {
+  return {
+    title: {
+      absolute: title
+    },
+    description,
+    alternates: {
+      canonical: path
+    },
+    openGraph: {
+      type: "website",
+      url: path,
+      siteName: brand.name,
+      title,
+      description,
+      images: [
+        {
+          url: brand.assets.logo,
+          width: 1345,
+          height: 360,
+          alt: "Epyk Systems logo"
+        }
+      ]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [brand.assets.logo]
+    }
+  };
+}
