@@ -20,7 +20,7 @@ export default function PortfolioPage() {
       <PageHeader
         eyebrow="Portfolio"
         title="Operational systems, prototypes, and technical foundations."
-        description="Public examples are sanitized and intentionally avoid exposing proprietary code, private client details, or unsupported claims. The emphasis is on relevant operating patterns and technical foundations."
+        description="Public examples are sanitized and intentionally avoid exposing proprietary code, private client details, or unsupported claims. The emphasis is on relevant operating patterns and technical foundations. Client case studies will be published here as deployments mature; current examples are sanitized internal builds and prototypes."
       />
 
       <Section

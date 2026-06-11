@@ -30,6 +30,10 @@ export default function ContactPage() {
               Practical operational software for manufacturers, contractors,
               warehouses, field teams, and operations-heavy businesses.
             </p>
+            <p className="mt-4 text-sm leading-6 text-[#DDE3EA]">
+              Based in Erie, Pennsylvania - working with industrial teams
+              regionally and remotely.
+            </p>
             <div className="mt-6 border-t border-white/10 pt-6">
               <p className="text-sm font-medium text-[#DDE3EA]">Email</p>
               <a

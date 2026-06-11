@@ -1,8 +1,10 @@
+import { MapPin } from "lucide-react";
 import Link from "next/link";
 
 import { brand, navItems } from "@/lib/brand";
 
 import { Logo } from "./Logo";
+import { GitHubIcon, LinkedInIcon } from "./SocialIcons";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -22,6 +24,32 @@ export function Footer() {
           >
             {brand.email}
           </a>
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm text-[#A7B0BE]">
+            <span className="inline-flex items-center gap-2">
+              <MapPin aria-hidden size={16} className="text-[#2D7CFF]" />
+              Erie, Pennsylvania
+            </span>
+            <span className="flex items-center gap-2">
+              <a
+                href="https://www.linkedin.com/in/daniel-chernov-84727a283/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Daniel Chernov on LinkedIn"
+                className="inline-flex size-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.03] text-[#DDE3EA] transition hover:border-[#2D7CFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70"
+              >
+                <LinkedInIcon className="size-4" />
+              </a>
+              <a
+                href="https://github.com/DanikChernov"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Daniel Chernov on GitHub"
+                className="inline-flex size-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.03] text-[#DDE3EA] transition hover:border-[#2D7CFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70"
+              >
+                <GitHubIcon className="size-4" />
+              </a>
+            </span>
+          </div>
         </div>
 
         <div className="md:justify-self-end">

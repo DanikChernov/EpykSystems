@@ -190,7 +190,7 @@ export default function Home() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {[
             "Workflow modernization for teams that need clear status, ownership, and handoffs.",
-            "Inventory and material tracking designed around jobs, bins, approvals, and real movement.",
+            "Inventory and material tracking designed around barcode and label workflows, bins, approvals, and real material movement.",
             "Operational perception and automation that connects physical events to useful software signals."
           ].map((item) => (
             <div
