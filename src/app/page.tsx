@@ -2,330 +2,285 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
+import { BrandHero } from "@/components/BrandHero";
 import { CTASection } from "@/components/CTASection";
-import { GradientGlow } from "@/components/GradientGlow";
-import { Logo } from "@/components/Logo";
-import { ProductCard } from "@/components/ProductCard";
+import { LocalFirstSection } from "@/components/LocalFirstSection";
+import { PrincipleList } from "@/components/PrincipleList";
 import { Section } from "@/components/Section";
+import { SolutionCard } from "@/components/SolutionCard";
+import { StatusBadge } from "@/components/StatusBadge";
 import { brand, createPageMetadata } from "@/lib/brand";
-import { automationSupport, homePillars, industryFit } from "@/lib/site";
+import {
+  commercialFocus,
+  engagementSteps,
+  ecosystemProjects,
+  operationalNeeds,
+  proofItems,
+  solutionAreas
+} from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Epyk Systems | Operational Software for Industrial Teams",
+  title:
+    "Epyk Systems | Local-First Technology, Private AI and Industrial Infrastructure",
   description:
-    "Founder-led industrial software for workflow visibility, inventory and material tracking, operational automation, and practical computer vision.",
+    "Epyk Systems is a God-centered, community-minded, local-first technology ecosystem building private AI, secure infrastructure, operational software, perception, and industrial modernization systems.",
   path: "/"
 });
 
-const operationalNeeds = [
-  "Fewer spreadsheet failures",
-  "Better workflow visibility",
-  "Less material confusion",
-  "Simpler approvals",
-  "Better accountability",
-  "Clearer operational evidence"
-];
-
-const systemRows = [
-  {
-    label: "Workflow visibility",
-    value: "Live",
-    detail: "Stages, owners, and next steps are visible."
-  },
-  {
-    label: "Inventory control",
-    value: "Tracked",
-    detail: "Material movement stays tied to jobs and requests."
-  },
-  {
-    label: "Production progress",
-    value: "Mapped",
-    detail: "Progress is connected to the actual workflow."
-  },
-  {
-    label: "Operational evidence",
-    value: "Logged",
-    detail: "Changes, approvals, and context are preserved."
-  }
-];
-
-const startSteps = [
-  {
-    title: "Identify the friction",
-    description:
-      "Find the manual process, disconnected spreadsheet, unclear approval, or inventory issue creating repeated problems."
-  },
-  {
-    title: "Build the focused system",
-    description:
-      "Implement a practical workflow, inventory, automation, or visibility layer around the real operation."
-  },
-  {
-    title: "Expand when it proves useful",
-    description:
-      "Add reporting, integrations, automation, vision, or additional workflows only when justified."
-  }
-];
-
 export default function Home() {
-  const AutomationIcon = automationSupport.icon;
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: brand.name,
+    url: brand.url,
+    logo: `${brand.url}${brand.assets.logo}`,
+    email: brand.email,
+    description: brand.explanatoryLine,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Erie",
+      addressRegion: "PA",
+      addressCountry: "US"
+    }
+  };
 
   return (
     <>
-      <section className="relative isolate overflow-hidden border-b border-white/10 px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
-        <GradientGlow variant="hero" className="-right-24 -top-24" />
-        <GradientGlow variant="section" className="bottom-6 left-8" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#2D7CFF]/50 to-transparent" />
-
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <div className="max-w-3xl">
-            <div className="mb-8">
-              <Logo
-                variant="full"
-                imageClassName="h-20 w-[290px] sm:h-24 sm:w-[390px]"
-              />
-              <p className="mt-4 text-xs font-semibold uppercase tracking-[0.34em] text-[#A7B0BE]">
-                {brand.tagline}
-              </p>
-            </div>
-
-            <h1 className="text-4xl font-semibold tracking-tight text-[#F4F7FB] sm:text-6xl lg:text-7xl">
-              Operational systems for modern industrial work.
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[#A7B0BE]">
-              Epyk Systems builds focused software for operations-heavy
-              businesses that need clearer workflows, tighter material control,
-              and practical automation around the way work actually moves.
-            </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_28px_rgba(45,124,255,0.24)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_36px_rgba(45,124,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070B]"
-              >
-                Request a Consultation
-                <ArrowRight aria-hidden size={17} className="ml-2" />
-              </Link>
-              <Link
-                href="/portfolio"
-                className="inline-flex items-center justify-center rounded-md border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-[#DDE3EA] transition hover:border-[#2D7CFF]/35 hover:bg-white/[0.07] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070B]"
-              >
-                View Portfolio
-              </Link>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="absolute -inset-8 rounded-full bg-[#2D7CFF]/10 blur-3xl" />
-            <div className="relative overflow-hidden rounded-lg border border-white/10 bg-[#080D14]/78 p-5 shadow-[0_34px_140px_rgba(0,0,0,0.46)] backdrop-blur">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#2D7CFF]">
-                    Operations stack
-                  </p>
-                  <p className="mt-2 text-sm text-[#7B8794]">
-                    Workflow, material, vision, evidence
-                  </p>
-                </div>
-                <div className="grid grid-cols-3 gap-1.5" aria-hidden>
-                  <span className="size-2 rounded-full bg-[#2D7CFF]" />
-                  <span className="size-2 rounded-full bg-[#DDE3EA]/55" />
-                  <span className="size-2 rounded-full bg-[#7B8794]/55" />
-                </div>
-              </div>
-
-              <div className="mt-5 grid gap-3">
-                {systemRows.map((row) => (
-                  <div
-                    key={row.label}
-                    className="rounded-md border border-white/10 bg-white/[0.035] p-4"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <span className="text-sm font-medium text-[#DDE3EA]">
-                          {row.label}
-                        </span>
-                        <p className="mt-2 text-xs leading-5 text-[#7B8794]">
-                          {row.detail}
-                        </p>
-                      </div>
-                      <span className="rounded-sm border border-[#2D7CFF]/25 bg-[#2D7CFF]/10 px-2 py-1 text-xs font-semibold text-[#DDE3EA]">
-                        {row.value}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-5 rounded-md border border-white/10 bg-[#05070B]/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#7B8794]">
-                  Connected operating layer
-                </p>
-                <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {[
-                    "Requests routed",
-                    "Material movement",
-                    "Process checks",
-                    "Evidence captured"
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-2 text-sm text-[#DDE3EA]"
-                    >
-                      <span className="size-1.5 rounded-full bg-[#2D7CFF]" />
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <BrandHero />
 
       <Section
-        eyebrow="What Epyk Systems does"
-        title="Modern software infrastructure for operations-heavy businesses."
-        intro="The work starts where daily operations break down: spreadsheet drift, unclear handoffs, material confusion, and decisions that happen outside the system."
+        eyebrow="Built for Real Operations"
+        title="What Epyk builds today."
+        intro="Epyk currently applies the local-first architecture to manufacturers, industrial teams, private infrastructure, local AI, workflow systems, inventory and material control, operational perception, secure machine connectivity, and technically complex environments."
       >
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {[
-            "Workflow modernization for teams that need clear status, ownership, and handoffs.",
-            "Inventory and material tracking designed around barcode and label workflows, bins, approvals, and real material movement.",
-            "Operational perception and automation that connects physical events to useful software signals."
-          ].map((item) => (
-            <div
-              key={item}
-              className="rounded-lg border border-white/10 bg-white/[0.03] p-6 text-sm leading-6 text-[#A7B0BE] shadow-[0_18px_80px_rgba(0,0,0,0.22)]"
-            >
-              {item}
-            </div>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {solutionAreas.map((solution) => (
+            <SolutionCard key={solution.slug} solution={solution} compact />
           ))}
         </div>
       </Section>
 
-      <Section
-        className="border-y border-white/10 bg-[#080D14]/52"
-        eyebrow="Product pillars"
-        title="Built around the systems that make industrial work visible."
-        intro="The three product lines cover the core operating layers Epyk Systems is building: work, materials, and visual process evidence."
-      >
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {homePillars.map((feature) => (
-            <ProductCard
-              key={feature.title}
-              title={feature.title}
-              description={feature.description}
-              href={feature.href || "/contact"}
-              icon={feature.icon}
-            />
-          ))}
-        </div>
-        <div className="mt-6 rounded-lg border border-white/10 bg-[#05070B]/52 p-6 shadow-[0_20px_90px_rgba(0,0,0,0.28)] sm:p-7">
-          <div className="grid gap-5 lg:grid-cols-[auto_1fr_auto] lg:items-center">
-            <div className="flex size-12 items-center justify-center rounded-md border border-[#2D7CFF]/24 bg-[#2D7CFF]/10 text-[#DDE3EA]">
-              <AutomationIcon aria-hidden size={22} strokeWidth={1.8} />
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold tracking-tight text-[#F4F7FB]">
-                {automationSupport.title}
-              </h3>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-[#A7B0BE]">
-                {automationSupport.description}
-              </p>
-            </div>
-            <div className="grid gap-2 sm:grid-cols-2 lg:min-w-80 lg:grid-cols-1">
-              {automationSupport.details.map((detail) => (
+      <Section className="border-y border-white/10 bg-[#080A0D]/56">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F3C743]">
+              Start with one painful workflow
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#F4F7FA] sm:text-4xl">
+              Start where the operation already hurts.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-[#A7B0BE] sm:text-lg">
+              We begin with the problem that causes real friction every week,
+              not with a predetermined platform sale. Epyk does not force
+              unnecessary replacement or transformation.
+            </p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {operationalNeeds.map((need) => (
                 <div
-                  key={detail}
-                  className="rounded-md border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-[#DDE3EA]"
+                  key={need}
+                  className="flex items-center gap-3 border border-white/10 bg-white/[0.03] px-4 py-3"
                 >
-                  {detail}
+                  <CheckCircle2
+                    aria-hidden
+                    size={18}
+                    className="shrink-0 text-[#1D6FFF]"
+                  />
+                  <span className="text-sm font-medium text-[#DDE3EA]">
+                    {need}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </Section>
 
-      <Section
-        eyebrow="How engagements start"
-        title="Start with one painful workflow."
-        intro="A focused first build is easier to evaluate, easier for teams to adopt, and safer than trying to replace every system at once."
-      >
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {startSteps.map((step, index) => (
-            <article
-              key={step.title}
-              className="relative rounded-lg border border-white/10 bg-white/[0.03] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.24)]"
-            >
-              <div className="flex items-center gap-3">
-                <span className="flex size-9 items-center justify-center rounded-md border border-[#2D7CFF]/30 bg-[#2D7CFF]/10 text-sm font-semibold text-[#DDE3EA]">
+          <div className="grid gap-5 md:grid-cols-3">
+            {engagementSteps.map((step, index) => (
+              <article
+                key={step.title}
+                className="border border-white/10 bg-white/[0.03] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.24)]"
+              >
+                <span className="flex size-9 items-center justify-center rounded-md border border-[#1D6FFF]/30 bg-[#1D6FFF]/10 text-sm font-semibold text-[#DDE3EA]">
                   {index + 1}
                 </span>
-                <h3 className="text-lg font-semibold text-[#F4F7FB]">
+                <h3 className="mt-5 text-lg font-semibold text-[#F4F7FA]">
                   {step.title}
                 </h3>
-              </div>
-              <p className="mt-4 text-sm leading-6 text-[#A7B0BE]">
-                {step.description}
-              </p>
-            </article>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="Why this matters"
-        title="Industrial businesses need clearer systems, not more noise."
-        intro="The most expensive operational problems are often small failures repeated every day: missing material context, unclear approvals, status hidden in messages, and evidence that appears only after someone asks for it."
-      >
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {operationalNeeds.map((need) => (
-            <div
-              key={need}
-              className="flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-4"
-            >
-              <CheckCircle2
-                aria-hidden
-                size={18}
-                className="shrink-0 text-[#2D7CFF]"
-              />
-              <span className="text-sm font-medium text-[#DDE3EA]">{need}</span>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section className="border-y border-white/10 bg-white/[0.02]">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#2D7CFF]">
-              Built for real operations
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#F4F7FB] sm:text-4xl">
-              Technology that supports the work, not just the dashboard.
-            </h2>
-            <p className="mt-5 text-base leading-7 text-[#A7B0BE] sm:text-lg">
-              Epyk Systems is aimed at manufacturing, construction,
-              fabrication, field teams, warehouses, and small or mid-sized
-              industrial businesses that need reliable systems without corporate
-              software bloat.
-            </p>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {industryFit.map((industry) => (
-              <div
-                key={industry}
-                className="rounded-md border border-white/10 bg-[#080D14]/70 px-4 py-4 text-sm font-medium text-[#DDE3EA]"
-              >
-                {industry}
-              </div>
+                <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
+                  {step.description}
+                </p>
+              </article>
             ))}
           </div>
         </div>
       </Section>
 
-      <CTASection />
+      <LocalFirstSection />
+
+      <Section
+        eyebrow="Proof and selected work"
+        title="Practical work, labeled honestly."
+        intro="Public examples are sanitized. The site does not publish proprietary screenshots, unsupported metrics, invented clients, or claims that research systems are commercially finished."
+      >
+        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+          {proofItems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <article
+                key={item.title}
+                className="border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.3)] [clip-path:polygon(0_0,calc(100%-18px)_0,100%_18px,100%_100%,0_100%)]"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex size-11 items-center justify-center rounded-md border border-[#1D6FFF]/24 bg-[#1D6FFF]/10 text-[#DDE3EA]">
+                    <Icon aria-hidden size={21} strokeWidth={1.8} />
+                  </div>
+                  <StatusBadge status={item.status} />
+                </div>
+                <h3 className="mt-5 text-xl font-semibold tracking-tight text-[#F4F7FA]">
+                  {item.title}
+                </h3>
+                <dl className="mt-5 grid gap-4">
+                  <div>
+                    <dt className="text-sm font-semibold text-[#DDE3EA]">
+                      Problem
+                    </dt>
+                    <dd className="mt-1 text-sm leading-6 text-[#A7B0BE]">
+                      {item.problem}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm font-semibold text-[#DDE3EA]">
+                      What was built
+                    </dt>
+                    <dd className="mt-1 text-sm leading-6 text-[#A7B0BE]">
+                      {item.built}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm font-semibold text-[#DDE3EA]">
+                      Current status
+                    </dt>
+                    <dd className="mt-1 text-sm leading-6 text-[#A7B0BE]">
+                      {item.currentStatus}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm font-semibold text-[#DDE3EA]">
+                      Significance
+                    </dt>
+                    <dd className="mt-1 text-sm leading-6 text-[#A7B0BE]">
+                      {item.futureRole}
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+            );
+          })}
+        </div>
+      </Section>
+
+      <Section className="border-y border-white/10 bg-white/[0.02]">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D6FFF]">
+              The larger ecosystem
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#F4F7FA] sm:text-4xl">
+              One ecosystem being constructed in useful layers.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-[#A7B0BE]">
+              Epyk Edge, Epyk AI, Epyk-1, Epyk-2, Epyk-3, and Myne-0 through
+              Myne-3 cover infrastructure, intelligence, interfaces, control,
+              perception, communications, energy, personal computing, and
+              fabrication.
+            </p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {ecosystemProjects.map((project) => (
+                <div
+                  key={project.title}
+                  className="border border-white/10 bg-[#030405]/48 px-4 py-3"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-sm font-semibold text-[#F4F7FA]">
+                      {project.title}
+                    </span>
+                    <span className="text-xs text-[#8C96A3]">
+                      {project.layer}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <Link
+              href="/ecosystem"
+              className="mt-8 inline-flex items-center text-sm font-semibold text-[#DDE3EA] transition hover:text-[#1D6FFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+            >
+              See the Complete Ecosystem
+              <ArrowRight aria-hidden size={16} className="ml-2" />
+            </Link>
+          </div>
+          <ArchitectureDiagram compact />
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Lived principles"
+        title="Operating principles, not decorative slogans."
+        intro="The site, the service model, and the long-term environment should behave consistently with the company promise."
+      >
+        <div className="mt-10 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div className="border border-[#F3C743]/20 bg-[#F3C743]/[0.055] p-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F3C743]">
+              God-centered, never coercive
+            </p>
+            <p className="mt-4 text-sm leading-6 text-[#DDE3EA]">
+              Epyk is openly Christian. That foundation informs service,
+              stewardship, truth, privacy, human dignity, and responsible use
+              of capability. Customers and visitors are never required to share
+              that belief.
+            </p>
+          </div>
+          <PrincipleList />
+        </div>
+      </Section>
+
+      <Section className="border-y border-white/10 bg-[#080A0D]/54">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {commercialFocus.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={item.title}
+                className="flex gap-3 border border-white/10 bg-white/[0.03] p-4"
+              >
+                <Icon
+                  aria-hidden
+                  size={18}
+                  className="mt-0.5 shrink-0 text-[#1D6FFF]"
+                  strokeWidth={1.8}
+                />
+                <span className="text-sm font-medium leading-6 text-[#DDE3EA]">
+                  {item.title}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </Section>
+
+      <CTASection
+        title="Start with one real problem."
+        description="Bring one painful workflow or infrastructure problem into the open. If Epyk can help, the first step is focused, practical, and tied to the way the operation actually works."
+        primaryLabel="Discuss Your Operation"
+        secondaryLabel="Explore Solutions"
+        secondaryHref="/solutions"
+      />
     </>
   );
 }

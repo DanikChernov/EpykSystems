@@ -3,7 +3,10 @@
 import { Loader2, Upload } from "lucide-react";
 import { type FormEvent, useRef, useState } from "react";
 
+import { inquiryOptions, type InquiryOption } from "@/lib/contact";
+
 type FormState = {
+  inquiryType: InquiryOption;
   name: string;
   phone: string;
   email: string;
@@ -13,6 +16,7 @@ type FormState = {
 type FormErrors = Partial<Record<keyof FormState | "attachment", string>>;
 
 const initialFormState: FormState = {
+  inquiryType: inquiryOptions[0],
   name: "",
   phone: "",
   email: "",
@@ -35,7 +39,10 @@ export function ContactForm() {
   const [statusMessage, setStatusMessage] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  function updateField(field: keyof FormState, value: string) {
+  function updateField<Field extends keyof FormState>(
+    field: Field,
+    value: FormState[Field]
+  ) {
     setForm((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: undefined }));
   }
@@ -80,6 +87,7 @@ export function ContactForm() {
     setStatus("submitting");
 
     const payload = new FormData();
+    payload.append("inquiryType", form.inquiryType);
     payload.append("name", form.name.trim());
     payload.append("phone", form.phone.trim());
     payload.append("email", form.email.trim());
@@ -117,16 +125,42 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-lg border border-white/10 bg-white/[0.03] p-6 shadow-[0_28px_120px_rgba(0,0,0,0.42)] backdrop-blur sm:p-8"
+      className="border border-white/10 bg-white/[0.03] p-6 shadow-[0_28px_120px_rgba(0,0,0,0.42)] backdrop-blur [clip-path:polygon(0_0,calc(100%-18px)_0,100%_18px,100%_100%,0_100%)] sm:p-8"
       noValidate
     >
+      <div className="mb-6 border border-[#F3C743]/24 bg-[#F3C743]/[0.07] p-4">
+        <p className="text-sm font-semibold text-[#F4F7FA]">
+          Do not submit passwords, credentials, export-controlled information,
+          CUI, ITAR-controlled technical data, proprietary customer files, or
+          other sensitive material through this public form.
+        </p>
+      </div>
       <div className="grid gap-5 sm:grid-cols-2">
+        <label className="grid gap-2 sm:col-span-2">
+          <span className="text-sm font-medium text-[#DDE3EA]">
+            Inquiry type
+          </span>
+          <select
+            value={form.inquiryType}
+            onChange={(event) =>
+              updateField("inquiryType", event.target.value as InquiryOption)
+            }
+            className="rounded-md border border-white/10 bg-[#030405]/70 px-4 py-3 text-sm text-[#F4F7FA] outline-none transition focus:border-[#1D6FFF]/60 focus:ring-2 focus:ring-[#1D6FFF]/14"
+          >
+            {inquiryOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </label>
+
         <label className="grid gap-2">
           <span className="text-sm font-medium text-[#DDE3EA]">Name</span>
           <input
             value={form.name}
             onChange={(event) => updateField("name", event.target.value)}
-            className="rounded-md border border-white/10 bg-[#05070B]/70 px-4 py-3 text-sm text-[#F4F7FB] outline-none transition placeholder:text-[#7B8794] focus:border-[#2D7CFF]/60 focus:ring-2 focus:ring-[#2D7CFF]/14"
+            className="rounded-md border border-white/10 bg-[#030405]/70 px-4 py-3 text-sm text-[#F4F7FA] outline-none transition placeholder:text-[#7B8794] focus:border-[#1D6FFF]/60 focus:ring-2 focus:ring-[#1D6FFF]/14"
             placeholder="Your name"
             autoComplete="name"
             aria-invalid={Boolean(errors.name)}
@@ -143,7 +177,7 @@ export function ContactForm() {
           <input
             value={form.phone}
             onChange={(event) => updateField("phone", event.target.value)}
-            className="rounded-md border border-white/10 bg-[#05070B]/70 px-4 py-3 text-sm text-[#F4F7FB] outline-none transition placeholder:text-[#7B8794] focus:border-[#2D7CFF]/60 focus:ring-2 focus:ring-[#2D7CFF]/14"
+            className="rounded-md border border-white/10 bg-[#030405]/70 px-4 py-3 text-sm text-[#F4F7FA] outline-none transition placeholder:text-[#7B8794] focus:border-[#1D6FFF]/60 focus:ring-2 focus:ring-[#1D6FFF]/14"
             placeholder="Optional"
             autoComplete="tel"
             inputMode="tel"
@@ -159,7 +193,7 @@ export function ContactForm() {
           <input
             value={form.email}
             onChange={(event) => updateField("email", event.target.value)}
-            className="rounded-md border border-white/10 bg-[#05070B]/70 px-4 py-3 text-sm text-[#F4F7FB] outline-none transition placeholder:text-[#7B8794] focus:border-[#2D7CFF]/60 focus:ring-2 focus:ring-[#2D7CFF]/14"
+            className="rounded-md border border-white/10 bg-[#030405]/70 px-4 py-3 text-sm text-[#F4F7FA] outline-none transition placeholder:text-[#7B8794] focus:border-[#1D6FFF]/60 focus:ring-2 focus:ring-[#1D6FFF]/14"
             placeholder="you@company.com"
             autoComplete="email"
             inputMode="email"
@@ -174,8 +208,8 @@ export function ContactForm() {
           <span className="text-sm font-medium text-[#DDE3EA]">
             Attachment
           </span>
-          <span className="flex min-h-14 cursor-pointer items-center gap-3 rounded-md border border-dashed border-white/14 bg-[#05070B]/54 px-4 py-3 text-sm text-[#A7B0BE] transition hover:border-[#2D7CFF]/40 hover:bg-[#05070B]/72">
-            <Upload aria-hidden size={18} className="text-[#2D7CFF]" />
+          <span className="flex min-h-14 cursor-pointer items-center gap-3 rounded-md border border-dashed border-white/14 bg-[#030405]/54 px-4 py-3 text-sm text-[#A7B0BE] transition hover:border-[#1D6FFF]/40 hover:bg-[#030405]/72">
+            <Upload aria-hidden size={18} className="text-[#1D6FFF]" />
             <span className="truncate">
               {attachment
                 ? attachment.name
@@ -209,7 +243,7 @@ export function ContactForm() {
           <textarea
             value={form.message}
             onChange={(event) => updateField("message", event.target.value)}
-            className="min-h-40 rounded-md border border-white/10 bg-[#05070B]/70 px-4 py-3 text-sm leading-6 text-[#F4F7FB] outline-none transition placeholder:text-[#7B8794] focus:border-[#2D7CFF]/60 focus:ring-2 focus:ring-[#2D7CFF]/14"
+            className="min-h-40 rounded-md border border-white/10 bg-[#030405]/70 px-4 py-3 text-sm leading-6 text-[#F4F7FA] outline-none transition placeholder:text-[#7B8794] focus:border-[#1D6FFF]/60 focus:ring-2 focus:ring-[#1D6FFF]/14"
             placeholder="Example: approvals happen by text, material requests live in a spreadsheet, and the shop manager needs clearer status before scheduling work."
             aria-invalid={Boolean(errors.message)}
           />
@@ -221,13 +255,13 @@ export function ContactForm() {
 
       <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs leading-5 text-[#7B8794]">
-          Optional attachments may include workflow screenshots, inventory sheets,
-          diagrams, or supporting documents.
+          Optional attachments may include non-sensitive workflow screenshots,
+          inventory templates, diagrams, or supporting documents.
         </p>
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex min-h-12 items-center justify-center rounded-md border border-[#3B82F6]/45 bg-gradient-to-b from-[#2D7CFF] to-[#1E6BFF] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(45,124,255,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(45,124,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2D7CFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05070B] disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex min-h-12 items-center justify-center rounded-md border border-[#1D6FFF]/45 bg-gradient-to-b from-[#1D6FFF] to-[#174FC2] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(29,111,255,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(29,111,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === "submitting" ? (
             <>
@@ -244,7 +278,7 @@ export function ContactForm() {
         <p
           className={
             status === "success"
-              ? "mt-5 rounded-md border border-[#2D7CFF]/24 bg-[#2D7CFF]/10 px-4 py-3 text-sm text-[#DDE3EA]"
+              ? "mt-5 rounded-md border border-[#1D6FFF]/24 bg-[#1D6FFF]/10 px-4 py-3 text-sm text-[#DDE3EA]"
               : "mt-5 rounded-md border border-[#FCA5A5]/24 bg-[#FCA5A5]/10 px-4 py-3 text-sm text-[#FCA5A5]"
           }
           role="status"

@@ -42,6 +42,7 @@ function getSourceDetails(request: Request) {
 function buildEmailBody({
   attachmentFilename,
   email,
+  inquiryType,
   message,
   name,
   phone,
@@ -51,6 +52,7 @@ function buildEmailBody({
 }: {
   attachmentFilename: string;
   email: string;
+  inquiryType: string;
   message: string;
   name: string;
   phone: string;
@@ -61,6 +63,7 @@ function buildEmailBody({
   return [
     "New Epyk Systems contact request",
     "",
+    `Inquiry type: ${inquiryType || "General Inquiry"}`,
     `Name: ${name}`,
     `Email: ${email}`,
     `Phone: ${phone || "Not provided"}`,
@@ -77,10 +80,20 @@ function buildEmailBody({
 
 export async function POST(request: Request) {
   try {
+    const contentType = request.headers.get("content-type") || "";
+
+    if (
+      !contentType.includes("multipart/form-data") &&
+      !contentType.includes("application/x-www-form-urlencoded")
+    ) {
+      return NextResponse.json({ message: failureMessage }, { status: 400 });
+    }
+
     const formData = await request.formData();
     const name = readTextField(formData, "name");
     const phone = readTextField(formData, "phone");
     const email = readTextField(formData, "email");
+    const inquiryType = readTextField(formData, "inquiryType");
     const message =
       readTextField(formData, "message") || readTextField(formData, "description");
     const attachment = formData.get("attachment");
@@ -115,6 +128,7 @@ export async function POST(request: Request) {
       text: buildEmailBody({
         attachmentFilename: attachmentFile?.name || "",
         email,
+        inquiryType,
         message,
         name,
         phone,

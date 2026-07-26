@@ -1,30 +1,63 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Activity,
+  BadgeCheck,
   Boxes,
   BrainCircuit,
+  Building2,
+  Cable,
   CalendarClock,
   ChartNoAxesCombined,
-  ClipboardCheck,
+  Cpu,
+  Database,
   Eye,
-  FileClock,
+  Factory,
+  Gauge,
   GitBranch,
+  Handshake,
+  HardDrive,
   History,
   Layers3,
   LockKeyhole,
+  Map,
+  Network,
   PackageCheck,
   Radar,
+  Radio,
+  Route,
   ScanBarcode,
+  Server,
   ShieldCheck,
   SlidersHorizontal,
+  Warehouse,
+  Wifi,
   Workflow,
-  Wrench
+  Wrench,
+  Zap
 } from "lucide-react";
 
 import { brand, navItems } from "./brand";
+import { inquiryOptions } from "./contact";
 
 export const siteConfig = brand;
 export { navItems };
+export { inquiryOptions };
+
+export type MaturityStatus =
+  | "Available"
+  | "Active Development"
+  | "Reference Architecture"
+  | "Research Program"
+  | "Future Environment";
+
+export const maturityDefinitions: Record<MaturityStatus, string> = {
+  Available: "Can be delivered through a client engagement now.",
+  "Active Development": "A working system or prototype under continued development.",
+  "Reference Architecture":
+    "A substantially designed system that is not yet a standardized shipping product.",
+  "Research Program": "A long-horizon technical exploration.",
+  "Future Environment": "A planned integrated physical environment."
+};
 
 export type Feature = {
   title: string;
@@ -33,288 +66,858 @@ export type Feature = {
   href?: string;
 };
 
-export type PortfolioItem = {
+export type SolutionArea = {
+  slug: string;
+  title: string;
+  navTitle: string;
+  status: MaturityStatus;
+  summary: string;
+  problem: string;
+  audience: string;
+  approach: string;
+  deploymentModels: string[];
+  availableNow: string;
+  discoveryNeeded: string;
+  features: string[];
+  icon: LucideIcon;
+};
+
+export type EcosystemProject = {
+  title: string;
+  layer: string;
+  status: MaturityStatus;
+  summary: string;
+  scope: string[];
+  role: string;
+  icon: LucideIcon;
+};
+
+export type EnvironmentZone = {
+  title: string;
+  label: string;
+  summary: string;
+  details: string[];
+};
+
+export type CaseStudy = {
   title: string;
   category: string;
-  summary: string;
+  status: MaturityStatus;
+  problem: string;
+  constraints: string;
+  approach: string;
+  built: string;
+  currentStatus: string;
+  evidence: string;
+  futureRole: string;
   tags: string[];
   icon: LucideIcon;
 };
 
-export const homePillars: Feature[] = [
+export const engagementSteps = [
   {
-    title: "Epyk Operations",
+    title: "Identify the operational friction",
     description:
-      "Job tracking, approvals, scheduling visibility, dashboards, audit history, and practical workflow control.",
-    icon: Workflow,
-    href: "/operations"
+      "Find the manual process, disconnected spreadsheet, unclear approval, brittle machine connection, or infrastructure gap that creates recurring problems."
   },
   {
-    title: "Epyk Inventories",
+    title: "Build or deploy a focused system",
     description:
-      "Material tracking, request workflows, barcode/QR support, low-stock alerts, permissions, and audit history.",
-    icon: Boxes,
-    href: "/inventories"
+      "Shape a practical workflow, private infrastructure, local AI, inventory, perception, or connectivity layer around the real operation."
   },
   {
-    title: "Epyk Vision",
+    title: "Expand only after it proves useful",
     description:
-      "Computer vision and operational perception for tracking objects, verifying processes, and connecting visual context to workflows.",
-    icon: Eye,
-    href: "/vision"
+      "Add integrations, reporting, automation, model serving, perception, or broader modernization after the focused system earns trust."
   }
 ];
 
-export const automationSupport = {
-  title: "Practical automation supports the product pillars.",
-  description:
-    "Automation is not treated as a separate product line. It is added where it reduces repeated work, missed handoffs, unclear approvals, or avoidable manual updates inside Operations, Inventories, and Vision.",
-  details: [
-    "Status updates and notifications",
-    "Approval routing and reminders",
-    "Inventory thresholds and request flow",
-    "Vision-triggered workflow events"
-  ],
-  icon: SlidersHorizontal
-};
-
-export const operationsFeatures: Feature[] = [
-  {
-    title: "Job & workflow tracking",
-    description:
-      "Follow work from intake through completion with visible status, owners, dependencies, and activity history.",
-    icon: GitBranch
-  },
-  {
-    title: "Approval pipelines",
-    description:
-      "Route decisions through the right people with clear context, clean handoffs, and fewer informal side channels.",
-    icon: ClipboardCheck
-  },
-  {
-    title: "Team activity history",
-    description:
-      "Capture who changed what, when it happened, and how work moved across operators, crews, and internal teams.",
-    icon: History
-  },
-  {
-    title: "Dashboards & reporting",
-    description:
-      "Turn operational activity into useful reporting for managers, owners, and teams without building another spreadsheet.",
-    icon: ChartNoAxesCombined
-  },
-  {
-    title: "Scheduling visibility",
-    description:
-      "Show upcoming work, team capacity, and timeline pressure so scheduling problems surface before they become expensive.",
-    icon: CalendarClock
-  },
-  {
-    title: "Operational automation",
-    description:
-      "Automate repeatable steps, notifications, status transitions, and evidence capture around the way the business works.",
-    icon: Activity
-  }
-];
-
-export const inventoryFeatures: Feature[] = [
-  {
-    title: "Live inventory visibility",
-    description:
-      "Track materials, bins, counts, locations, status, and warehouse movement with a system built for daily use.",
-    icon: PackageCheck
-  },
-  {
-    title: "Material request/approval flow",
-    description:
-      "Give teams a clean way to request material, approve pulls, and keep inventory decisions tied to real work.",
-    icon: ClipboardCheck
-  },
-  {
-    title: "Low-stock alerts",
-    description:
-      "Surface reorder needs before the floor or field team discovers a missing part at the worst possible time.",
-    icon: FileClock
-  },
-  {
-    title: "Barcode/QR workflows",
-    description:
-      "Support scanning workflows for bin checks, material pulls, receiving, usage, and job-linked tracking.",
-    icon: ScanBarcode
-  },
-  {
-    title: "Job-linked material usage",
-    description:
-      "Connect material movement to jobs, work orders, crews, or projects so usage tells a clear operational story.",
-    icon: Layers3
-  },
-  {
-    title: "Audit logs and accountability",
-    description:
-      "Preserve history, permissions, attachments, images, and decision trails so counts and requests stay defensible.",
-    icon: LockKeyhole
-  }
-];
-
-export const visionFeatures: Feature[] = [
-  {
-    title: "Object & equipment tracking",
-    description:
-      "Detect when key items, bins, tools, vehicles, or equipment appear, move, or leave defined operational zones.",
-    icon: Radar
-  },
-  {
-    title: "Visual workflow verification",
-    description:
-      "Use camera-based signals to confirm important physical events such as pickup, drop-off, staging, or completion.",
-    icon: ClipboardCheck
-  },
-  {
-    title: "Safety awareness",
-    description:
-      "Support safety and compliance visibility with focused alerts, practical boundaries, and clear deployment purpose.",
-    icon: ShieldCheck
-  },
-  {
-    title: "Process evidence",
-    description:
-      "Connect visual moments to jobs, inventory, work orders, or audit trails so teams can review what happened.",
-    icon: Eye
-  },
-  {
-    title: "Edge-ready vision pipelines",
-    description:
-      "Design for local or edge deployment where latency, privacy, bandwidth, or facility constraints matter.",
-    icon: BrainCircuit
-  },
-  {
-    title: "Integration with Ops and Inventories",
-    description:
-      "Turn visual signals into workflow events, inventory visibility, dashboard alerts, and future operational assistants.",
-    icon: Workflow
-  }
+export const localFirstPoints = [
+  "Owner-controlled infrastructure",
+  "Private deployment options",
+  "Optional cloud integrations",
+  "Offline resilience where feasible",
+  "Clear data boundaries",
+  "Permission-aware systems",
+  "Local model serving",
+  "Customer control over critical operation"
 ];
 
 export const industryFit = [
   "Manufacturing teams",
-  "Construction operations",
   "Fabrication shops",
-  "Field service teams",
+  "Machine shops",
   "Warehouses",
-  "Small and mid-sized industrial businesses"
+  "Controlled or sensitive environments",
+  "Technically complex operations"
 ];
 
-export const aboutPoints = [
+export const solutionAreas: SolutionArea[] = [
   {
-    title: "Grounded in industrial work",
-    description:
-      "Epyk Systems is shaped by hands-on CNC and manufacturing exposure, where software has to respect real constraints and daily production pressure."
+    slug: "operational-software",
+    title: "Operational Software",
+    navTitle: "Operational Software",
+    status: "Available",
+    summary:
+      "Workflow visibility, jobs, approvals, status, scheduling, traceability, internal applications, and audit history.",
+    problem:
+      "Work moves through messages, spreadsheets, memory, and informal approvals until status becomes difficult to trust.",
+    audience:
+      "Manufacturers, fabrication shops, service teams, warehouses, and operational leaders who need practical visibility without enterprise bloat.",
+    approach:
+      "Epyk starts with the actual workflow, models the stages and permissions, then builds a focused system that makes progress, blockers, decisions, and evidence visible.",
+    deploymentModels: [
+      "Private web application",
+      "Local or cloud-hosted database",
+      "Shop-floor terminal, desktop, and mobile access",
+      "Optional integrations with existing tools"
+    ],
+    availableNow:
+      "Workflow systems, dashboards, approvals, audit trails, forms, scheduling visibility, and custom internal applications can be delivered through a client engagement.",
+    discoveryNeeded:
+      "Exact workflow scope, user roles, existing data sources, integration points, and reporting requirements are defined during discovery.",
+    features: [
+      "Workflow visibility",
+      "Jobs and approvals",
+      "Status and scheduling",
+      "Traceability",
+      "Internal applications",
+      "Audit history"
+    ],
+    icon: Workflow
   },
   {
-    title: "Built around shop-floor friction",
-    description:
-      "The work starts with material confusion, unclear approvals, schedule pressure, status gaps, and the small handoff problems that compound over time."
+    slug: "inventory-and-material-control",
+    title: "Inventory and Material Control",
+    navTitle: "Inventory Control",
+    status: "Available",
+    summary:
+      "Materials, stock, tools, locations, movements, shortages, replenishment, and role-based access tied to real work.",
+    problem:
+      "Counts drift, shortages appear too late, tools move without context, and material decisions get separated from the jobs they affect.",
+    audience:
+      "Industrial teams that need trustworthy material records across bins, rooms, trucks, jobs, tools, and production areas.",
+    approach:
+      "Epyk designs the inventory flow around real movement: requests, approvals, scans, locations, shortages, replenishment, and defensible history.",
+    deploymentModels: [
+      "Private inventory application",
+      "Barcode or QR-assisted workflows",
+      "Role-based access for floor, warehouse, and management users",
+      "Optional integration with purchasing or ERP systems"
+    ],
+    availableNow:
+      "Material tracking, request flows, location records, barcode/QR support, low-stock visibility, permissions, and audit history are available through custom engagement.",
+    discoveryNeeded:
+      "Part taxonomy, labeling strategy, location model, current data quality, replenishment logic, and approval rules require discovery.",
+    features: [
+      "Materials and stock",
+      "Tools and locations",
+      "Movements and shortages",
+      "Replenishment",
+      "Role-based access",
+      "Job-linked usage"
+    ],
+    icon: Boxes
   },
   {
-    title: "Automation and AI without hype",
-    description:
-      "Automation, computer vision, and assistant-style tools are used as supporting infrastructure when they make the operation easier to run."
+    slug: "private-ai",
+    title: "Private AI",
+    navTitle: "Private AI",
+    status: "Available",
+    summary:
+      "Local model hosting, private retrieval, internal knowledge systems, controlled tools, and optional external model access.",
+    problem:
+      "Teams want useful intelligence over private procedures, documents, and operations without sending every task through an unavoidable external platform.",
+    audience:
+      "Organizations with sensitive knowledge, regulated processes, local infrastructure needs, or workflows that benefit from private assistance.",
+    approach:
+      "Epyk treats AI as controlled infrastructure: private retrieval, local model serving where useful, permission-aware tool execution, and optional outside models when the owner chooses.",
+    deploymentModels: [
+      "Local model server",
+      "Private retrieval over approved data",
+      "Hybrid local and external model routing",
+      "Controlled tool invocation with audit logs"
+    ],
+    availableNow:
+      "Private knowledge systems, retrieval workflows, local model hosting, and controlled assistant tools can be delivered as scoped engagements.",
+    discoveryNeeded:
+      "Data sensitivity, model requirements, acceptable external access, tool permissions, latency, hardware, and audit needs require discovery.",
+    features: [
+      "Local model hosting",
+      "Private retrieval",
+      "Internal knowledge systems",
+      "Controlled tools",
+      "Permission-aware execution",
+      "Offline-capable workflows"
+    ],
+    icon: BrainCircuit
   },
   {
-    title: "Deployment matched to the operation",
-    description:
-      "Some teams need cloud workflows. Others need local-first tools, edge processing, or architecture shaped around facility constraints."
+    slug: "edge-infrastructure",
+    title: "Edge Infrastructure",
+    navTitle: "Edge Infrastructure",
+    status: "Available",
+    summary:
+      "Local compute, storage, networking, segmentation, observability, security, backup, recovery, and private AI hosting.",
+    problem:
+      "Critical operations often depend on fragile office networks, unmanaged devices, weak backups, or cloud-only workflows that do not fit the facility.",
+    audience:
+      "Manufacturers, labs, shops, and private operations that need resilient local infrastructure with clear ownership and optional external connections.",
+    approach:
+      "Epyk designs practical local infrastructure first, then connects cloud platforms or external APIs only where they add value and the owner approves the boundary.",
+    deploymentModels: [
+      "On-premise compute and storage",
+      "Segmented networks",
+      "Private AI host",
+      "Backup, recovery, and observability layers"
+    ],
+    availableNow:
+      "Infrastructure review, local compute planning, network segmentation, backup strategy, observability, and private AI hosting can be delivered today.",
+    discoveryNeeded:
+      "Facility layout, existing hardware, compliance requirements, uptime targets, recovery expectations, and budget shape the architecture.",
+    features: [
+      "Local compute",
+      "Storage and networking",
+      "Segmentation",
+      "Observability",
+      "Security",
+      "Backup and recovery"
+    ],
+    icon: Server
   },
   {
-    title: "Modern software for physical work",
+    slug: "perception",
+    title: "Epyk Perception",
+    navTitle: "Epyk Perception",
+    status: "Active Development",
+    summary:
+      "Operational computer vision for detection, tracking, event awareness, evidence, privacy boundaries, and human judgment.",
+    problem:
+      "Physical operations create important events that are hard to see, confirm, or attach to the workflow after the moment passes.",
+    audience:
+      "Industrial teams with legitimate operational vision needs: material presence, process verification, movement awareness, safety review, or evidence capture.",
+    approach:
+      "Epyk Perception uses local or edge processing where appropriate, clear permissions, defined purposes, and reviewable evidence. It supports human judgment rather than replacing it.",
+    deploymentModels: [
+      "Local or edge computer vision pipeline",
+      "Camera-zone and event definitions",
+      "Evidence linked to jobs or inventory",
+      "Integration with Epyk-3 research patterns"
+    ],
+    availableNow:
+      "Feasibility reviews, focused prototypes, operational detection workflows, and integrations with software systems can be scoped now.",
+    discoveryNeeded:
+      "Camera placement, lighting, privacy boundaries, detection requirements, retention policy, and operational purpose must be defined before implementation.",
+    features: [
+      "Legitimate operational purpose",
+      "Local processing",
+      "Permissions",
+      "Detection and tracking",
+      "Event awareness",
+      "Evidence with human judgment"
+    ],
+    icon: Eye
+  },
+  {
+    slug: "secure-industrial-modernization",
+    title: "Secure Industrial Modernization",
+    navTitle: "Industrial Modernization",
+    status: "Available",
+    summary:
+      "Legacy systems, machine connectivity, controller adapters, segmented networks, monitoring, dashboards, and phased modernization.",
+    problem:
+      "Useful machines and legacy systems are often isolated, fragile, or difficult to observe without introducing unnecessary risk.",
+    audience:
+      "Manufacturers, machine shops, controlled facilities, and technical operators modernizing older equipment or sensitive systems.",
+    approach:
+      "Epyk favors phased modernization: understand the machine, protect the boundary, connect only what is necessary, then expose useful telemetry and control through local systems.",
+    deploymentModels: [
+      "Controller adapter and data capture",
+      "Segmented machine networks",
+      "Local dashboards",
+      "Private monitoring and alerting"
+    ],
+    availableNow:
+      "Legacy review, secure connectivity planning, controller-adapter prototypes, local dashboards, and monitoring systems can be delivered through engagement.",
+    discoveryNeeded:
+      "Controller models, protocols, safety requirements, network topology, production constraints, and change-control expectations require discovery.",
+    features: [
+      "Legacy systems",
+      "Machine connectivity",
+      "Controller adapters",
+      "Segmented networks",
+      "Production monitoring",
+      "Controlled environments"
+    ],
+    icon: Factory
+  }
+];
+
+export const ecosystemProjects: EcosystemProject[] = [
+  {
+    title: "Epyk Edge",
+    layer: "Infrastructure foundation",
+    status: "Reference Architecture",
+    summary:
+      "The physical foundation for local compute, storage, networking, identity, observability, AI hosting, backup, and recovery.",
+    scope: [
+      "Compute",
+      "Storage",
+      "Networking",
+      "Security",
+      "Identity",
+      "Observability",
+      "AI hosting",
+      "Backup and recovery"
+    ],
+    role:
+      "Makes private operation practical by giving the ecosystem a resilient local base.",
+    icon: Server
+  },
+  {
+    title: "Epyk AI",
+    layer: "Intelligence orchestration",
+    status: "Active Development",
+    summary:
+      "The local intelligence layer connecting specialized models, private data, tools, infrastructure, and Epyk devices.",
+    scope: [
+      "Specialized models",
+      "Private data",
+      "Tools",
+      "Infrastructure",
+      "Epyk devices"
+    ],
+    role:
+      "Coordinates intelligence without making outside model providers the unavoidable control plane.",
+    icon: BrainCircuit
+  },
+  {
+    title: "Epyk-1",
+    layer: "Spatial interfaces",
+    status: "Research Program",
+    summary:
+      "Ambient spatial interfaces and portable workspaces across glass tables, transparent windows, and temporary surfaces.",
+    scope: [
+      "Glass tables",
+      "Transparent windows",
+      "Temporary surfaces",
+      "Edge-hosted sessions",
+      "Shared and personal modes"
+    ],
+    role:
+      "Treats surfaces as portals into owner-controlled sessions rather than data owners.",
+    icon: Layers3
+  },
+  {
+    title: "Epyk-2",
+    layer: "Machine control",
+    status: "Research Program",
+    summary:
+      "Universal device and machine control for machines, robots, vehicles, sensors, cameras, buildings, telemetry, permissions, and safety.",
+    scope: [
+      "Machines",
+      "Robots",
+      "Vehicles",
+      "Sensors",
+      "Cameras",
+      "Buildings",
+      "Telemetry",
+      "Safety"
+    ],
+    role:
+      "Defines how commands and telemetry can move through the ecosystem with permission and safety boundaries.",
+    icon: SlidersHorizontal
+  },
+  {
+    title: "Epyk-3",
+    layer: "Perception",
+    status: "Active Development",
+    summary:
+      "Perception and environmental understanding for detection, tracking, segmentation, re-identification, spatial context, and local awareness.",
+    scope: [
+      "Detection",
+      "Tracking",
+      "Segmentation",
+      "Re-identification",
+      "Spatial context",
+      "Local operation"
+    ],
+    role:
+      "Provides a long-term perception layer while current Epyk Perception engagements stay narrowly scoped and honest.",
+    icon: Radar
+  },
+  {
+    title: "Myne-0",
+    layer: "Communications",
+    status: "Research Program",
+    summary:
+      "Resilient and sovereign communications research focused on continuity, local coordination, and recoverable communication paths.",
+    scope: [
+      "Local communication",
+      "Fallback paths",
+      "Message continuity",
+      "Network resilience"
+    ],
+    role:
+      "Explores communication systems without claiming production readiness.",
+    icon: Radio
+  },
+  {
+    title: "Myne-1",
+    layer: "Energy resilience",
+    status: "Research Program",
+    summary:
+      "Energy, storage, buffering, power, thermal, and resilience research grounded in measurable engineering limits.",
+    scope: [
+      "Power",
+      "Storage",
+      "Buffering",
+      "Thermal design",
+      "Resilience"
+    ],
+    role:
+      "Studies practical energy continuity within accepted physical constraints.",
+    icon: Zap
+  },
+  {
+    title: "Myne-2",
+    layer: "Personal context",
+    status: "Research Program",
+    summary:
+      "Personal contextual intelligence and wearable AR/MR concepts. Optional within any future Epyk Environment.",
+    scope: [
+      "Wearable AR/MR",
+      "Personal context",
+      "Optional sessions",
+      "User choice"
+    ],
+    role:
+      "Explores personal computing interfaces without making them required for access or hospitality.",
+    icon: Cpu
+  },
+  {
+    title: "Myne-3",
+    layer: "Fabrication",
+    status: "Research Program",
+    summary:
+      "Fabrication, repair, hybrid manufacturing, CNC, additive systems, inspection, and physical iteration research.",
+    scope: [
+      "CNC",
+      "Additive systems",
+      "Inspection",
+      "Repair",
+      "Physical iteration"
+    ],
+    role:
+      "Connects digital systems back into physical making and repair.",
+    icon: Wrench
+  }
+];
+
+export const edgeFamily = [
+  {
+    title: "Edge-6",
+    status: "Reference Architecture" as MaturityStatus,
+    description: "Compact entry concept for small local infrastructure needs."
+  },
+  {
+    title: "Edge-12",
+    status: "Reference Architecture" as MaturityStatus,
+    description: "Professional compact concept for stronger local services."
+  },
+  {
+    title: "Edge-18",
+    status: "Reference Architecture" as MaturityStatus,
     description:
-      "The goal is to connect physical operations with reliable software structure without forcing industrial teams into unnecessary complexity."
+      "Primary showcase and reference architecture for resilient local infrastructure."
+  },
+  {
+    title: "Edge-48",
+    status: "Research Program" as MaturityStatus,
+    description: "Eventual enterprise flagship concept for larger environments."
+  }
+];
+
+export const sharedLanguage = [
+  "Identity",
+  "Authentication",
+  "Permissions",
+  "Commands",
+  "Events",
+  "Telemetry",
+  "Service discovery",
+  "Tool invocation",
+  "Sessions",
+  "Health",
+  "Updates",
+  "Audit logs",
+  "Offline behavior",
+  "Emergency shutdown"
+];
+
+export const environmentZones: EnvironmentZone[] = [
+  {
+    title: "Exterior",
+    label: "Understated arrival",
+    summary:
+      "The outside is intentionally simple, plain, clean, understated, unassuming, and deliberate.",
+    details: [
+      "No spectacle is required at the door.",
+      "The contrast creates The Threshold.",
+      "The building should feel calm before it reveals capability."
+    ]
+  },
+  {
+    title: "The Threshold",
+    label: "Welcome Room",
+    summary:
+      "A smaller-to-mid-sized welcome room replacing a traditional reception desk with orientation and genuine hospitality.",
+    details: [
+      "Comfortable seating",
+      "Host connection",
+      "Optional visitor sessions",
+      "Optional Myne-2",
+      "Epyk-1 guidance",
+      "Premium coffee and snacks"
+    ]
+  },
+  {
+    title: "The Archive",
+    label: "Quiet lounge",
+    summary:
+      "A larger quiet or library-mode lounge for work, school, reading, rest, reflection, research, and decompression.",
+    details: [
+      "Acoustic treatment",
+      "Quiet ventilation",
+      "Focus spaces",
+      "Call booths",
+      "Restrained interfaces",
+      "Silent navigation",
+      "Minimal notifications",
+      "Optional login-gated work surfaces"
+    ]
+  },
+  {
+    title: "The Commons",
+    label: "Social hub",
+    summary:
+      "The largest lounge and public gathering area for conversation, collaboration, workshops, events, talks, community groups, and demonstrations.",
+    details: [
+      "Flexible seating",
+      "Shared Epyk-1 surfaces",
+      "A larger coffee bar",
+      "Public demonstrations",
+      "Community groups",
+      "Workshops and talks"
+    ]
+  }
+];
+
+export const optionalTechnologyPrinciples = [
+  "Myne-2 is never required.",
+  "Epyk-1 remains the environmental baseline.",
+  "Human assistance remains available.",
+  "Conventional signage and physical controls remain usable.",
+  "Visitors may choose minimal, environmental, or personal interaction."
+];
+
+export const hospitalityCommitments = [
+  "No purchase is required to use public seating.",
+  "Water, restrooms, charging, navigation, and basic hospitality remain available.",
+  "Premium coffee and snacks may be paid.",
+  "Pricing is fair and sustainable.",
+  "There is no captive-audience markup.",
+  "Visitors are not pressured into a sale.",
+  "Respectful conduct is required.",
+  "Abuse, danger, harassment, destruction, or deliberate disruption are not tolerated."
+];
+
+export const proofItems: CaseStudy[] = [
+  {
+    title: "Manufacturing workflow and material-control systems",
+    category: "Client and Operational Deployments",
+    status: "Available",
+    problem:
+      "Operational teams need clearer job status, material movement, approvals, and evidence without exposing private customer details publicly.",
+    constraints:
+      "Shop-floor adoption, sensitive operational records, role boundaries, audit history, and the need to avoid overbuilding before the workflow is proven.",
+    approach:
+      "Start with the highest-friction path, model the real handoffs, then add records, permissions, dashboards, and history around actual work.",
+    built:
+      "Reusable workflow and inventory patterns for jobs, requests, approvals, material movement, low-stock awareness, and operational audit trails.",
+    currentStatus:
+      "Available through focused client engagements; public examples remain sanitized.",
+    evidence:
+      "The public site does not publish proprietary screenshots, customer files, or metrics.",
+    futureRole:
+      "Forms the commercial base for operational software and inventory control inside the broader ecosystem.",
+    tags: ["Workflow", "Inventory", "Approvals", "Audit history"],
+    icon: Warehouse
+  },
+  {
+    title: "Sentinel Vision / Epyk Perception",
+    category: "Epyk Products and Internal Platforms",
+    status: "Active Development",
+    problem:
+      "Physical events such as movement, presence, staging, and process drift are hard to connect to jobs or inventory after the fact.",
+    constraints:
+      "Legitimate operational purpose, local processing, privacy boundaries, lighting conditions, camera placement, retention policy, and human review.",
+    approach:
+      "Use operational computer vision only where it produces useful signals and can be governed by clear permissions and deployment boundaries.",
+    built:
+      "Computer vision and object-tracking concepts that inform Epyk Perception and the longer-term Epyk-3 layer.",
+    currentStatus:
+      "Working direction under active development; complete Epyk-3 is not presented as a finished commercial platform.",
+    evidence:
+      "Public claims are limited to development status and feasibility-oriented engagement.",
+    futureRole:
+      "Feeds event awareness, evidence, and environmental understanding into local-first systems.",
+    tags: ["Perception", "Detection", "Tracking", "Evidence"],
+    icon: Eye
+  },
+  {
+    title: "Epyk Edge-18 reference architecture",
+    category: "Epyk Products and Internal Platforms",
+    status: "Reference Architecture",
+    problem:
+      "Private AI, operational software, and secure modernization need a local foundation that owners can understand and control.",
+    constraints:
+      "Compute capacity, storage, networking, segmentation, service health, backup, recovery, observability, and physical maintainability.",
+    approach:
+      "Design a local infrastructure pattern that can host private services and connect outward only where the owner chooses.",
+    built:
+      "A reference architecture for Edge-class compute, storage, networking, security, observability, AI hosting, and recovery.",
+    currentStatus:
+      "Substantially designed as a reference architecture, not a standardized shipping product.",
+    evidence:
+      "Presented as architecture, not as a fabricated deployment or commercial availability claim.",
+    futureRole:
+      "Acts as the infrastructure anchor for Epyk AI, local software, perception, and future environmental systems.",
+    tags: ["Edge", "Infrastructure", "Private AI", "Reference"],
+    icon: Server
   }
 ];
 
 export const portfolioSections: {
   title: string;
   description: string;
-  items: PortfolioItem[];
+  items: CaseStudy[];
 }[] = [
   {
-    title: "Operational Systems",
+    title: "Client and Operational Deployments",
     description:
-      "Sanitized examples focused on inventory, workflow, job coordination, and operational control.",
+      "Real work delivered or shaped for operational use, sanitized where public disclosure would expose private customer or operational details.",
     items: [
+      proofItems[0],
       {
-        title: "Industrial Inventory System",
-        category: "Internal system",
-        summary:
-          "A structured material tracking foundation for industrial environments with role-based access, request flow, low-stock visibility, and defensible history.",
-        tags: [
-          "Material tracking",
-          "Approval flow",
-          "Permissions",
-          "Low-stock visibility",
-          "Audit history"
-        ],
-        icon: Boxes
-      },
-      {
-        title: "Plumbing Operations Prototype",
-        category: "Prototype",
-        summary:
-          "An operations concept for job-based material requests, inventory planning, and simple approval workflows for a service-heavy trade environment.",
-        tags: [
-          "Job-based requests",
-          "Inventory planning",
-          "Approvals",
-          "Field workflow"
-        ],
-        icon: Wrench
-      },
-      {
-        title: "Flooring Operations Prototype",
-        category: "Prototype",
-        summary:
-          "A project and material coordination prototype focused on clearer handoffs, work status, and job-level visibility.",
-        tags: [
-          "Project coordination",
-          "Material planning",
-          "Job tracking",
-          "Handoff visibility"
-        ],
-        icon: Layers3
+        title: "Accudyn AD Manager",
+        category: "Client and Operational Deployments",
+        status: "Active Development",
+        problem:
+          "A manufacturing environment needs internal tooling that respects real production constraints and avoids exposing private operational details publicly.",
+        constraints:
+          "Public disclosure is limited; customer records, screenshots, implementation details, and results are not published from this site.",
+        approach:
+          "Build practical internal software around the real workflow while keeping sensitive operational context out of public marketing.",
+        built:
+          "Publicly disclosed scope remains intentionally limited to the existence of manufacturing-oriented internal software work.",
+        currentStatus:
+          "Active development or private operational work, with public details withheld.",
+        evidence:
+          "No fabricated screenshots, metrics, or customer claims are included.",
+        futureRole:
+          "Informs Epyk's manufacturing modernization and operational software patterns.",
+        tags: ["Manufacturing", "Private work", "Internal software"],
+        icon: Factory
       }
     ]
   },
   {
-    title: "Technical Foundations",
+    title: "Epyk Products and Internal Platforms",
     description:
-      "Early foundations and operational concepts that support future system capabilities without exposing private implementation details.",
+      "Reusable platforms, product directions, and reference architectures that support current services and future ecosystem integration.",
     items: [
+      proofItems[1],
+      proofItems[2],
       {
-        title: "Multimodal AI / Operations Skeleton",
-        category: "Technical foundation",
-        summary:
-          "A modular pipeline structure designed around swappable datasets and reusable operational intelligence patterns.",
-        tags: [
-          "Modular pipelines",
-          "Dataset-swappable architecture",
-          "Operational intelligence",
-          "Reusable structure"
-        ],
+        title: "Epyk AI orchestration",
+        category: "Epyk Products and Internal Platforms",
+        status: "Active Development",
+        problem:
+          "Private documents, operational data, local services, and model tools need controlled orchestration instead of scattered experiments.",
+        constraints:
+          "Data boundaries, permissions, model routing, tool access, offline behavior, and auditability.",
+        approach:
+          "Coordinate specialized models, retrieval, tools, and local infrastructure under owner-defined permissions.",
+        built:
+          "Architecture patterns for private retrieval, local model hosting, and permission-aware tool execution.",
+        currentStatus:
+          "Active development; private AI engagements can be scoped from this foundation.",
+        evidence:
+          "Presented as internal platform direction and engagement capability, not as a generic public AI product.",
+        futureRole:
+          "Becomes the intelligence layer connecting Epyk Edge, operational software, perception, and future devices.",
+        tags: ["Private AI", "Retrieval", "Local models", "Tools"],
         icon: BrainCircuit
       },
       {
-        title: "Vision / Perception Systems",
-        category: "Operational concept",
-        summary:
-          "Computer vision experiments and object tracking concepts forming an early base for operational perception and process evidence.",
-        tags: [
-          "Object tracking",
-          "Process evidence",
-          "Computer vision",
-          "Operational perception"
-        ],
-        icon: Eye
+        title: "CNC monitoring and controller integration",
+        category: "Epyk Products and Internal Platforms",
+        status: "Active Development",
+        problem:
+          "Machines and controllers often contain useful status and telemetry but are difficult to connect without creating operational risk.",
+        constraints:
+          "Legacy protocols, safety boundaries, segmented networks, uptime expectations, and practical operator visibility.",
+        approach:
+          "Connect carefully through adapters, monitoring, and local dashboards while preserving machine safety and network boundaries.",
+        built:
+          "Controller-integration and monitoring patterns informed by CNC and manufacturing experience.",
+        currentStatus:
+          "Active development and custom implementation area.",
+        evidence:
+          "No production metrics are published.",
+        futureRole:
+          "Feeds secure industrial modernization, Epyk-2 control patterns, and Myne-3 fabrication research.",
+        tags: ["CNC", "Telemetry", "Adapters", "Dashboards"],
+        icon: Gauge
+      }
+    ]
+  },
+  {
+    title: "Research and Engineering Laboratory",
+    description:
+      "Long-horizon explorations and experimental architectures that point toward the complete ecosystem without being sold as finished products.",
+    items: [
+      {
+        title: "Epyk-1 spatial-interface work",
+        category: "Research and Engineering Laboratory",
+        status: "Research Program",
+        problem:
+          "Work surfaces should be able to host sessions without owning the user's data or becoming permanent endpoints.",
+        constraints:
+          "Shared spaces, personal sessions, privacy, input methods, Edge hosting, and graceful non-AR fallback.",
+        approach:
+          "Treat tables, windows, and temporary surfaces as portals into owner-controlled sessions.",
+        built:
+          "Concept architecture for ambient spatial interfaces and portable workspaces.",
+        currentStatus:
+          "Research program.",
+        evidence:
+          "No commercial availability or deployment metrics are claimed.",
+        futureRole:
+          "Forms the environmental interface baseline for The Epyk Environment.",
+        tags: ["Spatial interface", "Sessions", "Epyk-1"],
+        icon: Layers3
+      },
+      {
+        title: "Myne research programs",
+        category: "Research and Engineering Laboratory",
+        status: "Research Program",
+        problem:
+          "Communications, energy resilience, personal context, and fabrication need long-term technical work before they can be responsibly integrated.",
+        constraints:
+          "Physical limits, safety, power, manufacturability, user choice, recoverability, and honest maturity labeling.",
+        approach:
+          "Separate long-horizon research from present commercial offerings while keeping the shared Epyk language in view.",
+        built:
+          "Named research tracks for Myne-0 communications, Myne-1 energy resilience, Myne-2 wearable context, and Myne-3 fabrication.",
+        currentStatus:
+          "Research program.",
+        evidence:
+          "The site labels these as research and does not imply commercial readiness.",
+        futureRole:
+          "May support future communications, power, personal computing, and fabrication layers in the integrated ecosystem.",
+        tags: ["Myne-0", "Myne-1", "Myne-2", "Myne-3"],
+        icon: Map
       }
     ]
   }
+];
+
+export const aboutPoints = [
+  {
+    title: "What Epyk is",
+    description: brand.explanatoryLine
+  },
+  {
+    title: "Why Epyk exists",
+    description:
+      "Technology should serve people without requiring surrender of ownership, dignity, privacy, or control."
+  },
+  {
+    title: "Founder perspective",
+    description:
+      "Epyk is shaped by manufacturing, CNC, infrastructure, software, and practical operations experience where systems have to work under real constraints."
+  },
+  {
+    title: "Long-term direction",
+    description:
+      "Epyk is building useful present-day systems toward a larger integrated ecosystem, with research and future environments labeled honestly."
+  }
+];
+
+export const commercialFocus = [
+  { title: "Private infrastructure", icon: Server },
+  { title: "Local AI", icon: BrainCircuit },
+  { title: "Industrial software", icon: Workflow },
+  { title: "Manufacturing modernization", icon: Factory },
+  { title: "Workflow systems", icon: GitBranch },
+  { title: "Inventory and material control", icon: PackageCheck },
+  { title: "Operational perception", icon: Radar },
+  { title: "Secure machine connectivity", icon: Cable },
+  { title: "Controlled environments", icon: ShieldCheck }
+];
+
+export const operationalNeeds = [
+  "Fewer spreadsheet failures",
+  "Better workflow visibility",
+  "Less material confusion",
+  "Simpler approvals",
+  "Private infrastructure control",
+  "Clearer operational evidence"
+];
+
+export const systemSignals = [
+  {
+    label: "Intelligence",
+    value: "Private when needed",
+    icon: BrainCircuit
+  },
+  {
+    label: "Infrastructure",
+    value: "Owner-controlled",
+    icon: Network
+  },
+  {
+    label: "Digital life",
+    value: "Permission-aware",
+    icon: LockKeyhole
+  },
+  {
+    label: "Operations",
+    value: "Grounded in real work",
+    icon: Activity
+  }
+];
+
+export const contactStartingPoints = [
+  "A workflow that causes friction every week",
+  "A spreadsheet, approval path, or inventory record that no longer holds up",
+  "A private AI or infrastructure problem with clear boundaries",
+  "A perception, machine connectivity, or modernization idea that needs feasibility review"
+];
+
+export const trustPoints = [
+  { title: "God-centered foundation", icon: BadgeCheck },
+  { title: "Community-minded direction", icon: Handshake },
+  { title: "Local-first technical thesis", icon: HardDrive },
+  { title: "Optional outside services", icon: Wifi },
+  { title: "Phased engagement model", icon: Route },
+  { title: "Operational evidence", icon: History },
+  { title: "Secure modernization", icon: ShieldCheck },
+  { title: "Practical scheduling", icon: CalendarClock },
+  { title: "Useful reporting", icon: ChartNoAxesCombined },
+  { title: "Scan-friendly inventory", icon: ScanBarcode },
+  { title: "Private data boundaries", icon: Database },
+  { title: "Future physical environment", icon: Building2 }
 ];

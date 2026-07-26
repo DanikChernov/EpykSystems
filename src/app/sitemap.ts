@@ -1,14 +1,19 @@
 import type { MetadataRoute } from "next";
 
 import { brand, navItems } from "@/lib/brand";
+import { solutionAreas } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
+  const routes = [
+    ...navItems.map((item) => item.href),
+    ...solutionAreas.map((solution) => `/solutions/${solution.slug}`)
+  ];
 
-  return navItems.map((item) => ({
-    url: `${brand.url}${item.href === "/" ? "" : item.href}`,
+  return routes.map((route) => ({
+    url: `${brand.url}${route === "/" ? "" : route}`,
     lastModified,
     changeFrequency: "monthly",
-    priority: item.href === "/" ? 1 : 0.7
+    priority: route === "/" ? 1 : route === "/solutions" ? 0.85 : 0.7
   }));
 }

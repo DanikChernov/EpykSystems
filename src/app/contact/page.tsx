@@ -1,58 +1,84 @@
 import type { Metadata } from "next";
 
 import { ContactForm } from "@/components/ContactForm";
-import { PageHeader } from "@/components/PageHeader";
+import { PageHero } from "@/components/PageHero";
 import { brand, createPageMetadata } from "@/lib/brand";
+import { contactStartingPoints, inquiryOptions } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Contact | Epyk Systems",
   description:
-    "Contact Epyk Systems to discuss workflow problems, inventory tracking, industrial software, computer vision feasibility, or focused operational automation.",
+    "Contact Epyk Systems about operational software, inventory and material control, private AI, edge infrastructure, manufacturing modernization, operational perception, partnerships, or research.",
   path: "/contact"
 });
 
 export default function ContactPage() {
   return (
     <>
-      <PageHeader
+      <PageHero
         eyebrow="Contact"
-        title="Start with the workflow that is causing friction."
-        description="Use the form to describe the operational problem, current manual process, spreadsheet, approval path, inventory issue, or system idea you want to explore."
+        title="Start with the workflow or infrastructure problem causing real friction."
+        description="Use the form to describe the operational problem, current manual process, spreadsheet, approval path, inventory issue, private AI need, infrastructure boundary, perception idea, or modernization work you want to explore."
       />
 
       <section className="relative py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10 lg:px-8">
-          <aside className="rounded-lg border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] backdrop-blur">
-            <h2 className="text-xl font-semibold tracking-tight text-[#F4F7FB]">
+          <aside className="border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)]">
+            <h2 className="text-xl font-semibold tracking-tight text-[#F4F7FA]">
               Epyk Systems
             </h2>
             <p className="mt-4 text-sm leading-6 text-[#A7B0BE]">
-              Practical operational software for manufacturers, contractors,
-              warehouses, field teams, and operations-heavy businesses.
+              God-centered, community-minded, local-first technology for
+              private infrastructure, local AI, industrial software,
+              manufacturing modernization, workflow systems, inventory and
+              material control, operational perception, and secure machine
+              connectivity.
             </p>
             <p className="mt-4 text-sm leading-6 text-[#DDE3EA]">
-              Based in Erie, Pennsylvania - working with industrial teams
-              regionally and remotely.
+              Based in Erie, Pennsylvania, working with industrial and technical
+              teams regionally and remotely.
             </p>
             <div className="mt-6 border-t border-white/10 pt-6">
               <p className="text-sm font-medium text-[#DDE3EA]">Email</p>
               <a
                 href={`mailto:${brand.email}`}
-                className="mt-2 inline-flex text-sm text-[#2D7CFF] transition hover:text-[#DDE3EA]"
+                className="mt-2 inline-flex text-sm text-[#1D6FFF] transition hover:text-[#DDE3EA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
               >
                 {brand.email}
               </a>
             </div>
             <div className="mt-6 border-t border-white/10 pt-6">
               <p className="text-sm font-medium text-[#DDE3EA]">
+                Inquiry options
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {inquiryOptions.map((option) => (
+                  <span
+                    key={option}
+                    className="rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-medium text-[#DDE3EA]"
+                  >
+                    {option}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="mt-6 border-t border-white/10 pt-6">
+              <p className="text-sm font-medium text-[#DDE3EA]">
                 Helpful starting points
               </p>
               <ul className="mt-3 grid gap-2 text-sm leading-6 text-[#A7B0BE]">
-                <li>A workflow that gets repeated manually</li>
-                <li>A spreadsheet or approval path that no longer holds up</li>
-                <li>An inventory or material tracking gap</li>
-                <li>A vision or automation idea that needs feasibility review</li>
+                {contactStartingPoints.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
               </ul>
+            </div>
+            <div className="mt-6 border border-[#F3C743]/24 bg-[#F3C743]/[0.07] p-4">
+              <p className="text-sm font-semibold leading-6 text-[#F4F7FA]">
+                Do not submit passwords, credentials, export-controlled
+                information, CUI, ITAR-controlled technical data, proprietary
+                customer files, or other sensitive material through this public
+                form.
+              </p>
             </div>
           </aside>
 

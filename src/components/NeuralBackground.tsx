@@ -1,51 +1,40 @@
 export function NeuralBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(5,7,11,0.1),rgba(8,13,20,0.72)),radial-gradient(circle_at_22%_12%,rgba(45,124,255,0.12),transparent_32%),radial-gradient(circle_at_82%_20%,rgba(221,227,234,0.045),transparent_28%),radial-gradient(circle_at_48%_82%,rgba(45,124,255,0.065),transparent_34%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(221,227,234,0.032)_1px,transparent_1px),linear-gradient(90deg,rgba(221,227,234,0.026)_1px,transparent_1px)] bg-[size:48px_48px]" />
-      <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,transparent_0,transparent_34px,rgba(45,124,255,0.028)_35px,transparent_36px)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(3,4,5,0.1),rgba(8,10,13,0.86)_42%,rgba(17,21,26,0.72)),linear-gradient(18deg,rgba(37,43,50,0.24),transparent_34%,rgba(140,150,163,0.08)_58%,transparent_72%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(140,150,163,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(140,150,163,0.025)_1px,transparent_1px)] bg-[size:56px_56px]" />
+      <div className="absolute inset-0 bg-[repeating-linear-gradient(135deg,transparent_0,transparent_38px,rgba(140,150,163,0.026)_39px,transparent_40px)]" />
+      <div className="absolute inset-x-0 top-0 h-80 bg-[linear-gradient(90deg,transparent,rgba(29,111,255,0.08),transparent_65%,rgba(243,199,67,0.045),transparent)]" />
       <svg
-        className="absolute left-1/2 top-0 h-full min-h-[720px] w-[1280px] -translate-x-1/2 opacity-[0.18]"
+        className="absolute left-1/2 top-0 h-full min-h-[720px] w-[1280px] -translate-x-1/2 opacity-[0.16]"
         viewBox="0 0 1280 720"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g stroke="url(#line)" strokeWidth="1">
-          <path d="M86 184L228 124L344 210L486 142L632 238L798 116L944 210L1154 146" />
-          <path d="M144 452L292 348L456 404L604 310L746 390L914 308L1090 382" />
-          <path d="M228 124L292 348L486 142L604 310L798 116L914 308L1154 146" />
-          <path d="M344 210L456 404L632 238L746 390L944 210L1090 382" />
+        <g stroke="url(#silver)" strokeWidth="1">
+          <path d="M68 120H1210" />
+          <path d="M118 248H1162" />
+          <path d="M36 492H1228" />
+          <path d="M224 42V674" />
+          <path d="M548 0V720" />
+          <path d="M936 64V686" />
+          <path d="M60 622L1180 102" />
+          <path d="M132 62L1134 612" />
         </g>
-        <g fill="url(#node)">
-          {[
-            [86, 184],
-            [228, 124],
-            [344, 210],
-            [486, 142],
-            [632, 238],
-            [798, 116],
-            [944, 210],
-            [1154, 146],
-            [144, 452],
-            [292, 348],
-            [456, 404],
-            [604, 310],
-            [746, 390],
-            [914, 308],
-            [1090, 382]
-          ].map(([cx, cy]) => (
-            <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="3.5" />
-          ))}
+        <g stroke="url(#accent)" strokeWidth="1.25">
+          <path d="M224 248H548V120H936V492H1210" />
+          <path d="M118 492H548V622H936" />
         </g>
         <defs>
-          <linearGradient id="line" x1="86" y1="124" x2="1154" y2="452">
-            <stop stopColor="#2D7CFF" stopOpacity="0.18" />
-            <stop offset="0.5" stopColor="#DDE3EA" stopOpacity="0.18" />
-            <stop offset="1" stopColor="#3B82F6" stopOpacity="0.12" />
+          <linearGradient id="silver" x1="36" y1="0" x2="1228" y2="720">
+            <stop stopColor="#8C96A3" stopOpacity="0.2" />
+            <stop offset="0.48" stopColor="#252B32" stopOpacity="0.22" />
+            <stop offset="1" stopColor="#8C96A3" stopOpacity="0.08" />
           </linearGradient>
-          <linearGradient id="node" x1="86" y1="116" x2="1154" y2="452">
-            <stop stopColor="#F4F7FB" stopOpacity="0.52" />
-            <stop offset="1" stopColor="#2D7CFF" stopOpacity="0.55" />
+          <linearGradient id="accent" x1="118" y1="120" x2="1210" y2="622">
+            <stop stopColor="#1D6FFF" stopOpacity="0.36" />
+            <stop offset="0.68" stopColor="#8C96A3" stopOpacity="0.22" />
+            <stop offset="1" stopColor="#F3C743" stopOpacity="0.26" />
           </linearGradient>
         </defs>
       </svg>

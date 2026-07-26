@@ -4,7 +4,18 @@ export const brand = {
   name: "Epyk Systems",
   wordmark: "EPYK",
   descriptor: "SYSTEMS",
+  invitation: "STEP INTO EPYK",
+  promise: "THE EDGE OF FREEDOM",
   tagline: "Built for Real Operations.",
+  explanatoryLine:
+    "A God-centered, community-minded, local-first technology ecosystem where intelligence, infrastructure, and digital life remain under the control of the people who use them.",
+  principles: [
+    "Welcome without pressure.",
+    "Assistance without intrusion.",
+    "Intelligence without control.",
+    "Technology without unnecessary dependence.",
+    "Hospitality in service to God and people."
+  ],
   domain: "epyk-systems.com",
   url: "https://www.epyk-systems.com",
   email: "contact@epyk-systems.com",
@@ -15,14 +26,17 @@ export const brand = {
     favicon: "/brand/favicon.png"
   },
   colors: {
-    black: "#05070B",
-    navy: "#080D14",
-    charcoal: "#0B0F14",
-    panel: "#111820",
-    blue: "#2D7CFF",
+    obsidian: "#030405",
+    black: "#080A0D",
+    charcoal: "#11151A",
+    silverDark: "#252B32",
+    silverMuted: "#8C96A3",
+    blue: "#1D6FFF",
     blueDeep: "#1E6BFF",
-    blueSoft: "#3B82F6",
-    text: "#F4F7FB",
+    blueSoft: "#2563EB",
+    gold: "#F3C743",
+    goldSoft: "#F6C945",
+    text: "#F4F7FA",
     textSecondary: "#DDE3EA",
     muted: "#A7B0BE",
     subdued: "#7B8794"
@@ -31,9 +45,25 @@ export const brand = {
 
 export const navItems = [
   { label: "Home", href: "/" },
-  { label: "Operations", href: "/operations" },
-  { label: "Inventories", href: "/inventories" },
-  { label: "Vision", href: "/vision" },
+  {
+    label: "Solutions",
+    href: "/solutions",
+    children: [
+      { label: "Operational Software", href: "/solutions/operational-software" },
+      {
+        label: "Inventory and Material Control",
+        href: "/solutions/inventory-and-material-control"
+      },
+      { label: "Private AI", href: "/solutions/private-ai" },
+      { label: "Edge Infrastructure", href: "/solutions/edge-infrastructure" },
+      { label: "Epyk Perception", href: "/solutions/perception" },
+      {
+        label: "Industrial Modernization",
+        href: "/solutions/secure-industrial-modernization"
+      }
+    ]
+  },
+  { label: "Ecosystem", href: "/ecosystem" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" }

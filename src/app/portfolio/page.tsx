@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
+import { CaseStudyCard } from "@/components/CaseStudyCard";
 import { CTASection } from "@/components/CTASection";
-import { PageHeader } from "@/components/PageHeader";
-import { PortfolioCard } from "@/components/PortfolioCard";
+import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import { createPageMetadata } from "@/lib/brand";
 import { portfolioSections } from "@/lib/site";
@@ -10,46 +10,44 @@ import { portfolioSections } from "@/lib/site";
 export const metadata: Metadata = createPageMetadata({
   title: "Portfolio | Epyk Systems",
   description:
-    "Sanitized examples of Epyk Systems operational systems, industrial prototypes, technical foundations, and computer vision concepts.",
+    "Sanitized Epyk Systems case studies organized into client and operational deployments, internal platforms, and research laboratory work.",
   path: "/portfolio"
 });
 
 export default function PortfolioPage() {
   return (
     <>
-      <PageHeader
+      <PageHero
         eyebrow="Portfolio"
-        title="Operational systems, prototypes, and technical foundations."
-        description="Public examples are sanitized and intentionally avoid exposing proprietary code, private client details, or unsupported claims. The emphasis is on relevant operating patterns and technical foundations. Client case studies will be published here as deployments mature; current examples are sanitized internal builds and prototypes."
+        title="Case studies, product foundations, and research work labeled by maturity."
+        description="Public examples are sanitized and intentionally avoid exposing proprietary code, private client details, unsupported metrics, invented screenshots, or claims that research systems are commercially available."
       />
 
       <Section
-        eyebrow="Sanitized examples"
-        title="Relevant work organized by operational purpose."
-        intro="The current portfolio separates client-facing operational systems from technical foundations that support future product capabilities."
+        eyebrow="Portfolio structure"
+        title="Operational work is not presented at the same level as long-term research."
+        intro="The portfolio separates real or operationally relevant work from internal platforms and research programs. Each case study uses the same structure so maturity, evidence, and future role are clear."
       >
-        <div className="mt-12 grid gap-12">
+        <div className="mt-12 grid gap-14">
           {portfolioSections.map((section) => {
             const sectionId = section.title.toLowerCase().replace(/\s+/g, "-");
 
             return (
               <section key={section.title} aria-labelledby={sectionId}>
-                <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <h2
-                      id={sectionId}
-                      className="text-2xl font-semibold tracking-tight text-[#F4F7FB]"
-                    >
-                      {section.title}
-                    </h2>
-                    <p className="mt-2 max-w-2xl text-sm leading-6 text-[#A7B0BE]">
-                      {section.description}
-                    </p>
-                  </div>
+                <div className="mb-6 max-w-3xl">
+                  <h2
+                    id={sectionId}
+                    className="text-2xl font-semibold tracking-tight text-[#F4F7FA]"
+                  >
+                    {section.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
+                    {section.description}
+                  </p>
                 </div>
-                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-5 lg:grid-cols-2">
                   {section.items.map((item) => (
-                    <PortfolioCard key={item.title} {...item} />
+                    <CaseStudyCard key={item.title} item={item} />
                   ))}
                 </div>
               </section>
@@ -58,25 +56,26 @@ export default function PortfolioPage() {
         </div>
       </Section>
 
-      <Section className="border-y border-white/10 bg-[#080D14]/54">
+      <Section className="border-y border-white/10 bg-[#080A0D]/56">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#2D7CFF]">
-            Private builds
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F3C743]">
+            Evidence boundaries
           </p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#F4F7FB] sm:text-4xl">
-            Business-safe by design.
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#F4F7FA] sm:text-4xl">
+            No fabricated proof.
           </h2>
           <p className="mt-5 text-base leading-7 text-[#A7B0BE]">
-            Some systems are internal prototypes, technical foundations, or
-            private builds. Public demos and sanitized case studies will be
-            added as deployments mature.
+            The repository currently provides brand assets, not public product
+            screenshots or approved client visuals. Where screenshots or
+            operational metrics are not available for public release, the site
+            says so directly.
           </p>
         </div>
       </Section>
 
       <CTASection
         title="Need a system shaped around a real operation?"
-        description="Epyk Systems can use existing prototypes, reusable modules, and operational architecture patterns as a starting point for focused client builds."
+        description="Epyk can use existing operational patterns, internal platforms, and reference architectures as starting points for focused client builds."
       />
     </>
   );

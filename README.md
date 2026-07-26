@@ -1,10 +1,12 @@
 # Epyk Systems Website
 
-Production-ready marketing website for **Epyk Systems**, a parent company focused on industrial operations software, workflow automation, inventory/material tracking, computer vision, and practical AI-assisted infrastructure.
+Production-ready marketing website for **Epyk Systems**, a God-centered, community-minded, local-first technology ecosystem focused on private infrastructure, local AI, industrial software, manufacturing modernization, workflow systems, inventory/material control, operational perception, secure machine connectivity, and long-term ecosystem research.
 
 Brand tagline:
 
 ```text
+STEP INTO EPYK
+THE EDGE OF FREEDOM
 Built for Real Operations.
 ```
 
@@ -35,12 +37,18 @@ If the official logo is replaced later, keep the same file names to avoid code c
 ## Pages
 
 - Home
-- Epyk Operations
-- Epyk Inventories
-- Epyk Vision
+- Solutions
+- Solutions detail pages
+- Ecosystem
 - Portfolio
 - About
 - Contact
+
+Legacy routes redirect into the Solutions architecture:
+
+- `/operations` -> `/solutions/operational-software`
+- `/inventories` -> `/solutions/inventory-and-material-control`
+- `/vision` -> `/solutions/perception`
 
 ## Install
 
