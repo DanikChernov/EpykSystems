@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import { navItems } from "@/lib/brand";
+import { navItems } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 import { Logo } from "./Logo";
@@ -47,7 +47,7 @@ export function Navbar() {
                 >
                   {item.label}
                 </Link>
-                {"children" in item ? (
+                {item.children ? (
                   <div className="invisible absolute left-0 top-full z-50 mt-3 min-w-72 border border-white/10 bg-[#080A0D]/96 p-2 opacity-0 shadow-[0_24px_90px_rgba(0,0,0,0.38)] transition duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                     {item.children.map((child) => {
                       const childActive = pathname === child.href;
@@ -118,7 +118,7 @@ export function Navbar() {
                   >
                     {item.label}
                   </Link>
-                  {"children" in item ? (
+                  {item.children ? (
                     <div className="ml-3 grid border-l border-white/10 pl-3">
                       {item.children.map((child) => {
                         const childActive = pathname === child.href;

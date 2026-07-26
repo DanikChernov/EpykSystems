@@ -3,7 +3,12 @@
 import { Loader2, Upload } from "lucide-react";
 import { type FormEvent, useRef, useState } from "react";
 
-import { inquiryOptions, type InquiryOption } from "@/lib/contact";
+import {
+  contactDetails,
+  inquiryOptions,
+  sensitiveFormWarning,
+  type InquiryOption
+} from "@/lib/site";
 
 type FormState = {
   inquiryType: InquiryOption;
@@ -26,8 +31,7 @@ const initialFormState: FormState = {
 const maxAttachmentSize = 8 * 1024 * 1024;
 const successMessage =
   "Request received. We\u2019ll review your submission and follow up shortly.";
-const failureMessage =
-  "Something went wrong while sending your request. Please email contact@epyk-systems.com directly.";
+const failureMessage = `Something went wrong while sending your request. Please email ${contactDetails.email} directly.`;
 
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(initialFormState);
@@ -130,9 +134,7 @@ export function ContactForm() {
     >
       <div className="mb-6 border border-[#F3C743]/24 bg-[#F3C743]/[0.07] p-4">
         <p className="text-sm font-semibold text-[#F4F7FA]">
-          Do not submit passwords, credentials, export-controlled information,
-          CUI, ITAR-controlled technical data, proprietary customer files, or
-          other sensitive material through this public form.
+          {sensitiveFormWarning}
         </p>
       </div>
       <div className="grid gap-5 sm:grid-cols-2">

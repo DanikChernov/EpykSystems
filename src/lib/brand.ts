@@ -16,6 +16,8 @@ export const brand = {
     "Technology without unnecessary dependence.",
     "Hospitality in service to God and people."
   ],
+  godCenteredStatement:
+    "Epyk Systems is openly Christian. That foundation informs how we understand service, stewardship, truth, privacy, human dignity, and the responsible use of capability. Customers and visitors are never required to share our beliefs, and faith is never used as a substitute for honest work or technical excellence.",
   domain: "epyk-systems.com",
   url: "https://www.epyk-systems.com",
   email: "contact@epyk-systems.com",
@@ -42,32 +44,6 @@ export const brand = {
     subdued: "#7B8794"
   }
 } as const;
-
-export const navItems = [
-  { label: "Home", href: "/" },
-  {
-    label: "Solutions",
-    href: "/solutions",
-    children: [
-      { label: "Operational Software", href: "/solutions/operational-software" },
-      {
-        label: "Inventory and Material Control",
-        href: "/solutions/inventory-and-material-control"
-      },
-      { label: "Private AI", href: "/solutions/private-ai" },
-      { label: "Edge Infrastructure", href: "/solutions/edge-infrastructure" },
-      { label: "Epyk Perception", href: "/solutions/perception" },
-      {
-        label: "Industrial Modernization",
-        href: "/solutions/secure-industrial-modernization"
-      }
-    ]
-  },
-  { label: "Ecosystem", href: "/ecosystem" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" }
-] as const;
 
 type PageMetadataOptions = {
   title: string;

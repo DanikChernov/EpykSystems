@@ -24,6 +24,11 @@ export function EcosystemCard({ project }: EcosystemCardProps) {
         {project.title}
       </h3>
       <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">{project.summary}</p>
+      {project.detail ? (
+        <p className="mt-4 text-sm leading-6 text-[#A7B0BE]">
+          {project.detail}
+        </p>
+      ) : null}
       <p className="mt-5 text-sm leading-6 text-[#DDE3EA]">{project.role}</p>
       <div className="mt-6 flex flex-wrap gap-2">
         {project.scope.map((item) => (

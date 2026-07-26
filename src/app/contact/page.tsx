@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
-import { brand, createPageMetadata } from "@/lib/brand";
-import { contactStartingPoints, inquiryOptions } from "@/lib/site";
+import { createPageMetadata } from "@/lib/brand";
+import {
+  contactDetails,
+  contactStartingPoints,
+  inquiryOptions,
+  sensitiveFormWarning
+} from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Contact | Epyk Systems",
@@ -35,16 +40,16 @@ export default function ContactPage() {
               connectivity.
             </p>
             <p className="mt-4 text-sm leading-6 text-[#DDE3EA]">
-              Based in Erie, Pennsylvania, working with industrial and technical
-              teams regionally and remotely.
+              Based in {contactDetails.location}, working with industrial and
+              technical teams regionally and remotely.
             </p>
             <div className="mt-6 border-t border-white/10 pt-6">
               <p className="text-sm font-medium text-[#DDE3EA]">Email</p>
               <a
-                href={`mailto:${brand.email}`}
+                href={`mailto:${contactDetails.email}`}
                 className="mt-2 inline-flex text-sm text-[#1D6FFF] transition hover:text-[#DDE3EA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
               >
-                {brand.email}
+                {contactDetails.email}
               </a>
             </div>
             <div className="mt-6 border-t border-white/10 pt-6">
@@ -74,10 +79,7 @@ export default function ContactPage() {
             </div>
             <div className="mt-6 border border-[#F3C743]/24 bg-[#F3C743]/[0.07] p-4">
               <p className="text-sm font-semibold leading-6 text-[#F4F7FA]">
-                Do not submit passwords, credentials, export-controlled
-                information, CUI, ITAR-controlled technical data, proprietary
-                customer files, or other sensitive material through this public
-                form.
+                {sensitiveFormWarning}
               </p>
             </div>
           </aside>

@@ -11,8 +11,9 @@ import { StatusBadge } from "@/components/StatusBadge";
 import { createPageMetadata } from "@/lib/brand";
 import {
   maturityDefinitions,
+  maturityStatusOrder,
   solutionAreas,
-  type MaturityStatus
+  solutionParentLines
 } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
@@ -22,22 +23,30 @@ export const metadata: Metadata = createPageMetadata({
   path: "/solutions"
 });
 
-const statusOrder: MaturityStatus[] = [
-  "Available",
-  "Active Development",
-  "Reference Architecture",
-  "Research Program",
-  "Future Environment"
-];
-
 export default function SolutionsPage() {
   const directorySolutions: SolutionDirectoryItem[] = solutionAreas.map(
-    ({ audience, problem, slug, status, title }) => ({
+    ({
       audience,
+      directorySummary,
+      directoryTags,
+      parentLine,
       problem,
+      representativeCapabilities,
       slug,
       status,
-      title
+      title,
+      typicalDeployment
+    }) => ({
+      audience,
+      directorySummary,
+      directoryTags,
+      parentLine,
+      problem,
+      representativeCapabilities,
+      slug,
+      status,
+      title,
+      typicalDeployment
     })
   );
 
@@ -69,7 +78,10 @@ export default function SolutionsPage() {
         intro="All entries are collapsed by default. Opening one overview closes the others so the page stays compact."
       >
         <div className="mt-10">
-          <SolutionDirectory solutions={directorySolutions} />
+          <SolutionDirectory
+            solutions={directorySolutions}
+            parentLines={solutionParentLines}
+          />
         </div>
       </Section>
 
@@ -89,7 +101,7 @@ export default function SolutionsPage() {
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {statusOrder.map((status) => (
+            {maturityStatusOrder.map((status) => (
               <div
                 key={status}
                 className="border border-white/10 bg-white/[0.03] p-4"

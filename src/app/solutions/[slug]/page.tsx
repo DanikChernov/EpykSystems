@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
+import { SolutionDeploymentModels } from "@/components/SolutionDeploymentModels";
+import { SolutionEngagementFit } from "@/components/SolutionEngagementFit";
 import { createPageMetadata } from "@/lib/brand";
 import { solutionAreas } from "@/lib/site";
 
@@ -76,19 +78,7 @@ export default async function SolutionDetailPage({ params }: SolutionPageProps) 
 
       <Section>
         <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-          <aside className="border border-white/10 bg-white/[0.03] p-6">
-            <div className="flex size-12 items-center justify-center rounded-md border border-[#1D6FFF]/24 bg-[#1D6FFF]/10 text-[#DDE3EA]">
-              <Icon aria-hidden size={22} strokeWidth={1.8} />
-            </div>
-            <h2 className="mt-5 text-2xl font-semibold tracking-tight text-[#F4F7FA]">
-              Engagement fit
-            </h2>
-            <p className="mt-4 text-sm leading-6 text-[#A7B0BE]">
-              Epyk does not sell a predetermined replacement platform. The
-              first scope is shaped around the problem, the operating boundary,
-              and the team that has to use the system.
-            </p>
-          </aside>
+          <SolutionEngagementFit icon={Icon} />
 
           <div className="grid gap-6">
             {[
@@ -115,28 +105,7 @@ export default async function SolutionDetailPage({ params }: SolutionPageProps) 
         </div>
       </Section>
 
-      <Section
-        className="border-y border-white/10 bg-[#080A0D]/56"
-        eyebrow="Deployment models"
-        title="Connected where useful, private where needed."
-        intro="Local infrastructure and private operation can form the foundation. Cloud platforms and external APIs may be connected when useful, but they remain optional extensions rather than unavoidable dependencies."
-      >
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {solution.deploymentModels.map((model) => (
-            <div
-              key={model}
-              className="flex gap-3 border border-white/10 bg-white/[0.03] p-4"
-            >
-              <CheckCircle2
-                aria-hidden
-                size={18}
-                className="mt-0.5 shrink-0 text-[#1D6FFF]"
-              />
-              <span className="text-sm leading-6 text-[#DDE3EA]">{model}</span>
-            </div>
-          ))}
-        </div>
-      </Section>
+      <SolutionDeploymentModels models={solution.deploymentModels} />
 
       <Section
         eyebrow="Capabilities"
@@ -152,6 +121,20 @@ export default async function SolutionDetailPage({ params }: SolutionPageProps) 
               {feature}
             </div>
           ))}
+        </div>
+      </Section>
+
+      <Section className="border-y border-white/10 bg-white/[0.02]">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F3C743]">
+            Illustrative scenario
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#F4F7FA] sm:text-4xl">
+            A concrete starting shape.
+          </h2>
+          <p className="mt-5 text-base leading-7 text-[#A7B0BE]">
+            {solution.scenario}
+          </p>
         </div>
       </Section>
 

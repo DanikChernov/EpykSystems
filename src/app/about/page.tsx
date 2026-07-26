@@ -7,7 +7,7 @@ import { PrincipleList } from "@/components/PrincipleList";
 import { Section } from "@/components/Section";
 import { GitHubIcon, LinkedInIcon } from "@/components/SocialIcons";
 import { brand, createPageMetadata } from "@/lib/brand";
-import { aboutPoints, trustPoints } from "@/lib/site";
+import { aboutPoints, contactDetails, personJsonLd, trustPoints } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title: "About | Epyk Systems",
@@ -17,21 +17,6 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function AboutPage() {
-  const personJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Daniel Chernov",
-    jobTitle: "Founder",
-    worksFor: {
-      "@type": "Organization",
-      name: "Epyk Systems"
-    },
-    sameAs: [
-      "https://www.linkedin.com/in/daniel-chernov-84727a283/",
-      "https://github.com/DanikChernov"
-    ]
-  };
-
   return (
     <>
       <script
@@ -73,14 +58,14 @@ export default function AboutPage() {
               DC
             </div>
             <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-[#1D6FFF]">
-              Founder
+              {contactDetails.founderTitle}
             </p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[#F4F7FA]">
-              Daniel Chernov
+              {contactDetails.founder}
             </h2>
             <div className="mt-6 grid gap-3">
               <a
-                href="https://www.linkedin.com/in/daniel-chernov-84727a283/"
+                href={contactDetails.socialLinks[0].href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
@@ -89,7 +74,7 @@ export default function AboutPage() {
                 LinkedIn
               </a>
               <a
-                href="https://github.com/DanikChernov"
+                href={contactDetails.socialLinks[1].href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
@@ -98,7 +83,7 @@ export default function AboutPage() {
                 GitHub
               </a>
               <a
-                href={`mailto:${brand.email}`}
+                href={`mailto:${contactDetails.email}`}
                 className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
               >
                 <Mail aria-hidden size={17} />
@@ -147,11 +132,7 @@ export default function AboutPage() {
               Explicit, restrained, and never coercive.
             </h2>
             <p className="mt-5 text-base leading-7 text-[#A7B0BE]">
-              Epyk Systems is openly Christian. That foundation informs how we
-              understand service, stewardship, truth, privacy, human dignity,
-              and the responsible use of capability. Customers and visitors are
-              never required to share our beliefs, and faith is never used as a
-              substitute for honest work or technical excellence.
+              {brand.godCenteredStatement}
             </p>
           </div>
           <PrincipleList />

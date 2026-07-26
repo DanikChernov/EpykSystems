@@ -36,12 +36,9 @@ import {
   Zap
 } from "lucide-react";
 
-import { brand, navItems } from "./brand";
-import { inquiryOptions } from "./contact";
+import { brand } from "./brand";
 
 export const siteConfig = brand;
-export { navItems };
-export { inquiryOptions };
 
 export type MaturityStatus =
   | "Available"
@@ -59,6 +56,19 @@ export const maturityDefinitions: Record<MaturityStatus, string> = {
   "Future Environment": "A planned integrated physical environment."
 };
 
+export const maturityStatusOrder: MaturityStatus[] = [
+  "Available",
+  "Active Development",
+  "Reference Architecture",
+  "Research Program",
+  "Future Environment"
+];
+
+export type SolutionParentLine =
+  | "Operations"
+  | "Inventories / Material Control"
+  | "Vision / Perception";
+
 export type Feature = {
   title: string;
   description: string;
@@ -70,15 +80,21 @@ export type SolutionArea = {
   slug: string;
   title: string;
   navTitle: string;
+  parentLine: SolutionParentLine;
   status: MaturityStatus;
   summary: string;
+  directorySummary: string;
+  directoryTags: string[];
   problem: string;
   audience: string;
   approach: string;
   deploymentModels: string[];
+  typicalDeployment: string;
   availableNow: string;
   discoveryNeeded: string;
+  representativeCapabilities: string[];
   features: string[];
+  scenario: string;
   icon: LucideIcon;
 };
 
@@ -87,6 +103,7 @@ export type EcosystemProject = {
   layer: string;
   status: MaturityStatus;
   summary: string;
+  detail?: string;
   scope: string[];
   role: string;
   icon: LucideIcon;
@@ -112,6 +129,78 @@ export type CaseStudy = {
   futureRole: string;
   tags: string[];
   icon: LucideIcon;
+};
+
+export type NavItem = {
+  label: string;
+  href: string;
+  children?: {
+    label: string;
+    href: string;
+  }[];
+};
+
+export const contactDetails = {
+  email: brand.email,
+  location: "Erie, Pennsylvania",
+  founder: "Daniel Chernov",
+  founderTitle: "Founder",
+  areaServed: "United States",
+  socialLinks: [
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/daniel-chernov-84727a283/"
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/DanikChernov"
+    }
+  ]
+} as const;
+
+export const inquiryOptions = [
+  "Operational Software",
+  "Inventory and Material Control",
+  "Private AI",
+  "Edge Infrastructure",
+  "Manufacturing Modernization",
+  "Operational Perception",
+  "Partnership",
+  "Research or Grant",
+  "General Inquiry"
+] as const;
+
+export type InquiryOption = (typeof inquiryOptions)[number];
+
+export const sensitiveFormWarning =
+  "Do not submit passwords, credentials, export-controlled information, CUI, ITAR-controlled technical data, proprietary customer files, or other sensitive material through this public form.";
+
+export const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: brand.name,
+  url: brand.url,
+  logo: `${brand.url}${brand.assets.logo}`,
+  email: contactDetails.email,
+  description: brand.explanatoryLine,
+  areaServed: contactDetails.areaServed,
+  founder: {
+    "@type": "Person",
+    name: contactDetails.founder
+  },
+  sameAs: contactDetails.socialLinks.map((link) => link.href)
+};
+
+export const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: contactDetails.founder,
+  jobTitle: contactDetails.founderTitle,
+  worksFor: {
+    "@type": "Organization",
+    name: brand.name
+  },
+  sameAs: contactDetails.socialLinks.map((link) => link.href)
 };
 
 export const engagementSteps = [
@@ -157,9 +246,13 @@ export const solutionAreas: SolutionArea[] = [
     slug: "operational-software",
     title: "Operational Software",
     navTitle: "Operational Software",
+    parentLine: "Operations",
     status: "Available",
     summary:
       "Workflow visibility, jobs, approvals, status, scheduling, traceability, internal applications, and audit history.",
+    directorySummary:
+      "Workflow systems that make jobs, approvals, status, and accountability visible without forcing a full platform replacement.",
+    directoryTags: ["Workflow", "Approvals", "Traceability"],
     problem:
       "Work moves through messages, spreadsheets, memory, and informal approvals until status becomes difficult to trust.",
     audience:
@@ -172,10 +265,18 @@ export const solutionAreas: SolutionArea[] = [
       "Shop-floor terminal, desktop, and mobile access",
       "Optional integrations with existing tools"
     ],
+    typicalDeployment:
+      "Private web application with desktop, mobile, and shop-floor access.",
     availableNow:
       "Workflow systems, dashboards, approvals, audit trails, forms, scheduling visibility, and custom internal applications can be delivered through a client engagement.",
     discoveryNeeded:
       "Exact workflow scope, user roles, existing data sources, integration points, and reporting requirements are defined during discovery.",
+    representativeCapabilities: [
+      "Job and workflow tracking",
+      "Approval routing",
+      "Status and schedule visibility",
+      "Audit history"
+    ],
     features: [
       "Workflow visibility",
       "Jobs and approvals",
@@ -184,15 +285,21 @@ export const solutionAreas: SolutionArea[] = [
       "Internal applications",
       "Audit history"
     ],
+    scenario:
+      "Illustrative scenario: a production team has job status split between texts, spreadsheets, and memory. Epyk would map the real handoffs, define roles, and build a focused workflow surface before expanding into scheduling or reporting.",
     icon: Workflow
   },
   {
     slug: "inventory-and-material-control",
     title: "Inventory and Material Control",
     navTitle: "Inventory Control",
+    parentLine: "Inventories / Material Control",
     status: "Available",
     summary:
       "Materials, stock, tools, locations, movements, shortages, replenishment, and role-based access tied to real work.",
+    directorySummary:
+      "Material-control systems that keep stock, tools, locations, shortages, and movements tied to real operational work.",
+    directoryTags: ["Materials", "Locations", "Shortages"],
     problem:
       "Counts drift, shortages appear too late, tools move without context, and material decisions get separated from the jobs they affect.",
     audience:
@@ -205,10 +312,18 @@ export const solutionAreas: SolutionArea[] = [
       "Role-based access for floor, warehouse, and management users",
       "Optional integration with purchasing or ERP systems"
     ],
+    typicalDeployment:
+      "Private inventory application with optional barcode or QR workflows.",
     availableNow:
       "Material tracking, request flows, location records, barcode/QR support, low-stock visibility, permissions, and audit history are available through custom engagement.",
     discoveryNeeded:
       "Part taxonomy, labeling strategy, location model, current data quality, replenishment logic, and approval rules require discovery.",
+    representativeCapabilities: [
+      "Material and tool records",
+      "Location and movement tracking",
+      "Low-stock visibility",
+      "Role-based access"
+    ],
     features: [
       "Materials and stock",
       "Tools and locations",
@@ -217,15 +332,21 @@ export const solutionAreas: SolutionArea[] = [
       "Role-based access",
       "Job-linked usage"
     ],
+    scenario:
+      "Illustrative scenario: a shop can see material counts but cannot trust where stock moved or which job consumed it. Epyk would shape the location model, scanning flow, and permission rules around the actual movement of parts and tools.",
     icon: Boxes
   },
   {
     slug: "private-ai",
     title: "Private AI",
     navTitle: "Private AI",
+    parentLine: "Operations",
     status: "Available",
     summary:
       "Local model hosting, private retrieval, internal knowledge systems, controlled tools, and optional external model access.",
+    directorySummary:
+      "Private, permission-aware intelligence systems that work with internal information without making public-cloud dependency the foundation.",
+    directoryTags: ["Private retrieval", "Local models", "Controlled tools"],
     problem:
       "Teams want useful intelligence over private procedures, documents, and operations without sending every task through an unavoidable external platform.",
     audience:
@@ -238,10 +359,18 @@ export const solutionAreas: SolutionArea[] = [
       "Hybrid local and external model routing",
       "Controlled tool invocation with audit logs"
     ],
+    typicalDeployment:
+      "Local or hybrid model infrastructure with owner-defined data and tool boundaries.",
     availableNow:
       "Private knowledge systems, retrieval workflows, local model hosting, and controlled assistant tools can be delivered as scoped engagements.",
     discoveryNeeded:
       "Data sensitivity, model requirements, acceptable external access, tool permissions, latency, hardware, and audit needs require discovery.",
+    representativeCapabilities: [
+      "Private retrieval",
+      "Local model hosting",
+      "Internal knowledge systems",
+      "Permission-aware tool use"
+    ],
     features: [
       "Local model hosting",
       "Private retrieval",
@@ -250,15 +379,21 @@ export const solutionAreas: SolutionArea[] = [
       "Permission-aware execution",
       "Offline-capable workflows"
     ],
+    scenario:
+      "Illustrative scenario: an operations team wants assistance over procedures, drawings, and internal notes without turning every request into a public-cloud dependency. Epyk would define the data boundary, retrieval scope, model routing, and allowed tools before any assistant is deployed.",
     icon: BrainCircuit
   },
   {
     slug: "edge-infrastructure",
     title: "Edge Infrastructure",
     navTitle: "Edge Infrastructure",
+    parentLine: "Operations",
     status: "Available",
     summary:
       "Local compute, storage, networking, segmentation, observability, security, backup, recovery, and private AI hosting.",
+    directorySummary:
+      "Owner-controlled local infrastructure for compute, storage, networking, backup, observability, and private AI hosting.",
+    directoryTags: ["Local compute", "Segmentation", "Recovery"],
     problem:
       "Critical operations often depend on fragile office networks, unmanaged devices, weak backups, or cloud-only workflows that do not fit the facility.",
     audience:
@@ -271,10 +406,18 @@ export const solutionAreas: SolutionArea[] = [
       "Private AI host",
       "Backup, recovery, and observability layers"
     ],
+    typicalDeployment:
+      "On-premise infrastructure foundation with optional external integrations.",
     availableNow:
       "Infrastructure review, local compute planning, network segmentation, backup strategy, observability, and private AI hosting can be delivered today.",
     discoveryNeeded:
       "Facility layout, existing hardware, compliance requirements, uptime targets, recovery expectations, and budget shape the architecture.",
+    representativeCapabilities: [
+      "Local compute and storage",
+      "Network segmentation",
+      "Observability",
+      "Backup and recovery"
+    ],
     features: [
       "Local compute",
       "Storage and networking",
@@ -283,15 +426,21 @@ export const solutionAreas: SolutionArea[] = [
       "Security",
       "Backup and recovery"
     ],
+    scenario:
+      "Illustrative scenario: a facility has useful software but weak backups, flat networking, and no clear place to run private services. Epyk would inventory the boundary, design local compute and recovery layers, then connect outside services only where they add value.",
     icon: Server
   },
   {
     slug: "perception",
     title: "Epyk Perception",
     navTitle: "Epyk Perception",
+    parentLine: "Vision / Perception",
     status: "Active Development",
     summary:
       "Operational computer vision for detection, tracking, event awareness, evidence, privacy boundaries, and human judgment.",
+    directorySummary:
+      "Operational perception systems that connect detection, tracking, events, and evidence to legitimate work purposes.",
+    directoryTags: ["Detection", "Tracking", "Evidence"],
     problem:
       "Physical operations create important events that are hard to see, confirm, or attach to the workflow after the moment passes.",
     audience:
@@ -304,10 +453,18 @@ export const solutionAreas: SolutionArea[] = [
       "Evidence linked to jobs or inventory",
       "Integration with Epyk-3 research patterns"
     ],
+    typicalDeployment:
+      "Local or edge vision pipelines scoped around defined camera zones and permissions.",
     availableNow:
       "Feasibility reviews, focused prototypes, operational detection workflows, and integrations with software systems can be scoped now.",
     discoveryNeeded:
       "Camera placement, lighting, privacy boundaries, detection requirements, retention policy, and operational purpose must be defined before implementation.",
+    representativeCapabilities: [
+      "Detection and tracking",
+      "Event awareness",
+      "Evidence review",
+      "Privacy boundaries"
+    ],
     features: [
       "Legitimate operational purpose",
       "Local processing",
@@ -316,15 +473,21 @@ export const solutionAreas: SolutionArea[] = [
       "Event awareness",
       "Evidence with human judgment"
     ],
+    scenario:
+      "Illustrative scenario: a team needs to confirm whether material reached a staging area without turning cameras into general surveillance. Epyk would define the legitimate event, camera zones, retention boundary, review workflow, and human decision point first.",
     icon: Eye
   },
   {
     slug: "secure-industrial-modernization",
     title: "Secure Industrial Modernization",
-    navTitle: "Industrial Modernization",
+    navTitle: "Secure Industrial Modernization",
+    parentLine: "Operations",
     status: "Available",
     summary:
       "Legacy systems, machine connectivity, controller adapters, segmented networks, monitoring, dashboards, and phased modernization.",
+    directorySummary:
+      "Phased modernization for legacy machines, controller connections, segmented networks, monitoring, and local dashboards.",
+    directoryTags: ["Legacy systems", "Machine data", "Dashboards"],
     problem:
       "Useful machines and legacy systems are often isolated, fragile, or difficult to observe without introducing unnecessary risk.",
     audience:
@@ -337,10 +500,18 @@ export const solutionAreas: SolutionArea[] = [
       "Local dashboards",
       "Private monitoring and alerting"
     ],
+    typicalDeployment:
+      "Careful facility or machine-level integration with protected boundaries.",
     availableNow:
       "Legacy review, secure connectivity planning, controller-adapter prototypes, local dashboards, and monitoring systems can be delivered through engagement.",
     discoveryNeeded:
       "Controller models, protocols, safety requirements, network topology, production constraints, and change-control expectations require discovery.",
+    representativeCapabilities: [
+      "Controller adapters",
+      "Segmented machine networks",
+      "Production monitoring",
+      "Local dashboards"
+    ],
     features: [
       "Legacy systems",
       "Machine connectivity",
@@ -349,8 +520,47 @@ export const solutionAreas: SolutionArea[] = [
       "Production monitoring",
       "Controlled environments"
     ],
+    scenario:
+      "Illustrative scenario: an older controller has useful production signals but sits on a boundary that cannot be treated casually. Epyk would identify protocols and safety limits, isolate the connection, and expose only the telemetry needed for local visibility.",
     icon: Factory
   }
+];
+
+export const solutionParentLines: {
+  title: SolutionParentLine;
+  description: string;
+}[] = [
+  {
+    title: "Operations",
+    description:
+      "Workflow, infrastructure, intelligence, and modernization work that makes the operating system of the facility clearer and more resilient."
+  },
+  {
+    title: "Inventories / Material Control",
+    description:
+      "Material, stock, tool, location, shortage, and movement control tied to real jobs and accountable records."
+  },
+  {
+    title: "Vision / Perception",
+    description:
+      "Operational perception scoped around legitimate purpose, local processing, evidence, privacy boundaries, and human judgment."
+  }
+];
+
+export const navItems: NavItem[] = [
+  { label: "Home", href: "/" },
+  {
+    label: "Solutions",
+    href: "/solutions",
+    children: solutionAreas.map((solution) => ({
+      label: solution.navTitle,
+      href: `/solutions/${solution.slug}`
+    }))
+  },
+  { label: "Ecosystem", href: "/ecosystem" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" }
 ];
 
 export const ecosystemProjects: EcosystemProject[] = [
@@ -360,6 +570,8 @@ export const ecosystemProjects: EcosystemProject[] = [
     status: "Reference Architecture",
     summary:
       "The physical foundation for local compute, storage, networking, identity, observability, AI hosting, backup, and recovery.",
+    detail:
+      "Epyk Edge is the foundation for compute, storage, networking, security, identity, observability, AI hosting, backup, and recovery. It is presented as a reference architecture, while related edge infrastructure work can be delivered through current client engagements.",
     scope: [
       "Compute",
       "Storage",
@@ -380,6 +592,8 @@ export const ecosystemProjects: EcosystemProject[] = [
     status: "Active Development",
     summary:
       "The local intelligence layer connecting specialized models, private data, tools, infrastructure, and Epyk devices.",
+    detail:
+      "Epyk AI connects specialized models, private data, tools, infrastructure, and Epyk devices. It is not positioned as a simple outside-model competitor. The goal is controlled orchestration where local systems and optional external models can both be governed by the owner.",
     scope: [
       "Specialized models",
       "Private data",

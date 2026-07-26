@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { NeuralBackground } from "@/components/NeuralBackground";
 import { brand } from "@/lib/brand";
+import { organizationJsonLd } from "@/lib/site";
 
 import "./globals.css";
 
@@ -76,6 +77,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <div className="relative min-h-screen overflow-hidden bg-[#030405] text-[#F4F7FA]">
           <NeuralBackground />
           <div className="relative z-10 flex min-h-screen flex-col">

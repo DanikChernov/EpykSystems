@@ -1,8 +1,8 @@
 import { MapPin } from "lucide-react";
 import Link from "next/link";
 
-import { brand, navItems } from "@/lib/brand";
-import { inquiryOptions } from "@/lib/site";
+import { brand } from "@/lib/brand";
+import { contactDetails, inquiryOptions, navItems } from "@/lib/site";
 
 import { Logo } from "./Logo";
 import { GitHubIcon, LinkedInIcon } from "./SocialIcons";
@@ -30,11 +30,11 @@ export function Footer() {
           <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-3 text-sm text-[#A7B0BE]">
             <span className="inline-flex items-center gap-2">
               <MapPin aria-hidden size={16} className="text-[#1D6FFF]" />
-              Erie, Pennsylvania
+              {contactDetails.location}
             </span>
             <span className="flex items-center gap-2">
               <a
-                href="https://www.linkedin.com/in/daniel-chernov-84727a283/"
+                href={contactDetails.socialLinks[0].href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Daniel Chernov on LinkedIn"
@@ -43,7 +43,7 @@ export function Footer() {
                 <LinkedInIcon className="size-4" />
               </a>
               <a
-                href="https://github.com/DanikChernov"
+                href={contactDetails.socialLinks[1].href}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Daniel Chernov on GitHub"
