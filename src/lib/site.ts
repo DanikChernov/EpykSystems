@@ -42,6 +42,7 @@ export const siteConfig = brand;
 
 export type MaturityStatus =
   | "Available"
+  | "Available — Pending Client Review"
   | "Active Development"
   | "Reference Architecture"
   | "Research Program"
@@ -49,6 +50,8 @@ export type MaturityStatus =
 
 export const maturityDefinitions: Record<MaturityStatus, string> = {
   Available: "Can be delivered through a client engagement now.",
+  "Available — Pending Client Review":
+    "A delivered system available through engagement, with the initial client deployment awaiting review.",
   "Active Development": "A working system or prototype under continued development.",
   "Reference Architecture":
     "A substantially designed system that is not yet a standardized shipping product.",
@@ -58,6 +61,7 @@ export const maturityDefinitions: Record<MaturityStatus, string> = {
 
 export const maturityStatusOrder: MaturityStatus[] = [
   "Available",
+  "Available — Pending Client Review",
   "Active Development",
   "Reference Architecture",
   "Research Program",
@@ -73,7 +77,9 @@ export type SolutionQuestionTitle =
   | "What problem does this solve?"
   | "Who is it for?"
   | "How does Epyk approach it?"
+  | "What deployment models are possible?"
   | "What is available now?"
+  | "What experience is this based on?"
   | "What requires discovery or custom implementation?";
 
 export type SolutionQuestionLink = {
@@ -83,6 +89,16 @@ export type SolutionQuestionLink = {
   href: string;
   after?: string;
 };
+
+export const solutionQuestionTitles = {
+  problem: "What problem does this solve?",
+  audience: "Who is it for?",
+  approach: "How does Epyk approach it?",
+  deployment: "What deployment models are possible?",
+  availableNow: "What is available now?",
+  experience: "What experience is this based on?",
+  discoveryNeeded: "What requires discovery or custom implementation?"
+} as const satisfies Record<string, SolutionQuestionTitle>;
 
 export type Feature = {
   title: string;
@@ -105,9 +121,11 @@ export type SolutionArea = {
   problem: string;
   audience: string;
   approach: string;
+  deploymentQuestion?: string;
   deploymentModels: string[];
   typicalDeployment: string;
   availableNow: string;
+  experience?: string;
   discoveryNeeded: string;
   representativeCapabilities: string[];
   features: string[];
@@ -305,11 +323,12 @@ export const engagementPage = {
   scopeBoundaries: [
     "Each phase is defined and agreed before work begins.",
     "Epyk does not begin open-ended engagements.",
-    "Expansion is a separate decision each time, never automatic.",
-    "Timing or commercial thresholds: TODO: founder to decide whether to publish."
+    "Expansion is a separate decision each time, never automatic."
   ],
   pricing:
     "Engagements are quoted after scope is defined, because a fixed quote against an undefined problem is either padded or wrong. Epyk does not use pricing copy to imply that every workflow, integration, or infrastructure problem has the same shape.",
+  pricingNote:
+    "This keeps the first decision tied to an actual operating boundary instead of a generic package.",
   doesNotDo: [
     "No multi-year platform lock-in.",
     "No per-seat licensing that grows silently.",
@@ -321,12 +340,10 @@ export const engagementPage = {
     "Access paths and administrative boundaries that are made clear during handover.",
     "Ownership of the systems and data under the client's control.",
     "A written boundary for what was delivered, what was not included, and what would require a new decision."
-  ],
-  founderDecisionMarkers: [
-    "Assessment or build timing: TODO: founder to decide whether to publish.",
-    "Commercial threshold details: TODO: founder to decide whether to publish."
   ]
 } as const;
+
+// TODO: founder to decide whether to publish assessment timing, build timing, or commercial threshold details.
 
 export const engagementSteps = [
   {
@@ -565,7 +582,7 @@ export const solutionAreas: SolutionArea[] = [
       "Illustrative scenario: a facility has useful software but weak backups, flat networking, and no clear place to run private services. Epyk would inventory the boundary, design local compute and recovery layers, then connect outside services only where they add value.",
     icon: Server
   },
-  // Deadline-based CMMC or controlled-data copy must be verified against current DoD/DoW guidance before publishing.
+  // TODO: Any future date-based CMMC or controlled-data copy must be verified against current DoD guidance before publishing.
   {
     slug: "controlled-environments",
     title: "Controlled Environments",
@@ -577,43 +594,48 @@ export const solutionAreas: SolutionArea[] = [
     parentLine: "Operations",
     status: "Available",
     summary:
-      "Controlled-data manufacturing work scoped around CMMC, NIST SP 800-171, CUI, and controlled technical data boundaries. TODO: founder to verify.",
+      "Controlled-data manufacturing work scoped around CMMC, NIST SP 800-171, CUI, and controlled technical data boundaries.",
     directorySummary:
-      "Defined enclaves for CUI and controlled technical data that keep assessment scope smaller instead of spreading sensitive work across every system. TODO: founder to verify.",
-    directoryTags: ["CUI boundaries", "Scope reduction", "Access records"],
+      "Defined enclaves for CUI and controlled technical data that keep assessment scope small instead of spreading sensitive work across every system.",
+    directoryTags: ["CUI boundaries", "Scope reduction", "Segmentation"],
     problem:
-      "Controlled technical data is often spread across shared drives, unmanaged machines, personal email, and cloud tools that were never scoped for it. Every additional system in scope raises the cost and difficulty of assessment.",
+      "Controlled technical data rarely stays where it was meant to. It spreads into shared drives, personal email, unmanaged workstations, cloud tools that were never scoped for it, and shop-floor machines running operating systems that can no longer be patched. Every additional system holding that data widens the assessment boundary, and a wider boundary means more controls to implement, more evidence to produce, and a more expensive and difficult assessment.",
     audience:
-      "Small and mid-sized manufacturers and machine shops holding defense or other controlled work, especially subcontractors to primes.",
+      "Small and mid-sized manufacturers and machine shops holding defense or other controlled work — particularly subcontractors to primes, where compliance obligations arrive through contract flow-down rather than direct negotiation.",
     approach:
-      "Scope reduction first: isolate controlled data into a defined enclave so the number of systems in assessment scope stays small, then build segmentation, access control, logging, and documented boundaries around it. Local-first is an advantage here rather than a preference. Epyk is an implementation partner, not an accredited assessor, and certification is performed by an accredited third-party assessment organization. TODO: founder to verify.",
+      "Scope reduction comes before implementation. The first work is mapping where controlled data actually lives and moves today: which drives, machines, users, email paths, and outside services touch it. That map usually shows controlled work has spread into systems that never needed it, and shrinking that footprint is the single largest lever on both cost and difficulty.\n\nThe environment is then built around a defined enclave — segmented network paths, role-based access, isolation for machines and controllers that cannot be patched or centrally managed, and logging designed to produce usable evidence rather than noise. Legacy equipment is isolated rather than replaced wherever the machine is still productive.\n\nLocal-first infrastructure is a structural advantage here rather than a preference. Controlled data that never leaves the facility is simpler to bound, simpler to document, and simpler to defend.\n\nEpyk is an implementation partner, not an accredited assessor. Assessment and certification are performed by an accredited third-party assessment organization, and no engagement guarantees a specific assessment outcome.",
+    deploymentQuestion:
+      "On-premise enclave with no required cloud dependency, segmented network with machine-level isolation, role-based access with multi-factor authentication, and local logging, audit trails, and evidence retention.",
     deploymentModels: [
-      "Defined controlled-data enclave - TODO: founder to verify",
-      "Segmented local or private infrastructure - TODO: founder to verify",
-      "Role-based access boundary - TODO: founder to verify",
-      "Logging and documentation support - TODO: founder to verify"
+      "On-premise enclave with no required cloud dependency",
+      "Segmented network with machine-level isolation",
+      "Role-based access with multi-factor authentication",
+      "Local logging, audit trails, and evidence retention"
     ],
     typicalDeployment:
-      "Scoped local or private enclave planning with documented boundaries. TODO: founder to verify.",
-    availableNow: "TODO: founder to supply",
+      "On-premise enclave with segmented network paths, role-based access, local logging, and evidence retention.",
+    availableNow:
+      "Controlled-data boundary mapping, enclave and segmentation design, role-based access paths, logging and audit-trail implementation, legacy machine and controller isolation, and private local AI deployment that keeps controlled documents off public model platforms. These are delivered through a scoped engagement.\n\nDocumentation is part of the work: network and segmentation diagrams, data-flow maps, asset and access inventories, and control evidence packages. Authoring a full System Security Plan or Plan of Action and Milestones is not part of this scope — Epyk produces the technical documentation and evidence those documents draw on. Assessment and certification remain with an accredited third-party organization.",
+    experience:
+      "Epyk has designed controlled-data segmentation and machine-isolation architecture for a manufacturer holding active government work — including network segmentation planning for a legacy shop-floor environment, export-controlled and CUI-scoped boundary definition, and per-machine inclusion controls to keep controlled systems separated from general operations. It builds on prior data center infrastructure and industrial controls work.\n\nThis is design and planning experience. It is not presented as a completed, independently assessed, or certified deployment.",
     discoveryNeeded:
-      "Current data flows, which machines and users actually touch controlled data, existing network topology, contractual flow-down requirements, NIST SP 800-171 control expectations, DFARS 252.204-7012 safeguarding obligations, and retention obligations.",
+      "Current data flows and where controlled data actually resides, which machines and users touch it, existing network topology and what can be segmented without stopping production, contractual flow-down requirements, applicable NIST SP 800-171 control expectations, DFARS 252.204-7012 safeguarding obligations, retention requirements, and which personnel are authorized for access.",
     representativeCapabilities: [
-      "Controlled-data enclave scoping - TODO: founder to verify",
-      "Network segmentation boundaries - TODO: founder to verify",
-      "Access-control implementation paths - TODO: founder to verify",
-      "Logging and evidence-retention support - TODO: founder to verify"
+      "Controlled-data boundary mapping",
+      "Scope reduction planning",
+      "Segmentation and legacy machine isolation",
+      "Access control and identity paths"
     ],
     features: [
-      "Scope reduction planning - TODO: founder to verify",
-      "Controlled data boundary mapping - TODO: founder to verify",
-      "Segmentation design - TODO: founder to verify",
-      "Access control paths - TODO: founder to verify",
-      "Logging support - TODO: founder to verify",
-      "Documentation boundary support - TODO: founder to verify"
+      "Controlled-data boundary mapping",
+      "Scope reduction planning",
+      "Segmentation and legacy machine isolation",
+      "Access control and identity paths",
+      "Logging, monitoring, and audit trails",
+      "Boundary documentation and evidence packages"
     ],
     scenario:
-      "Illustrative scenario: a subcontractor realizes that CUI and controlled technical data touch shared folders, unmanaged workstations, and shop-floor machines. Epyk would first identify where that data actually moves, then define a smaller enclave boundary before implementation work expands. TODO: founder to verify.",
+      "Illustrative scenario: a subcontractor finds that CUI and controlled technical data sit in shared folders, on unmanaged workstations, and on shop-floor machines running operating systems that can no longer be patched or joined to a domain. Epyk would first map where that data actually moves, then define a smaller enclave boundary — isolating those machines rather than replacing them — before any broader implementation work expands.",
     icon: ShieldCheck,
     showOnHome: false
   },
@@ -1126,24 +1148,24 @@ export const portfolioSections: {
     items: [
       proofItems[0],
       {
-        title: "Accudyn AD Manager",
+        title: "Manufacturing CRM and Order Visibility Platform",
         category: "Client and Operational Deployments",
-        status: "Active Development",
+        status: "Available — Pending Client Review",
         problem:
-          "A manufacturing environment needs internal tooling that respects real production constraints and avoids exposing private operational details publicly.",
+          "Sales and marketing teams track quotes, active jobs, and leads across spreadsheets, email, and memory, with no visibility into where an order actually sits on the floor once it has been released to production.",
         constraints:
           "Public disclosure is limited; customer records, screenshots, implementation details, and results are not published from this site.",
         approach:
           "Build practical internal software around the real workflow while keeping sensitive operational context out of public marketing.",
         built:
-          "Publicly disclosed scope remains intentionally limited to the existence of manufacturing-oriented internal software work.",
+          "A CRM and order-visibility platform for desktop and mobile covering leads and sub-leads, quotes and offers, and job pipeline stages from prospective through active to completed — combined with live order position tracking through production stages such as press, mold, machining, and plating. Built to run standalone or connect optionally to an existing ERP or workflow system rather than replacing it.",
         currentStatus:
-          "Active development or private operational work, with public details withheld.",
+          "Delivered and available through engagement; the initial client deployment is awaiting review.",
         evidence:
           "No fabricated screenshots, metrics, or customer claims are included.",
         futureRole:
           "Informs Epyk's manufacturing modernization and operational software patterns.",
-        tags: ["Manufacturing", "Private work", "Internal software"],
+        tags: ["CRM", "Sales pipeline", "Lead tracking", "Order visibility"],
         icon: Factory
       }
     ]

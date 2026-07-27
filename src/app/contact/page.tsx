@@ -8,8 +8,7 @@ import {
   contactDetails,
   contactStartingPoints,
   engagementPage,
-  inquiryOptions,
-  sensitiveFormWarning
+  inquiryOptions
 } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
@@ -29,8 +28,8 @@ export default function ContactPage() {
       />
 
       <section className="relative py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10 lg:px-8">
-          <aside className="border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)]">
+        <div className="mx-auto grid max-w-7xl items-stretch gap-8 px-5 lg:grid-cols-[0.75fr_1.25fr] lg:gap-10 lg:px-8">
+          <aside className="flex flex-col border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)]">
             <h2 className="text-xl font-semibold tracking-tight text-[#F4F7FA]">
               Epyk Systems
             </h2>
@@ -54,7 +53,7 @@ export default function ContactPage() {
                 {contactDetails.email}
               </a>
             </div>
-            <div className="mt-6 border-t border-white/10 pt-6">
+            <div className="mt-6 border-t border-white/10 pt-6 lg:flex-1">
               <p className="text-sm font-medium text-[#DDE3EA]">
                 Inquiry options
               </p>
@@ -69,7 +68,7 @@ export default function ContactPage() {
                 ))}
               </div>
             </div>
-            <div className="mt-6 border-t border-white/10 pt-6">
+            <div className="mt-6 border-t border-white/10 pt-6 lg:flex-1">
               <p className="text-sm font-medium text-[#DDE3EA]">
                 Helpful starting points
               </p>
@@ -89,11 +88,6 @@ export default function ContactPage() {
               >
                 See how Epyk scopes work
               </Link>
-            </div>
-            <div className="mt-6 border border-[#F3C743]/24 bg-[#F3C743]/[0.07] p-4">
-              <p className="text-sm font-semibold leading-6 text-[#F4F7FA]">
-                {sensitiveFormWarning}
-              </p>
             </div>
           </aside>
 

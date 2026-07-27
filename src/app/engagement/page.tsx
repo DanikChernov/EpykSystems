@@ -100,14 +100,9 @@ export default function EngagementPage() {
         intro={engagementPage.pricing}
       >
         <div className="mt-10 border border-white/10 bg-white/[0.03] p-6">
-          <h3 className="text-xl font-semibold tracking-tight text-[#F4F7FA]">
-            Founder decisions before publishing
-          </h3>
-          <ul className="mt-4 grid gap-3 text-sm leading-6 text-[#A7B0BE]">
-            {engagementPage.founderDecisionMarkers.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+          <p className="text-sm leading-6 text-[#A7B0BE]">
+            {engagementPage.pricingNote}
+          </p>
         </div>
       </Section>
 

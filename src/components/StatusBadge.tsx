@@ -9,6 +9,8 @@ type StatusBadgeProps = {
 const statusStyles: Record<MaturityStatus, string> = {
   Available:
     "border-[#1D6FFF]/35 bg-[#1D6FFF]/12 text-[#DDE3EA] shadow-[0_0_18px_rgba(29,111,255,0.1)]",
+  "Available — Pending Client Review":
+    "border-[#1D6FFF]/35 bg-[#1D6FFF]/12 text-[#DDE3EA] shadow-[0_0_18px_rgba(29,111,255,0.1)]",
   "Active Development":
     "border-[#F3C743]/38 bg-[#F3C743]/10 text-[#F4F7FA] shadow-[0_0_18px_rgba(243,199,67,0.08)]",
   "Reference Architecture":
@@ -19,17 +21,21 @@ const statusStyles: Record<MaturityStatus, string> = {
     "border-[#F3C743]/34 bg-[linear-gradient(90deg,rgba(243,199,67,0.12),rgba(140,150,163,0.08))] text-[#F4F7FA]"
 };
 
+const statusDisplayLabels: Partial<Record<MaturityStatus, string>> = {
+  "Available — Pending Client Review": "Available — Pending Review"
+};
+
 export function StatusBadge({ status, className }: StatusBadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex w-fit items-center rounded-sm border px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em]",
+        "inline-flex max-w-full w-fit items-center rounded-sm border px-2.5 py-1 text-left text-xs font-semibold uppercase leading-4 tracking-[0.16em] whitespace-normal",
         statusStyles[status],
         className
       )}
       title={maturityDefinitions[status]}
     >
-      {status}
+      {statusDisplayLabels[status] ?? status}
     </span>
   );
 }
