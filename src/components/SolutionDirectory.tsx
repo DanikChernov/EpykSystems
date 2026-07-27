@@ -7,6 +7,7 @@ import {
   Eye,
   Factory,
   Server,
+  ShieldCheck,
   Workflow
 } from "lucide-react";
 import Link from "next/link";
@@ -43,6 +44,7 @@ const iconMap = {
   "inventory-and-material-control": Boxes,
   "private-ai": BrainCircuit,
   "edge-infrastructure": Server,
+  "controlled-environments": ShieldCheck,
   perception: Eye,
   "secure-industrial-modernization": Factory
 } as const;

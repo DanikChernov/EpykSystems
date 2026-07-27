@@ -69,6 +69,21 @@ export type SolutionParentLine =
   | "Inventories / Material Control"
   | "Vision / Perception";
 
+export type SolutionQuestionTitle =
+  | "What problem does this solve?"
+  | "Who is it for?"
+  | "How does Epyk approach it?"
+  | "What is available now?"
+  | "What requires discovery or custom implementation?";
+
+export type SolutionQuestionLink = {
+  question: SolutionQuestionTitle;
+  before: string;
+  label: string;
+  href: string;
+  after?: string;
+};
+
 export type Feature = {
   title: string;
   description: string;
@@ -80,6 +95,8 @@ export type SolutionArea = {
   slug: string;
   title: string;
   navTitle: string;
+  metadataTitle?: string;
+  metadataDescription?: string;
   parentLine: SolutionParentLine;
   status: MaturityStatus;
   summary: string;
@@ -96,6 +113,8 @@ export type SolutionArea = {
   features: string[];
   scenario: string;
   icon: LucideIcon;
+  showOnHome?: boolean;
+  detailQuestionLinks?: SolutionQuestionLink[];
 };
 
 export type EcosystemProject = {
@@ -142,6 +161,10 @@ export type NavItem = {
 
 export const contactDetails = {
   email: brand.email,
+  phone: {
+    display: "+1 503-432-6333",
+    href: "tel:+15034326333"
+  },
   location: "Erie, Pennsylvania",
   founder: "Daniel Chernov",
   founderTitle: "Founder",
@@ -163,6 +186,7 @@ export const inquiryOptions = [
   "Inventory and Material Control",
   "Private AI",
   "Edge Infrastructure",
+  "Controlled Environments",
   "Manufacturing Modernization",
   "Operational Perception",
   "Partnership",
@@ -171,6 +195,16 @@ export const inquiryOptions = [
 ] as const;
 
 export type InquiryOption = (typeof inquiryOptions)[number];
+
+export const footerInquiryAreas = [
+  "Operational Software",
+  "Inventory and Material Control",
+  "Private AI",
+  "Edge Infrastructure",
+  "Controlled Environments",
+  "Manufacturing Modernization",
+  "Operational Perception"
+] as const;
 
 export const sensitiveFormWarning =
   "Do not submit passwords, credentials, export-controlled information, CUI, ITAR-controlled technical data, proprietary customer files, or other sensitive material through this public form.";
@@ -202,6 +236,97 @@ export const personJsonLd = {
   },
   sameAs: contactDetails.socialLinks.map((link) => link.href)
 };
+
+export type EngagementStage = {
+  title: string;
+  whatHappens: string;
+  clientReceives: string;
+  epykNeeds: string;
+};
+
+export const engagementPage = {
+  path: "/engagement",
+  metadataTitle: "Engagement Structure | Epyk Systems",
+  metadataDescription:
+    "How Epyk Systems structures focused engagements for operational software, private AI, edge infrastructure, modernization, and controlled technical work without open-ended scope.",
+  hero: {
+    eyebrow: "Engagement",
+    title: "A practical structure for starting with one real problem.",
+    description:
+      "Epyk makes the working relationship legible before a build begins: first understand the problem, then define the boundary, then build only what has been agreed."
+  },
+  stages: [
+    {
+      title: "Initial conversation",
+      whatHappens:
+        "The client describes the workflow, infrastructure, data, machine, or visibility problem without making a commitment.",
+      clientReceives:
+        "A plain-language read on whether the problem appears suited to Epyk's current capabilities.",
+      epykNeeds:
+        "A direct description of what hurts, who is affected, and what has already been tried."
+    },
+    {
+      title: "Scoped assessment",
+      whatHappens:
+        "Epyk documents the actual workflow, systems, constraints, users, data boundaries, and integration risks.",
+      clientReceives:
+        "A written scope and recommendation that defines the first useful system or a reason not to proceed.",
+      epykNeeds:
+        "Access to the relevant process owners, system context, sample records, and operating constraints."
+    },
+    {
+      title: "Focused build",
+      whatHappens:
+        "One bounded system is built or deployed around one defined problem instead of an open-ended transformation.",
+      clientReceives:
+        "A working system shaped around the agreed scope, plus the supporting notes needed to understand it.",
+      epykNeeds:
+        "Timely feedback, decisions on tradeoffs, and access to the systems or data explicitly included in scope."
+    },
+    {
+      title: "Review and handover",
+      whatHappens:
+        "The client uses the system, Epyk adjusts what does not fit the operation, and documentation transfers.",
+      clientReceives:
+        "Documentation, access details, ownership boundaries, and a clearer understanding of what should happen next.",
+      epykNeeds:
+        "Operational feedback from the people who use the system, plus confirmation of the handover boundary."
+    },
+    {
+      title: "Optional expansion",
+      whatHappens:
+        "Additional workflows, integrations, reporting, private AI, infrastructure, or modernization work is considered only after the first system has earned trust.",
+      clientReceives:
+        "A separate expansion recommendation, not an automatic continuation.",
+      epykNeeds:
+        "A new decision from the client and a newly agreed scope before any additional work begins."
+    }
+  ] satisfies EngagementStage[],
+  scopeBoundaries: [
+    "Each phase is defined and agreed before work begins.",
+    "Epyk does not begin open-ended engagements.",
+    "Expansion is a separate decision each time, never automatic.",
+    "Timing or commercial thresholds: TODO: founder to decide whether to publish."
+  ],
+  pricing:
+    "Engagements are quoted after scope is defined, because a fixed quote against an undefined problem is either padded or wrong. Epyk does not use pricing copy to imply that every workflow, integration, or infrastructure problem has the same shape.",
+  doesNotDo: [
+    "No multi-year platform lock-in.",
+    "No per-seat licensing that grows silently.",
+    "No mandatory cloud dependency.",
+    "No forced replacement when a focused system can solve the real problem."
+  ],
+  keeps: [
+    "Documentation for the system that was built.",
+    "Access paths and administrative boundaries that are made clear during handover.",
+    "Ownership of the systems and data under the client's control.",
+    "A written boundary for what was delivered, what was not included, and what would require a new decision."
+  ],
+  founderDecisionMarkers: [
+    "Assessment or build timing: TODO: founder to decide whether to publish.",
+    "Commercial threshold details: TODO: founder to decide whether to publish."
+  ]
+} as const;
 
 export const engagementSteps = [
   {
@@ -400,6 +525,16 @@ export const solutionAreas: SolutionArea[] = [
       "Manufacturers, labs, shops, and private operations that need resilient local infrastructure with clear ownership and optional external connections.",
     approach:
       "Epyk designs practical local infrastructure first, then connects cloud platforms or external APIs only where they add value and the owner approves the boundary.",
+    detailQuestionLinks: [
+      {
+        question: "What requires discovery or custom implementation?",
+        before: "If controlled data enters the infrastructure boundary, ",
+        label: "Controlled Environments",
+        href: "/solutions/controlled-environments",
+        after:
+          " defines the assessment-scope path for CMMC, NIST SP 800-171, CUI, and controlled technical data."
+      }
+    ],
     deploymentModels: [
       "On-premise compute and storage",
       "Segmented networks",
@@ -429,6 +564,58 @@ export const solutionAreas: SolutionArea[] = [
     scenario:
       "Illustrative scenario: a facility has useful software but weak backups, flat networking, and no clear place to run private services. Epyk would inventory the boundary, design local compute and recovery layers, then connect outside services only where they add value.",
     icon: Server
+  },
+  // Deadline-based CMMC or controlled-data copy must be verified against current DoD/DoW guidance before publishing.
+  {
+    slug: "controlled-environments",
+    title: "Controlled Environments",
+    navTitle: "Controlled Environments",
+    metadataTitle:
+      "Controlled Environments for CMMC, NIST SP 800-171, CUI and Controlled Technical Data | Solutions",
+    metadataDescription:
+      "Controlled-data manufacturing support for CMMC, NIST SP 800-171, CUI, and controlled technical data boundaries, scoped for implementation without assessor claims.",
+    parentLine: "Operations",
+    status: "Available",
+    summary:
+      "Controlled-data manufacturing work scoped around CMMC, NIST SP 800-171, CUI, and controlled technical data boundaries. TODO: founder to verify.",
+    directorySummary:
+      "Defined enclaves for CUI and controlled technical data that keep assessment scope smaller instead of spreading sensitive work across every system. TODO: founder to verify.",
+    directoryTags: ["CUI boundaries", "Scope reduction", "Access records"],
+    problem:
+      "Controlled technical data is often spread across shared drives, unmanaged machines, personal email, and cloud tools that were never scoped for it. Every additional system in scope raises the cost and difficulty of assessment.",
+    audience:
+      "Small and mid-sized manufacturers and machine shops holding defense or other controlled work, especially subcontractors to primes.",
+    approach:
+      "Scope reduction first: isolate controlled data into a defined enclave so the number of systems in assessment scope stays small, then build segmentation, access control, logging, and documented boundaries around it. Local-first is an advantage here rather than a preference. Epyk is an implementation partner, not an accredited assessor, and certification is performed by an accredited third-party assessment organization. TODO: founder to verify.",
+    deploymentModels: [
+      "Defined controlled-data enclave - TODO: founder to verify",
+      "Segmented local or private infrastructure - TODO: founder to verify",
+      "Role-based access boundary - TODO: founder to verify",
+      "Logging and documentation support - TODO: founder to verify"
+    ],
+    typicalDeployment:
+      "Scoped local or private enclave planning with documented boundaries. TODO: founder to verify.",
+    availableNow: "TODO: founder to supply",
+    discoveryNeeded:
+      "Current data flows, which machines and users actually touch controlled data, existing network topology, contractual flow-down requirements, NIST SP 800-171 control expectations, DFARS 252.204-7012 safeguarding obligations, and retention obligations.",
+    representativeCapabilities: [
+      "Controlled-data enclave scoping - TODO: founder to verify",
+      "Network segmentation boundaries - TODO: founder to verify",
+      "Access-control implementation paths - TODO: founder to verify",
+      "Logging and evidence-retention support - TODO: founder to verify"
+    ],
+    features: [
+      "Scope reduction planning - TODO: founder to verify",
+      "Controlled data boundary mapping - TODO: founder to verify",
+      "Segmentation design - TODO: founder to verify",
+      "Access control paths - TODO: founder to verify",
+      "Logging support - TODO: founder to verify",
+      "Documentation boundary support - TODO: founder to verify"
+    ],
+    scenario:
+      "Illustrative scenario: a subcontractor realizes that CUI and controlled technical data touch shared folders, unmanaged workstations, and shop-floor machines. Epyk would first identify where that data actually moves, then define a smaller enclave boundary before implementation work expands. TODO: founder to verify.",
+    icon: ShieldCheck,
+    showOnHome: false
   },
   {
     slug: "perception",
@@ -494,6 +681,16 @@ export const solutionAreas: SolutionArea[] = [
       "Manufacturers, machine shops, controlled facilities, and technical operators modernizing older equipment or sensitive systems.",
     approach:
       "Epyk favors phased modernization: understand the machine, protect the boundary, connect only what is necessary, then expose useful telemetry and control through local systems.",
+    detailQuestionLinks: [
+      {
+        question: "What requires discovery or custom implementation?",
+        before: "For shops handling CUI or controlled technical data, ",
+        label: "Controlled Environments",
+        href: "/solutions/controlled-environments",
+        after:
+          " keeps modernization scoped around CMMC, NIST SP 800-171, and assessment boundaries."
+      }
+    ],
     deploymentModels: [
       "Controller adapter and data capture",
       "Segmented machine networks",
@@ -561,6 +758,11 @@ export const navItems: NavItem[] = [
   { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" }
+];
+
+export const footerNavItems: NavItem[] = [
+  ...navItems,
+  { label: "Engagement", href: engagementPage.path }
 ];
 
 export const ecosystemProjects: EcosystemProject[] = [

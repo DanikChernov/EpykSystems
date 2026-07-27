@@ -9,7 +9,7 @@ import { Section } from "@/components/Section";
 import { SolutionDeploymentModels } from "@/components/SolutionDeploymentModels";
 import { SolutionEngagementFit } from "@/components/SolutionEngagementFit";
 import { createPageMetadata } from "@/lib/brand";
-import { solutionAreas } from "@/lib/site";
+import { solutionAreas, type SolutionQuestionTitle } from "@/lib/site";
 
 type SolutionPageProps = {
   params: Promise<{ slug: string }>;
@@ -34,8 +34,8 @@ export async function generateMetadata({
   }
 
   return createPageMetadata({
-    title: `${solution.title} | Solutions`,
-    description: solution.summary,
+    title: solution.metadataTitle ?? `${solution.title} | Solutions`,
+    description: solution.metadataDescription ?? solution.summary,
     path: `/solutions/${solution.slug}`
   });
 }
@@ -49,6 +49,19 @@ export default async function SolutionDetailPage({ params }: SolutionPageProps) 
   }
 
   const Icon = solution.icon;
+  const questionRows: {
+    title: SolutionQuestionTitle;
+    copy: string;
+  }[] = [
+    { title: "What problem does this solve?", copy: solution.problem },
+    { title: "Who is it for?", copy: solution.audience },
+    { title: "How does Epyk approach it?", copy: solution.approach },
+    { title: "What is available now?", copy: solution.availableNow },
+    {
+      title: "What requires discovery or custom implementation?",
+      copy: solution.discoveryNeeded
+    }
+  ];
 
   return (
     <>
@@ -81,26 +94,38 @@ export default async function SolutionDetailPage({ params }: SolutionPageProps) 
           <SolutionEngagementFit icon={Icon} />
 
           <div className="grid gap-6">
-            {[
-              ["What problem does this solve?", solution.problem],
-              ["Who is it for?", solution.audience],
-              ["How does Epyk approach it?", solution.approach],
-              ["What is available now?", solution.availableNow],
-              [
-                "What requires discovery or custom implementation?",
-                solution.discoveryNeeded
-              ]
-            ].map(([title, copy]) => (
-              <article
-                key={title}
-                className="border border-white/10 bg-white/[0.03] p-6"
-              >
-                <h2 className="text-xl font-semibold tracking-tight text-[#F4F7FA]">
-                  {title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">{copy}</p>
-              </article>
-            ))}
+            {questionRows.map(({ title, copy }) => {
+              const questionLink = solution.detailQuestionLinks?.find(
+                (link) => link.question === title
+              );
+
+              return (
+                <article
+                  key={title}
+                  className="border border-white/10 bg-white/[0.03] p-6"
+                >
+                  <h2 className="text-xl font-semibold tracking-tight text-[#F4F7FA]">
+                    {title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
+                    {copy}
+                    {questionLink ? (
+                      <>
+                        {" "}
+                        {questionLink.before}
+                        <Link
+                          href={questionLink.href}
+                          className="font-semibold text-[#DDE3EA] underline decoration-[#1D6FFF]/45 underline-offset-4 transition hover:text-[#1D6FFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+                        >
+                          {questionLink.label}
+                        </Link>
+                        {questionLink.after}
+                      </>
+                    ) : null}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </Section>

@@ -19,7 +19,7 @@ import {
 export const metadata: Metadata = createPageMetadata({
   title: "Solutions | Epyk Systems",
   description:
-    "A concise directory of Epyk Systems solution areas for operational software, inventory and material control, private AI, edge infrastructure, Epyk Perception, and secure industrial modernization.",
+    "A concise directory of Epyk Systems solution areas for operational software, inventory and material control, private AI, edge infrastructure, controlled environments, Epyk Perception, and secure industrial modernization.",
   path: "/solutions"
 });
 

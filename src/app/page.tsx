@@ -37,7 +37,9 @@ export default function Home() {
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {solutionParentLines.map((line) => {
             const children = solutionAreas.filter(
-              (solution) => solution.parentLine === line.title
+              (solution) =>
+                solution.parentLine === line.title &&
+                solution.showOnHome !== false
             );
 
             return (
@@ -190,14 +192,9 @@ export default function Home() {
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <ArchitectureDiagram compact />
           <div className="max-w-xl">
-            <p className="text-base leading-7 text-[#A7B0BE]">
-              The homepage shows the ecosystem once. The dedicated Ecosystem
-              page carries the layer-by-layer details, maturity labels, shared
-              language, and long-term environment.
-            </p>
             <Link
               href="/ecosystem"
-              className="mt-8 inline-flex items-center text-sm font-semibold text-[#DDE3EA] transition hover:text-[#1D6FFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+              className="inline-flex items-center text-sm font-semibold text-[#DDE3EA] transition hover:text-[#1D6FFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
             >
               See the Complete Ecosystem
               <ArrowRight aria-hidden size={16} className="ml-2" />

@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
 
 import { brand } from "@/lib/brand";
-import { navItems, solutionAreas } from "@/lib/site";
+import { engagementPage, navItems, solutionAreas } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   const routes = [
     ...navItems.map((item) => item.href),
+    engagementPage.path,
     ...solutionAreas.map((solution) => `/solutions/${solution.slug}`)
   ];
 

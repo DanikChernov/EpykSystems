@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
@@ -6,6 +7,7 @@ import { createPageMetadata } from "@/lib/brand";
 import {
   contactDetails,
   contactStartingPoints,
+  engagementPage,
   inquiryOptions,
   sensitiveFormWarning
 } from "@/lib/site";
@@ -13,7 +15,7 @@ import {
 export const metadata: Metadata = createPageMetadata({
   title: "Contact | Epyk Systems",
   description:
-    "Contact Epyk Systems about operational software, inventory and material control, private AI, edge infrastructure, manufacturing modernization, operational perception, partnerships, or research.",
+    "Contact Epyk Systems about operational software, inventory and material control, private AI, edge infrastructure, controlled environments, manufacturing modernization, operational perception, partnerships, or research.",
   path: "/contact"
 });
 
@@ -76,6 +78,17 @@ export default function ContactPage() {
                   <li key={point}>{point}</li>
                 ))}
               </ul>
+            </div>
+            <div className="mt-6 border-t border-white/10 pt-6">
+              <p className="text-sm font-medium text-[#DDE3EA]">
+                Engagement structure
+              </p>
+              <Link
+                href={engagementPage.path}
+                className="mt-2 inline-flex text-sm font-semibold text-[#1D6FFF] transition hover:text-[#DDE3EA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+              >
+                See how Epyk scopes work
+              </Link>
             </div>
             <div className="mt-6 border border-[#F3C743]/24 bg-[#F3C743]/[0.07] p-4">
               <p className="text-sm font-semibold leading-6 text-[#F4F7FA]">

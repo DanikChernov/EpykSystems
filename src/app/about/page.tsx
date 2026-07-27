@@ -1,4 +1,4 @@
-import { CheckCircle2, Mail } from "lucide-react";
+import { CheckCircle2, Mail, Phone } from "lucide-react";
 import type { Metadata } from "next";
 
 import { CTASection } from "@/components/CTASection";
@@ -7,7 +7,13 @@ import { PrincipleList } from "@/components/PrincipleList";
 import { Section } from "@/components/Section";
 import { GitHubIcon, LinkedInIcon } from "@/components/SocialIcons";
 import { brand, createPageMetadata } from "@/lib/brand";
-import { aboutPoints, contactDetails, personJsonLd, trustPoints } from "@/lib/site";
+import {
+  aboutPoints,
+  contactDetails,
+  engagementPage,
+  personJsonLd,
+  trustPoints
+} from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title: "About | Epyk Systems",
@@ -88,6 +94,13 @@ export default function AboutPage() {
               >
                 <Mail aria-hidden size={17} />
                 Email
+              </a>
+              <a
+                href={contactDetails.phone.href}
+                className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+              >
+                <Phone aria-hidden size={17} />
+                {contactDetails.phone.display}
               </a>
             </div>
           </aside>
@@ -210,6 +223,8 @@ export default function AboutPage() {
       <CTASection
         title="Build from the operation outward."
         description="Epyk is best suited for teams that need practical software, local-first infrastructure, private AI, perception, or modernization without inflated claims or unnecessary complexity."
+        secondaryLabel="How Engagement Works"
+        secondaryHref={engagementPage.path}
       />
     </>
   );

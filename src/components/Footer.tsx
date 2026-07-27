@@ -2,7 +2,7 @@ import { MapPin } from "lucide-react";
 import Link from "next/link";
 
 import { brand } from "@/lib/brand";
-import { contactDetails, inquiryOptions, navItems } from "@/lib/site";
+import { contactDetails, footerInquiryAreas, footerNavItems } from "@/lib/site";
 
 import { Logo } from "./Logo";
 import { GitHubIcon, LinkedInIcon } from "./SocialIcons";
@@ -60,7 +60,7 @@ export function Footer() {
             Navigation
           </h2>
           <div className="mt-4 grid gap-2">
-            {navItems.map((item) => (
+            {footerNavItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -77,7 +77,7 @@ export function Footer() {
             Current Inquiry Areas
           </h2>
           <div className="mt-4 grid gap-2">
-            {inquiryOptions.slice(0, 6).map((item) => (
+            {footerInquiryAreas.map((item) => (
               <span key={item} className="text-sm text-[#A7B0BE]">
                 {item}
               </span>
