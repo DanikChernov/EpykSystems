@@ -1,7 +1,7 @@
 import { ecosystemProjects } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-import { StatusBadge } from "./StatusBadge";
+import { MaturityBadge } from "./MaturityBadge";
 
 type ArchitectureDiagramProps = {
   compact?: boolean;
@@ -50,7 +50,7 @@ export function ArchitectureDiagram({
                       {project.title}
                     </h3>
                   </div>
-                  <StatusBadge status={project.status} />
+                  <MaturityBadge maturity={project.status} />
                 </div>
                 <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
                   {project.summary}
@@ -80,9 +80,7 @@ export function ArchitectureDiagram({
                         : "text-[#1D6FFF]"
                     }
                   />
-                  <span className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#8C96A3]">
-                    {project.status}
-                  </span>
+                  <MaturityBadge maturity={project.status} />
                 </div>
                 <h4 className="mt-4 text-base font-semibold text-[#F4F7FA]">
                   {project.title}

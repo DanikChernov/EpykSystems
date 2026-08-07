@@ -16,7 +16,7 @@ import { useState } from "react";
 import type { MaturityStatus, SolutionParentLine } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-import { StatusBadge } from "./StatusBadge";
+import { MaturityBadge } from "./MaturityBadge";
 
 export type SolutionDirectoryItem = {
   slug: string;
@@ -108,7 +108,7 @@ export function SolutionDirectory({
                             <h4 className="text-xl font-semibold tracking-tight text-[#F4F7FA]">
                               {solution.title}
                             </h4>
-                            <StatusBadge status={solution.status} />
+                            <MaturityBadge maturity={solution.status} />
                           </div>
                           <p className="mt-4 max-w-4xl text-sm leading-6 text-[#A7B0BE]">
                             {solution.directorySummary}

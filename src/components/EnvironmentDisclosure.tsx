@@ -7,7 +7,7 @@ import type { EnvironmentZone } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 import { EnvironmentZoneCard } from "./EnvironmentZoneCard";
-import { StatusBadge } from "./StatusBadge";
+import { MaturityBadge } from "./MaturityBadge";
 
 type EnvironmentDisclosureProps = {
   zones: EnvironmentZone[];
@@ -33,7 +33,7 @@ export function EnvironmentDisclosure({
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F3C743]">
                 The Epyk Environment
               </p>
-              <StatusBadge status="Future Environment" />
+              <MaturityBadge maturity="future-environment" />
             </div>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#F4F7FA] sm:text-4xl">
               The first full physical integration of the ecosystem.
