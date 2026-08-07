@@ -10,6 +10,7 @@ import { SolutionDeploymentModels } from "@/components/SolutionDeploymentModels"
 import { SolutionEngagementFit } from "@/components/SolutionEngagementFit";
 import { createPageMetadata } from "@/lib/brand";
 import {
+  publishedSolutionAreas,
   solutionAreas,
   solutionQuestionTitles,
   type SolutionQuestionTitle
@@ -24,7 +25,7 @@ function getSolution(slug: string) {
 }
 
 export function generateStaticParams() {
-  return solutionAreas.map((solution) => ({ slug: solution.slug }));
+  return publishedSolutionAreas.map((solution) => ({ slug: solution.slug }));
 }
 
 export async function generateMetadata({
@@ -33,7 +34,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const solution = getSolution(slug);
 
-  if (!solution) {
+  if (!solution || solution.unpublished) {
     return {};
   }
 
@@ -48,7 +49,7 @@ export default async function SolutionDetailPage({ params }: SolutionPageProps) 
   const { slug } = await params;
   const solution = getSolution(slug);
 
-  if (!solution) {
+  if (!solution || solution.unpublished) {
     notFound();
   }
 
@@ -107,6 +108,22 @@ export default async function SolutionDetailPage({ params }: SolutionPageProps) 
         </div>
       </PageHero>
 
+      {solution.ecosystemLayer && solution.ecosystemHref ? (
+        <Section className="border-b border-white/10 bg-white/[0.02]">
+          <div className="max-w-3xl border border-white/10 bg-white/[0.03] p-6">
+            <p className="text-base leading-7 text-[#A7B0BE]">
+              This is the commercial front of {solution.ecosystemLayer}.{" "}
+              <Link
+                href={solution.ecosystemHref}
+                className="font-semibold text-[#DDE3EA] underline decoration-[#1D6FFF]/45 underline-offset-4 transition hover:text-[#1D6FFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+              >
+                See the architecture →
+              </Link>
+            </p>
+          </div>
+        </Section>
+      ) : null}
+
       <Section>
         <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
           <SolutionEngagementFit icon={Icon} />
@@ -159,6 +176,19 @@ export default async function SolutionDetailPage({ params }: SolutionPageProps) 
           </div>
         </div>
       </Section>
+
+      {solution.operationalPatternNote ? (
+        <Section className="border-y border-white/10 bg-[#080A0D]/56">
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F3C743]">
+              Cross-system operating pattern
+            </p>
+            <p className="mt-4 text-base leading-7 text-[#DDE3EA]">
+              {solution.operationalPatternNote}
+            </p>
+          </div>
+        </Section>
+      ) : null}
 
       <SolutionDeploymentModels models={solution.deploymentModels} />
 
