@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import type { CaseStudy } from "@/lib/site";
 
 import { MaturityBadge } from "./MaturityBadge";
+import { PortfolioGallery } from "./PortfolioGallery";
 
 type CaseStudyCardProps = {
   item: CaseStudy;
@@ -110,27 +110,7 @@ export function CaseStudyCard({ item }: CaseStudyCardProps) {
       </div>
 
       {hasGallery ? (
-        <div className="mt-7 grid gap-4">
-          {item.screenshots.map((screenshot) => (
-            <figure
-              key={screenshot.src}
-              className="overflow-hidden border border-white/10 bg-[#030405]/54"
-            >
-              <Image
-                src={screenshot.src}
-                alt={screenshot.alt}
-                width={screenshot.width ?? 1920}
-                height={screenshot.height ?? 1080}
-                sizes="(min-width: 1024px) 42vw, 100vw"
-                loading="lazy"
-                className="h-auto w-full"
-              />
-              <figcaption className="border-t border-white/10 px-4 py-3 text-xs leading-5 text-[#A7B0BE]">
-                {screenshot.caption}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+        <PortfolioGallery title={item.title} screenshots={item.screenshots} />
       ) : null}
 
       <div className="mt-6 flex flex-wrap gap-2">
