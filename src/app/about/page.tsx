@@ -1,15 +1,14 @@
-import { CheckCircle2, Mail, Phone } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import type { Metadata } from "next";
 
 import { CTASection } from "@/components/CTASection";
+import { FounderCard } from "@/components/FounderCard";
 import { PageHero } from "@/components/PageHero";
 import { PrincipleList } from "@/components/PrincipleList";
 import { Section } from "@/components/Section";
-import { GitHubIcon, LinkedInIcon } from "@/components/SocialIcons";
 import { brand, createPageMetadata } from "@/lib/brand";
 import {
   aboutPoints,
-  contactDetails,
   engagementPage,
   personJsonLd,
   trustPoints
@@ -59,51 +58,7 @@ export default function AboutPage() {
 
       <Section className="border-y border-white/10 bg-[#080A0D]/56">
         <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-          <aside className="border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)]">
-            <div className="flex size-24 items-center justify-center border border-[#1D6FFF]/25 bg-[#1D6FFF]/10 text-3xl font-semibold text-[#DDE3EA]">
-              DC
-            </div>
-            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-[#1D6FFF]">
-              {contactDetails.founderTitle}
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[#F4F7FA]">
-              {contactDetails.founder}
-            </h2>
-            <div className="mt-6 grid gap-3">
-              <a
-                href={contactDetails.socialLinks[0].href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
-              >
-                <LinkedInIcon className="size-[17px]" />
-                LinkedIn
-              </a>
-              <a
-                href={contactDetails.socialLinks[1].href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
-              >
-                <GitHubIcon className="size-[17px]" />
-                GitHub
-              </a>
-              <a
-                href={`mailto:${contactDetails.email}`}
-                className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
-              >
-                <Mail aria-hidden size={17} />
-                Email
-              </a>
-              <a
-                href={contactDetails.phone.href}
-                className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
-              >
-                <Phone aria-hidden size={17} />
-                {contactDetails.phone.display}
-              </a>
-            </div>
-          </aside>
+          <FounderCard showAboutLink={false} />
 
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D6FFF]">
@@ -111,11 +66,14 @@ export default function AboutPage() {
             </p>
             <div className="mt-5 space-y-5 text-base leading-7 text-[#A7B0BE] sm:text-lg sm:leading-8">
               <p>
-                I came to software from the shop floor, not the other way
-                around. I&apos;ve run Swiss CNC machines, repaired legacy
-                metrology systems nobody else could get booting, built data
-                center infrastructure, and worked production environments where
-                the &quot;system&quot; was a spreadsheet and a clipboard.
+                My approach to industrial software was shaped on the shop
+                floor. I began building software years before entering
+                manufacturing, but running CNC equipment inside real production
+                environments changed how I understand what operational systems
+                have to survive. I&apos;ve restored legacy metrology systems
+                that had been sitting unusable, built data center
+                infrastructure, and worked production environments where the
+                &quot;system&quot; was a spreadsheet and a clipboard.
               </p>
               <p>
                 Today I work as an edge ML and computer vision engineer on

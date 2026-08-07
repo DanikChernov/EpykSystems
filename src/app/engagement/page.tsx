@@ -103,6 +103,9 @@ export default function EngagementPage() {
           <p className="text-sm leading-6 text-[#A7B0BE]">
             {engagementPage.pricingNote}
           </p>
+          <p className="mt-4 text-sm leading-6 text-[#DDE3EA]">
+            {engagementPage.pricingEvidence}
+          </p>
         </div>
       </Section>
 

@@ -10,7 +10,7 @@ type CTASectionProps = {
 
 export function CTASection({
   title = "Start with one real problem.",
-  description = "We begin with the problem that causes real friction every week, not with a predetermined platform sale.",
+  description = "Epyk begins with the problem that causes real friction every week, not with a predetermined platform sale.",
   primaryLabel = "Discuss Your Operation",
   secondaryLabel = "View Solutions",
   secondaryHref = "/solutions"

@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(brand.url),
   title: {
     default:
-      "Epyk Systems | Local-First Technology, Private AI and Industrial Infrastructure",
+      "Epyk Systems | Operational Software and Private Infrastructure for Manufacturers",
     template: "%s | Epyk Systems"
   },
   description:
-    "Epyk Systems is a God-centered, community-minded, local-first technology ecosystem building private AI, secure infrastructure, operational software, perception, and industrial modernization systems.",
+    "Founder-led operational software, inventory and material-control systems, private AI, and owner-controlled infrastructure for manufacturers.",
   applicationName: "Epyk Systems",
   alternates: {
     canonical: "/"
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     url: brand.url,
     siteName: brand.name,
     title:
-      "Epyk Systems | Local-First Technology, Private AI and Industrial Infrastructure",
+      "Epyk Systems | Operational Software and Private Infrastructure for Manufacturers",
     description:
-      "Epyk Systems is a God-centered, community-minded, local-first technology ecosystem building private AI, secure infrastructure, operational software, perception, and industrial modernization systems.",
+      "Founder-led operational software, inventory and material-control systems, private AI, and owner-controlled infrastructure for manufacturers.",
     images: [
       {
         url: brand.assets.logo,
@@ -52,9 +52,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Epyk Systems | Local-First Technology, Private AI and Industrial Infrastructure",
+      "Epyk Systems | Operational Software and Private Infrastructure for Manufacturers",
     description:
-      "Epyk Systems is a God-centered, community-minded, local-first technology ecosystem building private AI, secure infrastructure, operational software, perception, and industrial modernization systems.",
+      "Founder-led operational software, inventory and material-control systems, private AI, and owner-controlled infrastructure for manufacturers.",
     images: [brand.assets.logo]
   },
   icons: {

@@ -17,7 +17,7 @@ export const brand = {
     "Hospitality in service to God and people."
   ],
   godCenteredStatement:
-    "Epyk Systems is openly Christian. That foundation informs how we understand service, stewardship, truth, privacy, human dignity, and the responsible use of capability. Customers and visitors are never required to share our beliefs, and faith is never used as a substitute for honest work or technical excellence.",
+    "Epyk Systems is openly Christian. That foundation informs how I build Epyk: through service, stewardship, truth, privacy, human dignity, and the responsible use of capability. Customers and visitors are never expected to share that faith, and faith is never used as a substitute for honest work or technical excellence.",
   domain: "epyk-systems.com",
   url: "https://www.epyk-systems.com",
   email: "contact@epyk-systems.com",

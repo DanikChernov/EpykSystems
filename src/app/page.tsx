@@ -4,23 +4,24 @@ import Link from "next/link";
 
 import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
 import { BrandHero } from "@/components/BrandHero";
+import { FounderCard } from "@/components/FounderCard";
+import { MaturityBadge } from "@/components/MaturityBadge";
 import { PrincipleList } from "@/components/PrincipleList";
 import { Section } from "@/components/Section";
-import { StatusBadge } from "@/components/StatusBadge";
 import { brand, createPageMetadata } from "@/lib/brand";
 import {
   engagementSteps,
+  featuredSolutionAreas,
   localFirstPoints,
   proofItems,
-  solutionAreas,
   solutionParentLines
 } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title:
-    "Epyk Systems | Local-First Technology, Private AI and Industrial Infrastructure",
+    "Epyk Systems | Operational Software and Private Infrastructure for Manufacturers",
   description:
-    "Epyk Systems is a God-centered, community-minded, local-first technology ecosystem building private AI, secure infrastructure, operational software, perception, and industrial modernization systems.",
+    "Founder-led operational software, inventory and material-control systems, private AI, and owner-controlled infrastructure for manufacturers.",
   path: "/"
 });
 
@@ -29,6 +30,25 @@ export default function Home() {
     <>
       <BrandHero />
 
+      <Section className="border-b border-white/10 bg-white/[0.02]">
+        <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <FounderCard />
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D6FFF]">
+              Founder-led delivery
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#F4F7FA] sm:text-4xl">
+              The person assessing the operation is the person building the system.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-[#A7B0BE]">
+              Epyk Systems is intentionally direct: the engagement starts with
+              operational assessment, moves through scoped design and build, and
+              finishes with testing and handover around the actual workflow.
+            </p>
+          </div>
+        </div>
+      </Section>
+
       <Section
         eyebrow="Built for Real Operations"
         title="What Epyk builds today."
@@ -36,7 +56,7 @@ export default function Home() {
       >
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {solutionParentLines.map((line) => {
-            const children = solutionAreas.filter(
+            const children = featuredSolutionAreas.filter(
               (solution) =>
                 solution.parentLine === line.title &&
                 solution.showOnHome !== false
@@ -72,7 +92,7 @@ export default function Home() {
                           <h3 className="text-base font-semibold text-[#F4F7FA]">
                             {solution.title}
                           </h3>
-                          <StatusBadge status={solution.status} />
+                          <MaturityBadge maturity={solution.status} />
                         </div>
                         <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
                           {solution.directorySummary}
@@ -105,9 +125,9 @@ export default function Home() {
             </h2>
             <div className="mt-5 space-y-5 text-base leading-7 text-[#A7B0BE] sm:text-lg">
               <p>
-                We begin with the problem that causes real friction every week,
-                not with a predetermined platform sale. Epyk does not force
-                unnecessary replacement or transformation.
+                Epyk begins with the problem that causes real friction every
+                week, not with a predetermined platform sale. Epyk does not
+                force unnecessary replacement or transformation.
               </p>
               <p>
                 Local infrastructure and private operation form the resilient
@@ -147,7 +167,7 @@ export default function Home() {
       <Section
         eyebrow="Proof and selected work"
         title="Practical work, labeled honestly."
-        intro="Public examples are sanitized. The site does not publish proprietary screenshots, unsupported metrics, invented clients, or claims that research systems are commercially finished."
+        intro="Selected systems are tied to explicit maturity labels, provenance, and the public evidence that is approved for release."
       >
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {proofItems.map((item) => {
@@ -162,7 +182,7 @@ export default function Home() {
                   <div className="flex size-11 items-center justify-center rounded-md border border-[#1D6FFF]/24 bg-[#1D6FFF]/10 text-[#DDE3EA]">
                     <Icon aria-hidden size={21} strokeWidth={1.8} />
                   </div>
-                  <StatusBadge status={item.status} />
+                  <MaturityBadge maturity={item.status} />
                 </div>
                 <h3 className="mt-5 text-xl font-semibold tracking-tight text-[#F4F7FA]">
                   {item.title}
