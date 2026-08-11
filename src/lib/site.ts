@@ -408,7 +408,7 @@ const entityIcons: Record<string, LucideIcon> = {
   perception: Eye,
   "secure-industrial-modernization": Factory,
   "operational-control-platform": Warehouse,
-  "manufacturing-sales-product-data-platform": Factory,
+  "epyk-registry": Factory,
   "job-material-control": Warehouse,
   "lot-level-material-traceability": Boxes,
   "read-only-cnc-monitoring-platform": Gauge,

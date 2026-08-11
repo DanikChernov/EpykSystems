@@ -20,9 +20,9 @@
 
    `public/brand/founder.jpg` is missing. The shared founder component uses the initials fallback until the asset exists.
 
-6. Manufacturing sales/product-data captures
+6. Epyk Registry captures
 
-   Reseeded captures are absent. The case study renders without screenshots and without a Public evidence field.
+   Resolved by founder direction on 2026-08-11. The public entry now uses `Epyk Registry` and references the supplied screenshot set in `public/images/portfolio/epyk-registry/`.
 
 7. Lot-level material traceability captures
 
@@ -32,13 +32,11 @@
 
    Pending ownership confirmation, full reskin, and seeded machine data. Current captures are not referenced.
 
-9. Maturity and grouping confirmation for Manufacturing Sales and Product Data Platform
+9. Maturity and grouping confirmation for Epyk Registry
 
    Implemented as `available` with provenance `delivered, review pending` under "Client Work and Operationally Informed Systems." Please confirm before publication.
 
 10. Portfolio entries still lacking Public evidence
-
-   Manufacturing Sales and Product Data Platform: blocked by demo-readiness and reseeded captures.
 
    Lot-Level Material Traceability: blocked by synthetic reseed and recapture.
 

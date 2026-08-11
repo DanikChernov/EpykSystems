@@ -199,7 +199,7 @@ export const portfolioGroupingOrder: PortfolioGrouping[] = [
 
 export const portfolioEntryOrder = [
   "epykops",
-  "manufacturing-sales-product-data-platform",
+  "epyk-registry",
   "job-material-control",
   "lot-level-material-traceability",
   "sentinel-vision",
@@ -742,8 +742,8 @@ export const entities: Entity[] = [
   },
   {
     id: "operational-control-platform",
-    displayName: "EpykOps",
-    aliases: ["Operational Control Platform", "Epyk Operations"],
+    displayName: "Epyk Operations",
+    aliases: ["Operational Control Platform", "EpykOps"],
     maturity: "active-development",
     engageable: false,
     summary:
@@ -977,29 +977,31 @@ export const entities: Entity[] = [
     ]
   },
   {
-    id: "manufacturing-sales-product-data-platform",
-    displayName: "Manufacturing Sales and Product Data Platform",
-    aliases: ["Manufacturing CRM and Order Visibility Platform"],
+    id: "epyk-registry",
+    displayName: "Epyk Registry",
+    aliases: [],
     maturity: "available",
     engageable: true,
     summary:
-      "Nine-module platform spanning customer accounts, sales pipeline, order tracking, part master, multi-level BOM, validated CSV import, and audit history, with an API layer built to attach to an existing ERP rather than replace it.",
+      "Epyk Registry is a manufacturing product-data platform spanning customer accounts, sales pipeline, order tracking, part master, multi-level BOM, validated CSV import, and audit history.",
     solutions: ["operational-software", "inventory-and-material-control"],
     clientNameApproved: false,
     portfolio: {
-      slug: "manufacturing-sales-product-data-platform",
+      slug: "epyk-registry",
       grouping: "Client Work and Operationally Informed Systems",
       provenance: "delivered, review pending",
       problem:
-        "Manufacturing sales and product data were split across customer records, opportunity tracking, part data, BOM relationships, order status, imports, and audit history.",
+        "Manufacturing product data, BOM relationships, order status, opportunity tracking, customer records, imports, and audit history need to stay connected instead of being managed as separate records.",
       constraints:
-        "Public disclosure is limited until demo-readiness and reseeded captures are complete.",
+        "Public disclosure avoids client-specific names and operational records.",
       approach:
-        "Lead with the manufacturing data model: part master, multi-level BOM traversal, import validation, and audit history, then attach sales and order visibility around it.",
+        "Lead with the manufacturing data model: part master, multi-level BOM traversal, import validation, and audit history, then attach order and opportunity visibility around it.",
       built:
         "Unified part master across components, subassemblies, and assemblies; BOM explorer covering direct BOM, multi-level BOM, flattened roll-up, and used-in hierarchy; CSV import validating parent-child relationships, quantities, and circular references before commit; order tracking from new through in-production to delivered; RFQ and quote pipeline in list or kanban; customer accounts with contacts and product lines; audit history across create, update, delete, status change, import, and document actions; role-based user management. Runs standalone or connected.",
       currentStatus:
-        "Built and available through engagement; first deployment is pending client-side review.",
+        "Built and available through engagement; public Epyk Registry captures are approved for this case study.",
+      publicEvidence:
+        "Screenshot gallery showing the Epyk Registry BOM Explorer, product master, CSV import, activity history, order and opportunity views, user management, navigation, dashboard, and workspace access screens.",
       futureRole:
         "Supports operational software and inventory/material-control engagements where product data and production status need to meet.",
       tags: [
@@ -1008,7 +1010,112 @@ export const entities: Entity[] = [
         "Validated CSV import",
         "Order tracking"
       ]
-    }
+    },
+    screenshots: [
+      {
+        src: "/images/portfolio/epyk-registry/01-bom-explorer.jpg",
+        alt: "Epyk Registry BOM Explorer screen.",
+        caption:
+          "BOM Explorer screen for selecting a part and navigating bill-of-materials structure.",
+        width: 1440,
+        height: 3120
+      },
+      {
+        src: "/images/portfolio/epyk-registry/02-product-master.jpg",
+        alt: "Epyk Registry product master screen.",
+        caption:
+          "Product master screen for managing parts across components, subassemblies, and assemblies.",
+        width: 1440,
+        height: 3120
+      },
+      {
+        src: "/images/portfolio/epyk-registry/03-add-part.jpg",
+        alt: "Epyk Registry add part screen.",
+        caption:
+          "Add part screen with fields for part identity, quantity, description, unit of measure, material, manufacturing context, and notes.",
+        width: 1440,
+        height: 3464
+      },
+      {
+        src: "/images/portfolio/epyk-registry/04-csv-import.jpg",
+        alt: "Epyk Registry CSV import screen.",
+        caption:
+          "CSV import screen separating part import from BOM relationship import.",
+        width: 1440,
+        height: 3120
+      },
+      {
+        src: "/images/portfolio/epyk-registry/05-activity-history.jpg",
+        alt: "Epyk Registry activity history screen.",
+        caption:
+          "Activity history screen for reviewing events after records begin moving through the workspace.",
+        width: 1440,
+        height: 3120
+      },
+      {
+        src: "/images/portfolio/epyk-registry/06-orders.jpg",
+        alt: "Epyk Registry orders screen.",
+        caption:
+          "Orders screen with filtering for order numbers and customer records.",
+        width: 1440,
+        height: 3120
+      },
+      {
+        src: "/images/portfolio/epyk-registry/07-create-order.jpg",
+        alt: "Epyk Registry create order screen.",
+        caption:
+          "Create order screen for customer, product, quantity, due date, priority, status, line items, and notes.",
+        width: 1440,
+        height: 4125
+      },
+      {
+        src: "/images/portfolio/epyk-registry/08-opportunities.jpg",
+        alt: "Epyk Registry opportunities screen.",
+        caption:
+          "Opportunities screen for tracking sales work before it becomes an order.",
+        width: 1440,
+        height: 3120
+      },
+      {
+        src: "/images/portfolio/epyk-registry/09-user-management.jpg",
+        alt: "Epyk Registry user management screen.",
+        caption: "User management screen for workspace access records.",
+        width: 1440,
+        height: 3120
+      },
+      {
+        src: "/images/portfolio/epyk-registry/10-create-user.jpg",
+        alt: "Epyk Registry create user screen.",
+        caption:
+          "Create user screen for account details, password, and role assignment.",
+        width: 1440,
+        height: 3120
+      },
+      {
+        src: "/images/portfolio/epyk-registry/11-navigation.jpg",
+        alt: "Epyk Registry navigation drawer.",
+        caption:
+          "Navigation drawer linking dashboard, opportunities, orders, products, BOM Explorer, import, activity, and settings.",
+        width: 1440,
+        height: 3120
+      },
+      {
+        src: "/images/portfolio/epyk-registry/12-dashboard.jpg",
+        alt: "Epyk Registry dashboard screen.",
+        caption:
+          "Dashboard screen showing the workspace before parts, opportunities, and orders have been added.",
+        width: 1440,
+        height: 3120
+      },
+      {
+        src: "/images/portfolio/epyk-registry/13-access-workspace.jpg",
+        alt: "Epyk Registry access workspace screen.",
+        caption:
+          "Access workspace screen for entering a username and passcode.",
+        width: 1440,
+        height: 3175
+      }
+    ]
   },
   {
     id: "job-material-control",

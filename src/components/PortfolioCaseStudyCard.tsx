@@ -64,6 +64,14 @@ export function PortfolioCaseStudyCard({
   const hasScreenshots = count > 0;
   const activeIndex = hasScreenshots ? Math.min(currentIndex, count - 1) : 0;
   const activeScreenshot = screenshots[activeIndex];
+  const isPortraitGallery =
+    hasScreenshots &&
+    screenshots.filter(
+      (screenshot) =>
+        typeof screenshot.height === "number" &&
+        typeof screenshot.width === "number" &&
+        screenshot.height > screenshot.width
+    ).length > count / 2;
 
   const showPrevious = useCallback(() => {
     if (count < 2) {
@@ -266,7 +274,14 @@ export function PortfolioCaseStudyCard({
 
             <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(22rem,0.88fr)]">
               <div className="border-b border-white/10 bg-[#030405] lg:border-b-0 lg:border-r">
-                <div className="relative aspect-video overflow-hidden">
+                <div
+                  className={cn(
+                    "relative overflow-hidden",
+                    isPortraitGallery
+                      ? "h-[min(72vh,46rem)] min-h-[28rem]"
+                      : "aspect-video"
+                  )}
+                >
                   <DeckImages
                     title={title}
                     screenshots={screenshots}
