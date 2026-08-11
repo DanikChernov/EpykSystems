@@ -159,6 +159,7 @@ export type CaseStudy = {
   entityId: string;
   slug: string;
   title: string;
+  summary: string;
   category: PortfolioGrouping;
   provenance: string;
   status: MaturityStatus;
@@ -592,6 +593,7 @@ function toCaseStudy(entity: Entity): CaseStudy | null {
     entityId: entity.id,
     slug: entity.portfolio.slug,
     title: entity.portfolio.title ?? entity.displayName,
+    summary: entity.summary,
     category: entity.portfolio.grouping,
     provenance: entity.portfolio.provenance,
     status: entity.maturity,

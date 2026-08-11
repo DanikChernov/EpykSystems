@@ -47,7 +47,7 @@ export default function PortfolioPage() {
                     {section.description}
                   </p>
                 </div>
-                <div className="grid gap-5 lg:grid-cols-2">
+                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                   {section.items.map((item) => (
                     <CaseStudyCard key={item.title} item={item} />
                   ))}
