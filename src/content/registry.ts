@@ -742,8 +742,8 @@ export const entities: Entity[] = [
   },
   {
     id: "operational-control-platform",
-    displayName: "Epyk Operations",
-    aliases: ["Operational Control Platform", "EpykOps"],
+    displayName: "EpykOps",
+    aliases: ["Operational Control Platform", "Epyk Operations"],
     maturity: "active-development",
     engageable: false,
     summary:
