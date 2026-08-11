@@ -36,6 +36,7 @@ import {
   featuredEntityIds,
   maturityDefinitions as registryMaturityDefinitions,
   maturityOrder,
+  portfolioEntryOrder,
   portfolioGroupingOrder,
   solutionParentLines as registrySolutionParentLines,
   type Entity,
@@ -619,6 +620,16 @@ const portfolioItems = entities
   .map(toCaseStudy)
   .filter((item): item is CaseStudy => Boolean(item));
 
+const portfolioOrderBySlug = new Map<string, number>(
+  portfolioEntryOrder.map((slug, index) => [slug, index])
+);
+
+const orderedPortfolioItems = [...portfolioItems].sort(
+  (left, right) =>
+    (portfolioOrderBySlug.get(left.slug) ?? Number.MAX_SAFE_INTEGER) -
+    (portfolioOrderBySlug.get(right.slug) ?? Number.MAX_SAFE_INTEGER)
+);
+
 export const portfolioSections: {
   title: PortfolioGrouping;
   description: string;
@@ -627,10 +638,10 @@ export const portfolioSections: {
   title: grouping,
   description:
     "Peer systems with provenance, maturity, supported solution paths, and public evidence labeled on each entry.",
-  items: portfolioItems.filter((item) => item.category === grouping)
+  items: orderedPortfolioItems.filter((item) => item.category === grouping)
 }));
 
-export const proofItems: CaseStudy[] = portfolioItems.slice(0, 3);
+export const proofItems: CaseStudy[] = orderedPortfolioItems.slice(0, 3);
 
 export const sharedLanguage = [
   "Identity",

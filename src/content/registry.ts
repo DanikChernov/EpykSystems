@@ -197,6 +197,15 @@ export const portfolioGroupingOrder: PortfolioGrouping[] = [
   "Client Work and Operationally Informed Systems"
 ];
 
+export const portfolioEntryOrder = [
+  "epykops",
+  "manufacturing-sales-product-data-platform",
+  "job-material-control",
+  "lot-level-material-traceability",
+  "sentinel-vision",
+  "read-only-cnc-monitoring-platform"
+] as const;
+
 export const entities: Entity[] = [
   {
     id: "operational-software",
@@ -733,21 +742,19 @@ export const entities: Entity[] = [
   },
   {
     id: "operational-control-platform",
-    displayName: "Operational Control Platform",
-    aliases: [],
+    displayName: "EpykOps",
+    aliases: ["Operational Control Platform", "Epyk Operations"],
     maturity: "active-development",
     engageable: false,
     summary:
-      "A full operational control system for a machining business — shop flow, job management, operations, shipping and receiving, inventory, nonconformance, maintenance, analytics, and realtime status, with an operator control panel that consolidates a production transaction into one screen.",
+      "EpykOps is a full operational control system for a machining business — shop flow, job management, operations, shipping and receiving, inventory, nonconformance, maintenance, analytics, and realtime status, with an operator control panel that consolidates a production transaction into one screen.",
     solutions: [
       "operational-software",
       "inventory-and-material-control",
       "secure-industrial-modernization"
     ],
-    publicationBlocked:
-      "Written confirmation of work-product ownership, a synthetic reseed, and a clean capture environment are required before public screenshots can be used.",
     portfolio: {
-      slug: "operational-control-platform",
+      slug: "epykops",
       grouping: "Client Work and Operationally Informed Systems",
       provenance: "operational prototype",
       problem:
@@ -759,7 +766,9 @@ export const entities: Entity[] = [
       built:
         "Thirteen modules covering control panel, shop flow, distributed control, job manager, operations, shipping and receiving, inventory, users, launch, analytics, realtime, nonconformance reporting, and maintenance; an operator control panel bringing workcenter selection, setup, production recording, operator sign-in, workcenter status, and production attachments into a single view; per-user permissions and audit logging consistent with the rest of the Epyk operational systems; and a workflow designed so an operator cannot reach an invalid state through ordinary use.",
       currentStatus:
-        "Active development; public gallery blocked until ownership, reseed, and capture prerequisites are complete.",
+        "Active development; public screenshot gallery shows the current EpykOps interface.",
+      publicEvidence:
+        "Screenshot gallery showing the EpykOps control panel, shop flow, document control, job manager, operations, shipping and receiving, inventory, users, permissions, launch, analytics, realtime status, nonconformance reporting, and maintenance screens.",
       futureRole:
         "Establishes the operational-system pattern that current software and material-control engagements carry forward as separate builds.",
       tags: [
@@ -768,7 +777,204 @@ export const entities: Entity[] = [
         "Permissions",
         "Audit logging"
       ]
-    }
+    },
+    screenshots: [
+      {
+        src: "/images/portfolio/epykops/01-login.png",
+        alt: "EpykOps login screen.",
+        caption: "EpykOps login screen.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/02-control-panel.png",
+        alt: "EpykOps operator control panel with workcenter, setup, production recording, operator, status, and attachment areas.",
+        caption:
+          "Operator control panel consolidating workcenter selection, setup, production recording, operator sign-in, status, and attachments.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/03-workflow-hub.png",
+        alt: "EpykOps workflow hub modal showing production workflow options.",
+        caption:
+          "Workflow hub modal for moving through production actions from one control surface.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/04-record-production.png",
+        alt: "EpykOps record production modal.",
+        caption: "Production recording modal for captured floor transactions.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/05-approval-request.png",
+        alt: "EpykOps approval request modal.",
+        caption:
+          "Approval request modal for operator actions that need review before moving forward.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/06-production-input.png",
+        alt: "EpykOps production input modal.",
+        caption: "Production input modal tied back to the active job context.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/07-realtime-board.png",
+        alt: "EpykOps realtime board with machine and production status rows.",
+        caption:
+          "Realtime board for scanning machine, job, operator, and production status.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/08-shop-flow.png",
+        alt: "EpykOps shop flow screen with department queues and traveler overview.",
+        caption:
+          "Shop flow screen showing traveler stages, department queues, and blockers.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/09-operation-detail.png",
+        alt: "EpykOps operation detail panel.",
+        caption:
+          "Operation detail panel showing selected work context beside the main operational table.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/10-document-control.png",
+        alt: "EpykOps document control screen.",
+        caption:
+          "Document control screen for instructions, drawings, certifications, and shipping paperwork.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/11-create-document.png",
+        alt: "EpykOps create document modal.",
+        caption: "Create document modal with release and association fields.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/12-document-register.png",
+        alt: "EpykOps document register.",
+        caption:
+          "Document register showing released records and linked operational context.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/13-document-customer-orders.png",
+        alt: "EpykOps document control screen with customer orders and customer records.",
+        caption:
+          "Document control view connecting documents, order records, and customer records.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/14-job-manager.png",
+        alt: "EpykOps job manager screen.",
+        caption:
+          "Job manager screen for routed jobs, operations, quantities, due dates, and machine assignments.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/15-job-editor.png",
+        alt: "EpykOps job editor modal.",
+        caption:
+          "Job editor modal for maintaining job header, quantity, routing, and machine context.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/16-operations.png",
+        alt: "EpykOps operations screen.",
+        caption:
+          "Operations screen showing production operation records and current execution state.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/17-shipping-receiving.png",
+        alt: "EpykOps shipping and receiving screen.",
+        caption:
+          "Shipping and receiving screen for inbound and outbound operational movement.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/18-inventory.png",
+        alt: "EpykOps inventory screen.",
+        caption:
+          "Inventory screen for container, material, location, and status records.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/19-users.png",
+        alt: "EpykOps users screen.",
+        caption: "Users screen for account records and access management.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/20-permissions.png",
+        alt: "EpykOps permission matrix.",
+        caption:
+          "Permission matrix separating grants across operational modules.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/21-launch.png",
+        alt: "EpykOps launch screen.",
+        caption:
+          "Launch screen presenting operational areas as a controlled entry point.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/22-analytics.png",
+        alt: "EpykOps analytics screen.",
+        caption:
+          "Analytics screen summarizing captured production and machine-state events.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/23-realtime.png",
+        alt: "EpykOps realtime status screen.",
+        caption:
+          "Realtime status screen showing current machine and workcenter state.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/24-nonconformance.png",
+        alt: "EpykOps nonconformance reporting screen.",
+        caption:
+          "Nonconformance reporting screen for containment, disposition, and closure.",
+        width: 1920,
+        height: 1080
+      },
+      {
+        src: "/images/portfolio/epykops/25-maintenance.png",
+        alt: "EpykOps maintenance screen.",
+        caption:
+          "Maintenance screen for work orders tied to workcenters, technicians, priority, and downtime context.",
+        width: 1920,
+        height: 1080
+      }
+    ]
   },
   {
     id: "manufacturing-sales-product-data-platform",

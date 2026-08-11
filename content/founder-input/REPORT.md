@@ -4,9 +4,9 @@
 
    Highest priority. See `content/founder-input/controlled-environments.md`. The solution is preserved in the registry but unpublished, excluded from public lists, omitted from sitemap generation, and forced to 404.
 
-2. Operational control platform ownership
+2. EpykOps ownership and screenshot release
 
-   Written confirmation of work-product ownership is required before screenshots or a public gallery can ship. Current registry state: entry renders, gallery blocked.
+   Resolved by founder direction on 2026-08-10. The public entry now uses the official name `EpykOps` and references the supplied screenshot set in `public/images/portfolio/epykops/`.
 
 3. CNC monitoring platform ownership
 
@@ -14,7 +14,7 @@
 
 4. Product name for the operational control platform
 
-   Current public label is descriptive: "Operational Control Platform." A product name should not go on the site until a trademark search is complete.
+   Resolved by founder direction on 2026-08-10. The public product name is `EpykOps`. A quick public web search did not surface an exact public match, but that is not legal clearance.
 
 5. Founder photo
 
@@ -37,8 +37,6 @@
    Implemented as `available` with provenance `delivered, review pending` under "Client Work and Operationally Informed Systems." Please confirm before publication.
 
 10. Portfolio entries still lacking Public evidence
-
-   Operational Control Platform: blocked by ownership, reseed, and clean-capture prerequisites.
 
    Manufacturing Sales and Product Data Platform: blocked by demo-readiness and reseeded captures.
 
