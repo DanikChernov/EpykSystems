@@ -83,6 +83,10 @@ function walkFiles(directory: string, extensions: Set<string>) {
     const stat = statSync(fullPath);
 
     if (stat.isDirectory()) {
+      if (mode === "built" && (entry === "cache" || entry === "dev")) {
+        continue;
+      }
+
       files.push(...walkFiles(fullPath, extensions));
       continue;
     }
