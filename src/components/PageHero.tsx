@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { type MaturityStatus } from "@/lib/site";
 
 import { GradientGlow } from "./GradientGlow";
-import { StatusBadge } from "./StatusBadge";
+import { MaturityBadge } from "./MaturityBadge";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -31,7 +31,7 @@ export function PageHero({
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D6FFF]">
               {eyebrow}
             </p>
-            {status ? <StatusBadge status={status} /> : null}
+            {status ? <MaturityBadge maturity={status} /> : null}
           </div>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-[#F4F7FA] sm:text-5xl lg:text-6xl">
             {title}

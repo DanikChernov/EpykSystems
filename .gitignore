@@ -22,3 +22,14 @@ dev-server*.log
 # system/editor
 .DS_Store
 .idea/workspace.xml
+
+# raw screenshot drops; publishable copies live under public/images/portfolio/
+public/images/01_epyk-site-reference/
+public/images/02_ad-manager/
+public/images/03_sentinel-vision/
+public/images/04_trades-material-control/
+public/images/05_em-inventory/
+public/images/06_wbt-machine-tracker/
+public/images/07_operational-control-platform-GATED/
+public/images/07_shop-control-panel-UNREVIEWED/
+public/images/README.md

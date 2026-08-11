@@ -1,8 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-import { brand } from "@/lib/brand";
-import { systemSignals } from "@/lib/site";
+import { homePage, systemSignals } from "@/lib/site";
 
 export function BrandHero() {
   return (
@@ -11,17 +10,22 @@ export function BrandHero() {
       <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div className="max-w-4xl">
           <p className="text-sm font-semibold uppercase tracking-[0.38em] text-[#F3C743]">
-            {brand.invitation}
+            {homePage.hero.eyebrow}
           </p>
-          <h1 className="mt-5 text-7xl font-semibold leading-[0.78] tracking-normal text-[#F4F7FA] sm:text-9xl lg:text-[10rem]">
-            {brand.wordmark}
+          <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-[#F4F7FA] sm:text-5xl lg:text-6xl">
+            {homePage.hero.title}
           </h1>
-          <p className="mt-7 text-xl font-semibold uppercase tracking-[0.24em] text-[#DDE3EA] sm:text-2xl">
-            {brand.promise}
-          </p>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-[#A7B0BE]">
-            {brand.explanatoryLine}
+            {homePage.hero.description}
           </p>
+          <div className="mt-7 max-w-3xl border-l border-[#F3C743]/35 pl-5">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#DDE3EA]">
+              {homePage.hero.brandLine}
+            </p>
+            <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
+              {homePage.hero.foundationLine}
+            </p>
+          </div>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/contact"

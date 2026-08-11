@@ -30,7 +30,7 @@ const initialFormState: FormState = {
 
 const maxAttachmentSize = 8 * 1024 * 1024;
 const successMessage =
-  "Request received. We\u2019ll review your submission and follow up shortly.";
+  "Request received. Epyk will review your submission and follow up shortly.";
 const failureMessage = `Something went wrong while sending your request. Please email ${contactDetails.email} directly.`;
 
 export function ContactForm() {

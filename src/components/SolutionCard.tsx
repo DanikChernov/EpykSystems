@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import type { SolutionArea } from "@/lib/site";
 
-import { StatusBadge } from "./StatusBadge";
+import { MaturityBadge } from "./MaturityBadge";
 
 type SolutionCardProps = {
   solution: SolutionArea;
@@ -19,7 +19,7 @@ export function SolutionCard({ solution, compact = false }: SolutionCardProps) {
         <div className="flex size-11 shrink-0 items-center justify-center rounded-md border border-[#1D6FFF]/24 bg-[#1D6FFF]/10 text-[#DDE3EA] transition group-hover:border-[#1D6FFF]/50 group-hover:text-white">
           <Icon aria-hidden size={21} strokeWidth={1.8} />
         </div>
-        <StatusBadge status={solution.status} />
+        <MaturityBadge maturity={solution.status} />
       </div>
 
       <h3 className="mt-5 text-xl font-semibold tracking-tight text-[#F4F7FA]">

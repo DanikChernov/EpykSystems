@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = createPageMetadata({
   title: "Contact | Epyk Systems",
   description:
-    "Contact Epyk Systems about operational software, inventory and material control, private AI, edge infrastructure, controlled environments, manufacturing modernization, operational perception, partnerships, or research.",
+    "Contact Epyk Systems about operational software, inventory and material control, private AI, edge infrastructure, manufacturing modernization, operational perception, partnerships, or research.",
   path: "/contact"
 });
 
@@ -41,8 +41,8 @@ export default function ContactPage() {
               connectivity.
             </p>
             <p className="mt-4 text-sm leading-6 text-[#DDE3EA]">
-              Based in {contactDetails.location}, working with industrial and
-              technical teams regionally and remotely.
+              Based in {contactDetails.location}, available for regional and
+              remote engagements with industrial and technical organizations.
             </p>
             <div className="mt-6 border-t border-white/10 pt-6">
               <p className="text-sm font-medium text-[#DDE3EA]">Email</p>
@@ -51,6 +51,15 @@ export default function ContactPage() {
                 className="mt-2 inline-flex text-sm text-[#1D6FFF] transition hover:text-[#DDE3EA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
               >
                 {contactDetails.email}
+              </a>
+            </div>
+            <div className="mt-6 border-t border-white/10 pt-6">
+              <p className="text-sm font-medium text-[#DDE3EA]">Phone</p>
+              <a
+                href={contactDetails.phone.href}
+                className="mt-2 inline-flex text-sm text-[#1D6FFF] transition hover:text-[#DDE3EA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+              >
+                {contactDetails.phone.display}
               </a>
             </div>
             <div className="mt-6 border-t border-white/10 pt-6 lg:flex-1">

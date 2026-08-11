@@ -1,30 +1,28 @@
 import type { Metadata } from "next";
 
 import { CTASection } from "@/components/CTASection";
+import { MaturityLegend } from "@/components/MaturityLegend";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
 import {
   SolutionDirectory,
   type SolutionDirectoryItem
 } from "@/components/SolutionDirectory";
-import { StatusBadge } from "@/components/StatusBadge";
 import { createPageMetadata } from "@/lib/brand";
 import {
-  maturityDefinitions,
-  maturityStatusOrder,
-  solutionAreas,
+  publishedSolutionAreas,
   solutionParentLines
 } from "@/lib/site";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Solutions | Epyk Systems",
   description:
-    "A concise directory of Epyk Systems solution areas for operational software, inventory and material control, private AI, edge infrastructure, controlled environments, Epyk Perception, and secure industrial modernization.",
+    "A concise directory of Epyk Systems solution areas for operational software, inventory and material control, private AI, edge infrastructure, Epyk Perception, and secure industrial modernization.",
   path: "/solutions"
 });
 
 export default function SolutionsPage() {
-  const directorySolutions: SolutionDirectoryItem[] = solutionAreas.map(
+  const directorySolutions: SolutionDirectoryItem[] = publishedSolutionAreas.map(
     ({
       audience,
       directorySummary,
@@ -101,17 +99,7 @@ export default function SolutionsPage() {
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {maturityStatusOrder.map((status) => (
-              <div
-                key={status}
-                className="border border-white/10 bg-white/[0.03] p-4"
-              >
-                <StatusBadge status={status} />
-                <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
-                  {maturityDefinitions[status]}
-                </p>
-              </div>
-            ))}
+            <MaturityLegend className="contents" />
           </div>
         </div>
       </Section>
