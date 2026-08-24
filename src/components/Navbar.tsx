@@ -17,7 +17,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#030405]/84 shadow-[0_1px_0_rgba(140,150,163,0.08)] backdrop-blur-xl">
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 lg:px-8"
+        className="mx-auto flex max-w-[22rem] items-center justify-between px-5 py-3.5 sm:max-w-7xl lg:px-8"
         aria-label="Main navigation"
       >
         <div className="hidden sm:block">
@@ -99,7 +99,7 @@ export function Navbar() {
           id="mobile-navigation"
           className="border-t border-white/10 bg-[#030405]/96 px-5 py-4 shadow-2xl lg:hidden"
         >
-          <div className="mx-auto grid max-w-7xl gap-2">
+          <div className="mx-auto grid max-w-[22rem] gap-2 sm:max-w-7xl">
             {navItems.map((item) => {
               const isActive =
                 pathname === item.href ||

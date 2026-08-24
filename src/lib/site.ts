@@ -49,6 +49,7 @@ import {
   type SolutionSlug
 } from "@/content/registry";
 
+import { assessmentOffer } from "./assessment";
 import { brand } from "./brand";
 
 export const siteConfig = brand;
@@ -479,6 +480,7 @@ export const featuredSolutionAreas = featuredEntityIds
 
 export const navItems: NavItem[] = [
   { label: "Home", href: "/" },
+  { label: "Assessment", href: assessmentOffer.path },
   {
     label: "Solutions",
     href: "/solutions",
@@ -496,12 +498,15 @@ export const navItems: NavItem[] = [
 
 export const footerNavItems: NavItem[] = navItems;
 
-export const footerInquiryAreas = publishedSolutionAreas
-  .filter((solution) => {
-    const entity = getEntityById(solution.entityId);
-    return entity?.engageable;
-  })
-  .map((solution) => solution.title);
+export const footerInquiryAreas = [
+  assessmentOffer.shortName,
+  ...publishedSolutionAreas
+    .filter((solution) => {
+      const entity = getEntityById(solution.entityId);
+      return entity?.engageable;
+    })
+    .map((solution) => solution.title)
+];
 
 export const inquiryOptions = [
   ...footerInquiryAreas,
@@ -797,6 +802,7 @@ export const systemSignals = [
 ];
 
 export const contactStartingPoints = [
+  "A manufacturing workflow that needs an assessment before anyone chooses a fix",
   "A workflow that causes friction every week",
   "A spreadsheet, approval path, or inventory record that no longer holds up",
   "A private AI or infrastructure problem with clear boundaries",

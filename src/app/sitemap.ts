@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { assessmentOffer } from "@/lib/assessment";
 import { brand } from "@/lib/brand";
 import { engagementPage, navItems, publishedSolutionAreas } from "@/lib/site";
 
@@ -9,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     new Set([
       ...navItems.map((item) => item.href),
       engagementPage.path,
+      assessmentOffer.overviewPath,
       ...publishedSolutionAreas.map((solution) => `/solutions/${solution.slug}`)
     ])
   );

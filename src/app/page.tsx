@@ -3,11 +3,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
+import { AssessmentCtaLink } from "@/components/assessment/AssessmentCtaLink";
 import { BrandHero } from "@/components/BrandHero";
 import { FounderCard } from "@/components/FounderCard";
 import { MaturityBadge } from "@/components/MaturityBadge";
 import { PrincipleList } from "@/components/PrincipleList";
 import { Section } from "@/components/Section";
+import { assessmentOffer, homepageAssessment } from "@/lib/assessment";
 import { brand, createPageMetadata } from "@/lib/brand";
 import {
   engagementSteps,
@@ -44,6 +46,63 @@ export default function Home() {
               Epyk Systems is intentionally direct: the engagement starts with
               operational assessment, moves through scoped design and build, and
               finishes with testing and handover around the actual workflow.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="border-b border-white/10 bg-[#080A0D]/56">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F3C743]">
+              {homepageAssessment.eyebrow}
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-[#F4F7FA] sm:text-4xl">
+              {homepageAssessment.title}
+            </h2>
+            <p className="mt-5 text-base leading-7 text-[#A7B0BE] sm:text-lg">
+              {homepageAssessment.description}
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <AssessmentCtaLink
+                href={`${assessmentOffer.path}#${assessmentOffer.bookHash}`}
+                location="home_assessment"
+              >
+                Book an Assessment
+                <ArrowRight aria-hidden size={17} className="ml-2" />
+              </AssessmentCtaLink>
+              <AssessmentCtaLink
+                href={assessmentOffer.path}
+                location="home_assessment"
+                variant="secondary"
+              >
+                See How It Works
+              </AssessmentCtaLink>
+            </div>
+          </div>
+
+          <div className="border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] [clip-path:polygon(0_0,calc(100%-18px)_0,100%_18px,100%_100%,0_100%)]">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D6FFF]">
+                Fixed-scope first step
+              </p>
+              <p className="text-lg font-semibold text-[#F3C743]">
+                {assessmentOffer.priceDisplay}
+              </p>
+            </div>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {homepageAssessment.bullets.map((item) => (
+                <div
+                  key={item}
+                  className="border border-white/10 bg-[#030405]/44 px-4 py-3 text-sm font-medium leading-6 text-[#DDE3EA]"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 text-sm leading-6 text-[#A7B0BE]">
+              Prospects who already know exactly what they need can still go
+              directly into Epyk&apos;s normal scoping process.
             </p>
           </div>
         </div>

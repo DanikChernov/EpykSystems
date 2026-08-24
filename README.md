@@ -37,6 +37,8 @@ If the official logo is replaced later, keep the same file names to avoid code c
 ## Pages
 
 - Home
+- Assessment
+- Assessment overview
 - Solutions
 - Solutions detail pages
 - Ecosystem
@@ -74,6 +76,12 @@ http://localhost:3000
 npm run build
 ```
 
+## Test
+
+```bash
+npm run test
+```
+
 ## Lint
 
 ```bash
@@ -86,6 +94,12 @@ The contact form frontend is implemented with validation and posts to:
 
 ```text
 /api/contact
+```
+
+The Manufacturing Friction Assessment intake form posts JSON to:
+
+```text
+/api/assessment
 ```
 
 Cloudflare Email Routing handles receiving email for:
@@ -106,7 +120,38 @@ CONTACT_FROM_EMAIL=Epyk Systems <onboarding@resend.dev>
 
 Use `onboarding@resend.dev` for initial testing unless the Resend domain is fully verified for `epyk-systems.com`.
 
+Optional local-only assessment form dry run:
+
+```bash
+ASSESSMENT_INTAKE_DRY_RUN=true
+```
+
+This only affects non-production runtime and lets the assessment form success path be verified without sending email.
+
 Attachments are currently filename-only in the delivered email until object storage is connected. Future attachment support can use Cloudflare R2, Supabase Storage, or S3.
+
+The assessment intake intentionally does not include upload support. Do not submit controlled technical data, CUI, export-controlled drawings, or other restricted customer content through public forms.
+
+## Manufacturing Friction Assessment
+
+Public routes:
+
+```text
+/assessment
+/assessment/overview
+```
+
+Operational documentation:
+
+```text
+docs/MANUFACTURING_FRICTION_ASSESSMENT.md
+```
+
+Offer, pricing, travel radius, workflow domains, evidence classes, scoring model, deliverables, FAQ, and structured data live in:
+
+```text
+src/lib/assessment.ts
+```
 
 ## Deploy to Vercel
 
