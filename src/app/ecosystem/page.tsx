@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { CTASection } from "@/components/CTASection";
 import { EcosystemCard } from "@/components/EcosystemCard";
-import { EnvironmentDisclosure } from "@/components/EnvironmentDisclosure";
 import { MaturityBadge } from "@/components/MaturityBadge";
 import { MaturityLegend } from "@/components/MaturityLegend";
 import { PageHero } from "@/components/PageHero";
@@ -10,10 +9,7 @@ import { Section } from "@/components/Section";
 import { createPageMetadata } from "@/lib/brand";
 import {
   edgeFamily,
-  environmentZones,
   foundationEcosystemProjects,
-  hospitalityCommitments,
-  optionalTechnologyPrinciples,
   researchEcosystemProjects,
   sharedLanguage
 } from "@/lib/site";
@@ -21,7 +17,7 @@ import {
 export const metadata: Metadata = createPageMetadata({
   title: "Ecosystem | Epyk Systems",
   description:
-    "The Epyk ecosystem: Epyk Edge, Epyk AI, Epyk-1, Epyk-2, Epyk-3, Myne-0, Myne-1, Myne-2, Myne-3, and the long-term Epyk Environment.",
+    "The Epyk ecosystem: practical software, infrastructure, intelligence, interfaces, control, perception, communications, energy, personal computing, and fabrication layers.",
   path: "/ecosystem"
 });
 
@@ -31,7 +27,7 @@ export default function EcosystemPage() {
       <PageHero
         eyebrow="Ecosystem"
         title="Epyk Systems is one ecosystem being constructed in independently useful layers."
-        description="The commercial work starts with practical systems that can help operations now. The larger vision connects infrastructure, intelligence, interfaces, control, perception, communications, energy, personal computing, fabrication, and a future physical environment."
+        description="The commercial work starts with practical systems that can help operations now. The larger vision connects infrastructure, intelligence, interfaces, control, perception, communications, energy, personal computing, and fabrication."
       />
 
       <Section
@@ -111,14 +107,6 @@ export default function EcosystemPage() {
             </div>
           ))}
         </div>
-      </Section>
-
-      <Section>
-        <EnvironmentDisclosure
-          zones={environmentZones}
-          optionalTechnologyPrinciples={optionalTechnologyPrinciples}
-          hospitalityCommitments={hospitalityCommitments}
-        />
       </Section>
 
       <Section

@@ -1,0 +1,17 @@
+
+> epyk-systems-site@0.1.0 dev
+> next dev --hostname 127.0.0.1 --port 3000
+
+▲ Next.js 16.2.6 (Turbopack)
+- Local:         http://127.0.0.1:3000
+- Network:       http://127.0.0.1:3000
+✓ Ready in 477ms
+
+ GET /portfolio 200 in 430ms (next.js: 128ms, application-code: 301ms)
+ GET /portfolio 200 in 81ms (next.js: 2ms, application-code: 79ms)
+ GET /portfolio 200 in 79ms (next.js: 1762µs, application-code: 77ms)
+ GET /portfolio 200 in 79ms (next.js: 1693µs, application-code: 77ms)
+ GET /portfolio 200 in 89ms (next.js: 1535µs, application-code: 88ms)
+ GET /ecosystem-future 200 in 422ms (next.js: 348ms, application-code: 75ms)
+ GET /ecosystem-future 200 in 107ms (next.js: 26ms, application-code: 80ms)
+ GET /ecosystem 200 in 100ms (next.js: 21ms, application-code: 79ms)

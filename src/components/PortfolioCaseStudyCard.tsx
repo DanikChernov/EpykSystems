@@ -164,7 +164,7 @@ export function PortfolioCaseStudyCard({
   }, [closeModal, isOpen, showNext, showPrevious]);
 
   return (
-    <article className="h-full">
+    <article className="h-full min-w-0">
       <button
         ref={triggerRef}
         type="button"
@@ -177,9 +177,9 @@ export function PortfolioCaseStudyCard({
         onBlur={() => setIsCardActive(false)}
         onPointerEnter={() => setIsCardActive(true)}
         onPointerLeave={() => setIsCardActive(false)}
-        className="group flex h-full w-full flex-col overflow-hidden rounded-md border border-white/10 bg-white/[0.03] text-left shadow-[0_24px_90px_rgba(0,0,0,0.3)] transition duration-300 hover:-translate-y-0.5 hover:border-[#1D6FFF]/35 hover:bg-white/[0.045] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+        className="group flex h-full min-w-0 w-full flex-col overflow-hidden rounded-md border border-white/10 bg-white/[0.03] text-left shadow-[0_24px_90px_rgba(0,0,0,0.3)] transition duration-300 hover:-translate-y-0.5 hover:border-[#1D6FFF]/35 hover:bg-white/[0.045] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
       >
-        <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-[#030405]">
+        <div className="relative aspect-[16/11] overflow-hidden border-b border-white/10 bg-[#030405] sm:aspect-[16/10]">
           <DeckImages
             title={title}
             screenshots={screenshots}
@@ -189,7 +189,9 @@ export function PortfolioCaseStudyCard({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#030405]/86 via-[#030405]/10 to-transparent" />
           <div className="absolute left-4 top-4">{cardIcon}</div>
-          <div className="absolute right-4 top-4 max-w-[13rem]">{cardMaturity}</div>
+          <div className="absolute right-3 top-3 max-w-[10rem] sm:right-4 sm:top-4 sm:max-w-[13rem]">
+            {cardMaturity}
+          </div>
           {count > 1 ? (
             <div
               className="absolute bottom-4 left-4 flex gap-1.5"
@@ -210,12 +212,14 @@ export function PortfolioCaseStudyCard({
           ) : null}
         </div>
 
-        <div className="flex flex-1 flex-col p-5">
+        <div className="flex min-w-0 flex-1 flex-col p-5">
           {cardMeta}
-          <h3 className="mt-4 text-xl font-semibold tracking-tight text-[#F4F7FA]">
+          <h3 className="mt-4 break-words text-xl font-semibold tracking-tight text-[#F4F7FA]">
             {title}
           </h3>
-          <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">{summary}</p>
+          <p className="mt-3 break-words text-sm leading-6 text-[#A7B0BE]">
+            {summary}
+          </p>
           {previewTags ? <div className="mt-5">{previewTags}</div> : null}
           <div className="mt-auto flex items-center justify-between gap-3 pt-6">
             <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8C96A3] transition group-hover:text-[#F4F7FA]">
@@ -230,7 +234,7 @@ export function PortfolioCaseStudyCard({
 
       {isOpen ? (
         <div
-          className="fixed inset-0 z-[100] overflow-y-auto bg-[#030405]/92 p-3 backdrop-blur-sm sm:p-6"
+          className="fixed inset-0 z-[100] flex items-stretch justify-center overflow-hidden bg-[#030405]/92 p-0 backdrop-blur-sm sm:items-center sm:p-6"
           onPointerDown={(event) => {
             if (event.target === event.currentTarget) {
               closeModal();
@@ -243,9 +247,9 @@ export function PortfolioCaseStudyCard({
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className="mx-auto my-6 flex min-h-0 w-full max-w-6xl flex-col overflow-hidden rounded-md border border-white/12 bg-[#07090D] shadow-[0_32px_120px_rgba(0,0,0,0.55)]"
+            className="flex h-[100dvh] max-h-[100dvh] w-full max-w-6xl flex-col overflow-hidden rounded-none border border-white/12 bg-[#07090D] shadow-[0_32px_120px_rgba(0,0,0,0.55)] sm:h-[calc(100dvh-3rem)] sm:max-h-[calc(100dvh-3rem)] sm:rounded-md"
           >
-            <header className="flex items-start justify-between gap-4 border-b border-white/10 px-4 py-4 sm:px-5">
+            <header className="z-10 flex shrink-0 items-start justify-between gap-4 border-b border-white/10 bg-[#07090D] px-4 py-4 sm:px-5">
               <div className="flex min-w-0 items-start gap-3">
                 <div className="mt-0.5">{modalIcon}</div>
                 <div className="min-w-0">
@@ -254,7 +258,7 @@ export function PortfolioCaseStudyCard({
                   </p>
                   <h2
                     id={titleId}
-                    className="mt-1 text-2xl font-semibold tracking-tight text-[#F4F7FA]"
+                    className="mt-1 break-words text-xl font-semibold tracking-tight text-[#F4F7FA] sm:text-2xl"
                   >
                     {title}
                   </h2>
@@ -272,14 +276,15 @@ export function PortfolioCaseStudyCard({
               </button>
             </header>
 
-            <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(22rem,0.88fr)]">
-              <div className="border-b border-white/10 bg-[#030405] lg:border-b-0 lg:border-r">
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain lg:overflow-hidden">
+              <div className="grid min-h-full lg:h-full lg:grid-cols-[minmax(0,1.12fr)_minmax(20rem,0.88fr)]">
+              <div className="min-w-0 border-b border-white/10 bg-[#030405] lg:flex lg:min-h-0 lg:flex-col lg:border-b-0 lg:border-r">
                 <div
                   className={cn(
                     "relative overflow-hidden",
                     isPortraitGallery
-                      ? "h-[min(72vh,46rem)] min-h-[28rem]"
-                      : "aspect-video"
+                      ? "h-[min(64dvh,34rem)] min-h-[20rem] lg:h-auto lg:min-h-0 lg:flex-1"
+                      : "aspect-video max-h-[58dvh] lg:max-h-none lg:flex-1"
                   )}
                 >
                   <DeckImages
@@ -295,7 +300,7 @@ export function PortfolioCaseStudyCard({
                       <button
                         type="button"
                         onClick={showPrevious}
-                        className="absolute left-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-sm border border-white/10 bg-[#030405]/74 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+                        className="absolute left-2 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-sm border border-white/10 bg-[#030405]/78 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 sm:left-3"
                         aria-label="Previous screenshot"
                       >
                         <ChevronLeft aria-hidden size={22} strokeWidth={1.8} />
@@ -303,7 +308,7 @@ export function PortfolioCaseStudyCard({
                       <button
                         type="button"
                         onClick={showNext}
-                        className="absolute right-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-sm border border-white/10 bg-[#030405]/74 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+                        className="absolute right-2 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-sm border border-white/10 bg-[#030405]/78 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 sm:right-3"
                         aria-label="Next screenshot"
                       >
                         <ChevronRight aria-hidden size={22} strokeWidth={1.8} />
@@ -313,13 +318,13 @@ export function PortfolioCaseStudyCard({
                 </div>
 
                 {activeScreenshot ? (
-                  <p className="border-t border-white/10 px-4 py-3 text-xs leading-5 text-[#A7B0BE]">
+                  <p className="break-words border-t border-white/10 px-4 py-3 text-xs leading-5 text-[#A7B0BE]">
                     {activeScreenshot.caption}
                   </p>
                 ) : null}
 
                 {count > 1 ? (
-                  <div className="flex gap-2 overflow-x-auto border-t border-white/10 p-3">
+                  <div className="flex gap-2 overflow-x-auto overscroll-x-contain border-t border-white/10 p-3 [scrollbar-width:thin]">
                     {screenshots.map((screenshot, index) => (
                       <button
                         key={screenshot.src}
@@ -345,8 +350,9 @@ export function PortfolioCaseStudyCard({
                 ) : null}
               </div>
 
-              <div className="max-h-[72vh] overflow-y-auto p-5 sm:p-6">
+              <div className="min-w-0 p-5 sm:p-6 lg:h-full lg:overflow-y-auto lg:overscroll-contain">
                 {modalDetails}
+              </div>
               </div>
             </div>
           </section>
@@ -392,7 +398,7 @@ function DeckImages({
             fill
             sizes={sizes}
             loading="lazy"
-            className={cn("h-full w-full", imageClassName)}
+            className={cn("h-full w-full max-w-full", imageClassName)}
           />
         </div>
       ))}

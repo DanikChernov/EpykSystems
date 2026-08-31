@@ -13,14 +13,16 @@ type EnvironmentDisclosureProps = {
   zones: EnvironmentZone[];
   optionalTechnologyPrinciples: string[];
   hospitalityCommitments: string[];
+  defaultOpen?: boolean;
 };
 
 export function EnvironmentDisclosure({
   zones,
   optionalTechnologyPrinciples,
-  hospitalityCommitments
+  hospitalityCommitments,
+  defaultOpen = false
 }: EnvironmentDisclosureProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
   const panelId = "epyk-environment-panel";
   const toggleDisclosure = () => setIsOpen((open) => !open);
 

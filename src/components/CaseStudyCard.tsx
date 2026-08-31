@@ -52,17 +52,17 @@ export function CaseStudyCard({ item }: CaseStudyCardProps) {
       modalMaturity={<MaturityBadge maturity={item.status} />}
       cardMeta={<PortfolioMeta category={item.category} provenance={item.provenance} />}
       previewTags={
-        <div className="flex flex-wrap gap-2">
+        <div className="flex min-w-0 flex-wrap gap-2">
           {previewTags.map((tag) => (
             <span
               key={tag}
-              className="rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-medium text-[#DDE3EA]"
+              className="max-w-full break-words rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-medium text-[#DDE3EA]"
             >
               {tag}
             </span>
           ))}
           {remainingTagCount > 0 ? (
-            <span className="rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-medium text-[#8C96A3]">
+            <span className="max-w-full break-words rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-medium text-[#8C96A3]">
               +{remainingTagCount}
             </span>
           ) : null}
@@ -90,11 +90,11 @@ export function CaseStudyCard({ item }: CaseStudyCardProps) {
 
           <dl className="grid gap-4 border-t border-white/10 pt-5">
             {detailRows.map((row) => (
-              <div key={row.label}>
+              <div key={row.label} className="min-w-0">
                 <dt className="text-sm font-semibold text-[#DDE3EA]">
                   {row.label}
                 </dt>
-                <dd className="mt-1 whitespace-pre-line text-sm leading-6 text-[#A7B0BE]">
+                <dd className="mt-1 whitespace-pre-line break-words text-sm leading-6 text-[#A7B0BE]">
                   {row.value}
                 </dd>
               </div>
@@ -117,11 +117,11 @@ export function CaseStudyCard({ item }: CaseStudyCardProps) {
             ) : null}
           </div>
 
-          <div className="flex flex-wrap gap-2 border-t border-white/10 pt-5">
+          <div className="flex min-w-0 flex-wrap gap-2 border-t border-white/10 pt-5">
             {item.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-medium text-[#DDE3EA]"
+                className="max-w-full break-words rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-medium text-[#DDE3EA]"
               >
                 {tag}
               </span>
@@ -141,11 +141,11 @@ function PortfolioMeta({
   provenance: string;
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
-      <span className="rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#8C96A3]">
+    <div className="flex min-w-0 flex-wrap gap-2">
+      <span className="max-w-full break-words rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#8C96A3]">
         {category}
       </span>
-      <span className="rounded-sm border border-[#F3C743]/18 bg-[#F3C743]/[0.055] px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#DDE3EA]">
+      <span className="max-w-full break-words rounded-sm border border-[#F3C743]/18 bg-[#F3C743]/[0.055] px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#DDE3EA]">
         {provenance}
       </span>
     </div>
@@ -162,12 +162,12 @@ function PortfolioLinkGroup({
   return (
     <div>
       <p className="text-sm font-semibold text-[#DDE3EA]">{title}</p>
-      <div className="mt-3 flex flex-wrap gap-2">
+      <div className="mt-3 flex min-w-0 flex-wrap gap-2">
         {links.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className="rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+            className="max-w-full break-words rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
           >
             {link.label}
           </Link>
