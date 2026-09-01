@@ -40,7 +40,7 @@ export function Navbar() {
                   aria-current={isActive ? "page" : undefined}
                   aria-haspopup={"children" in item ? "menu" : undefined}
                   className={cn(
-                    "rounded-md px-3 py-2 text-sm font-medium text-[#A7B0BE] transition hover:bg-white/[0.045] hover:text-[#F4F7FA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/60",
+                    "epyk-nav-link px-3 py-2 text-sm font-medium text-[#A7B0BE] transition hover:bg-white/[0.045] hover:text-[#F4F7FA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/60",
                     isActive &&
                       "bg-[#1D6FFF]/10 text-[#F4F7FA] shadow-[inset_0_-1px_0_rgba(29,111,255,0.55)]"
                   )}
@@ -58,7 +58,7 @@ export function Navbar() {
                           href={child.href}
                           aria-current={childActive ? "page" : undefined}
                           className={cn(
-                            "block rounded-md px-3 py-2.5 text-sm font-medium text-[#A7B0BE] transition hover:bg-white/[0.05] hover:text-[#F4F7FA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/60",
+                            "epyk-nav-link block px-3 py-2.5 text-sm font-medium text-[#A7B0BE] transition hover:bg-white/[0.05] hover:text-[#F4F7FA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/60",
                             childActive && "bg-[#1D6FFF]/10 text-[#F4F7FA]"
                           )}
                         >
@@ -76,7 +76,7 @@ export function Navbar() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/contact"
-            className="rounded-md border border-[#1D6FFF]/45 bg-gradient-to-b from-[#1D6FFF] to-[#174FC2] px-4 py-2 text-sm font-semibold text-white shadow-[0_0_26px_rgba(29,111,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(29,111,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405]"
+            className="epyk-button epyk-button-primary border px-4 py-2 text-sm font-semibold text-white shadow-[0_0_26px_rgba(29,111,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(29,111,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405]"
           >
             Discuss Your Operation
           </Link>
@@ -84,7 +84,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-md border border-white/10 bg-white/[0.045] text-[#F4F7FA] transition hover:border-[#1D6FFF]/40 hover:bg-white/[0.075] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/60 lg:hidden"
+          className="epyk-icon-button inline-flex size-10 items-center justify-center border border-white/10 text-[#F4F7FA] transition hover:border-[#1D6FFF]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/60 lg:hidden"
           onClick={() => setIsOpen((open) => !open)}
           aria-expanded={isOpen}
           aria-controls="mobile-navigation"
@@ -112,7 +112,7 @@ export function Navbar() {
                     onClick={() => setIsOpen(false)}
                     aria-current={isActive ? "page" : undefined}
                     className={cn(
-                      "rounded-md px-3 py-3 text-sm font-medium text-[#A7B0BE] transition hover:bg-white/[0.045] hover:text-[#F4F7FA]",
+                      "epyk-nav-link px-3 py-3 text-sm font-medium text-[#A7B0BE] transition hover:bg-white/[0.045] hover:text-[#F4F7FA]",
                       isActive && "bg-[#1D6FFF]/10 text-[#F4F7FA]"
                     )}
                   >
@@ -130,7 +130,7 @@ export function Navbar() {
                             onClick={() => setIsOpen(false)}
                             aria-current={childActive ? "page" : undefined}
                             className={cn(
-                              "rounded-md px-3 py-2 text-sm text-[#8C96A3] transition hover:bg-white/[0.045] hover:text-[#F4F7FA]",
+                              "epyk-nav-link px-3 py-2 text-sm text-[#8C96A3] transition hover:bg-white/[0.045] hover:text-[#F4F7FA]",
                               childActive && "bg-[#1D6FFF]/10 text-[#F4F7FA]"
                             )}
                           >
@@ -146,7 +146,7 @@ export function Navbar() {
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="mt-2 rounded-md border border-[#1D6FFF]/45 bg-gradient-to-b from-[#1D6FFF] to-[#174FC2] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_0_24px_rgba(29,111,255,0.22)]"
+              className="epyk-button epyk-button-primary mt-2 flex items-center justify-center border px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_0_24px_rgba(29,111,255,0.22)]"
             >
               Discuss Your Operation
             </Link>

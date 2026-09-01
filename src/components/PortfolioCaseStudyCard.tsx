@@ -51,6 +51,7 @@ export function PortfolioCaseStudyCard({
   modalDetails,
   previewTags
 }: PortfolioCaseStudyCardProps) {
+  console.log('PortfolioCaseStudyCard rendered for:', title);
   const [isOpen, setIsOpen] = useState(false);
   const [isCardActive, setIsCardActive] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -165,21 +166,18 @@ export function PortfolioCaseStudyCard({
 
   return (
     <article className="h-full">
-      <button
-        ref={triggerRef}
-        type="button"
-        aria-haspopup="dialog"
-        aria-expanded={isOpen}
-        aria-controls={isOpen ? dialogId : undefined}
-        aria-label={`Open ${title} case study`}
-        onClick={() => setIsOpen(true)}
-        onFocus={() => setIsCardActive(true)}
-        onBlur={() => setIsCardActive(false)}
-        onPointerEnter={() => setIsCardActive(true)}
-        onPointerLeave={() => setIsCardActive(false)}
-        className="group flex h-full w-full flex-col overflow-hidden rounded-md border border-white/10 bg-white/[0.03] text-left shadow-[0_24px_90px_rgba(0,0,0,0.3)] transition duration-300 hover:-translate-y-0.5 hover:border-[#1D6FFF]/35 hover:bg-white/[0.045] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+      <div
+        onClick={(e) => {
+          console.log('Article div clicked:', title, e.target);
+          setIsOpen(true);
+        }}
+        onMouseDown={(e) => {
+          console.log('Mouse down on article:', title, e.target);
+        }}
+        style={{ cursor: 'pointer', position: 'relative', zIndex: 1 }}
+        className="group flex h-full w-full flex-col overflow-hidden border border-white/10 text-left shadow-[0_24px_90px_rgba(0,0,0,0.3)] transition duration-300 hover:-translate-y-0.5 hover:border-[#1D6FFF]/35 bg-[#030405]"
       >
-        <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-[#030405]">
+        <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-[#030405]" style={{ pointerEvents: 'none' }}>
           <DeckImages
             title={title}
             screenshots={screenshots}
@@ -187,13 +185,14 @@ export function PortfolioCaseStudyCard({
             sizes="(min-width: 1280px) 30vw, (min-width: 768px) 48vw, 100vw"
             imageClassName="object-cover object-top opacity-88 transition duration-500 group-hover:opacity-100"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030405]/86 via-[#030405]/10 to-transparent" />
-          <div className="absolute left-4 top-4">{cardIcon}</div>
-          <div className="absolute right-4 top-4 max-w-[13rem]">{cardMaturity}</div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030405]/86 via-[#030405]/10 to-transparent" style={{ pointerEvents: 'none' }} />
+          <div className="absolute left-4 top-4" style={{ pointerEvents: 'none' }}>{cardIcon}</div>
+          <div className="absolute right-4 top-4 max-w-[13rem]" style={{ pointerEvents: 'none' }}>{cardMaturity}</div>
           {count > 1 ? (
             <div
               className="absolute bottom-4 left-4 flex gap-1.5"
               aria-hidden="true"
+              style={{ pointerEvents: 'none' }}
             >
               {screenshots.map((screenshot, index) => (
                 <span
@@ -210,7 +209,7 @@ export function PortfolioCaseStudyCard({
           ) : null}
         </div>
 
-        <div className="flex flex-1 flex-col p-5">
+        <div className="flex flex-1 flex-col p-5" style={{ pointerEvents: 'none' }}>
           {cardMeta}
           <h3 className="mt-4 text-xl font-semibold tracking-tight text-[#F4F7FA]">
             {title}
@@ -221,16 +220,16 @@ export function PortfolioCaseStudyCard({
             <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8C96A3] transition group-hover:text-[#F4F7FA]">
               Case study
             </span>
-            <span className="flex size-9 items-center justify-center rounded-sm border border-white/10 bg-[#030405]/54 text-[#DDE3EA] transition group-hover:border-[#1D6FFF]/35 group-hover:text-white">
+            <span className="flex size-9 items-center justify-center border border-white/10 text-[#DDE3EA] transition group-hover:border-[#1D6FFF]/35 group-hover:text-white">
               <ArrowUpRight aria-hidden size={17} strokeWidth={1.8} />
             </span>
           </div>
         </div>
-      </button>
+      </div>
 
       {isOpen ? (
         <div
-          className="fixed inset-0 z-[100] overflow-y-auto bg-[#030405]/92 p-3 backdrop-blur-sm sm:p-6"
+          className="fixed inset-0 z-[9999] overflow-y-auto bg-[#030405]/92 p-3 backdrop-blur-sm sm:p-6"
           onPointerDown={(event) => {
             if (event.target === event.currentTarget) {
               closeModal();
@@ -243,7 +242,7 @@ export function PortfolioCaseStudyCard({
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className="mx-auto my-6 flex min-h-0 w-full max-w-6xl flex-col overflow-hidden rounded-md border border-white/12 bg-[#07090D] shadow-[0_32px_120px_rgba(0,0,0,0.55)]"
+            className="mx-auto my-6 flex min-h-0 w-full max-w-6xl flex-col overflow-hidden rounded-md border border-white/12 bg-[#07090D] shadow-[0_32px_120px_rgba(0,0,0,0.55)] relative z-[10000]"
           >
             <header className="flex items-start justify-between gap-4 border-b border-white/10 px-4 py-4 sm:px-5">
               <div className="flex min-w-0 items-start gap-3">
@@ -264,8 +263,11 @@ export function PortfolioCaseStudyCard({
               <button
                 ref={closeButtonRef}
                 type="button"
-                onClick={closeModal}
-                className="flex size-10 shrink-0 items-center justify-center rounded-sm border border-white/10 bg-[#030405]/54 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+                onClick={(e) => {
+                  console.log('Close button clicked');
+                  closeModal();
+                }}
+                className="epyk-icon-button flex size-10 shrink-0 items-center justify-center border border-white/10 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
                 aria-label="Close case study"
               >
                 <X aria-hidden size={19} strokeWidth={1.8} />
@@ -294,16 +296,22 @@ export function PortfolioCaseStudyCard({
                     <>
                       <button
                         type="button"
-                        onClick={showPrevious}
-                        className="absolute left-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-sm border border-white/10 bg-[#030405]/74 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+                        onClick={(e) => {
+                          console.log('Previous button clicked');
+                          showPrevious();
+                        }}
+                        className="epyk-icon-button absolute left-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center border border-white/10 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
                         aria-label="Previous screenshot"
                       >
                         <ChevronLeft aria-hidden size={22} strokeWidth={1.8} />
                       </button>
                       <button
                         type="button"
-                        onClick={showNext}
-                        className="absolute right-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center rounded-sm border border-white/10 bg-[#030405]/74 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+                        onClick={(e) => {
+                          console.log('Next button clicked');
+                          showNext();
+                        }}
+                        className="epyk-icon-button absolute right-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center border border-white/10 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
                         aria-label="Next screenshot"
                       >
                         <ChevronRight aria-hidden size={22} strokeWidth={1.8} />
@@ -324,12 +332,15 @@ export function PortfolioCaseStudyCard({
                       <button
                         key={screenshot.src}
                         type="button"
-                        onClick={() => setCurrentIndex(index)}
+                        onClick={(e) => {
+                          console.log('Thumbnail clicked:', index);
+                          setCurrentIndex(index);
+                        }}
                         aria-current={
                           index === activeIndex ? "true" : undefined
                         }
                         aria-label={`View screenshot ${index + 1}`}
-                        className="relative h-16 w-28 shrink-0 overflow-hidden rounded-sm border border-white/10 bg-[#030405]/54 transition hover:border-[#1D6FFF]/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 aria-current:border-[#F3C743]/60"
+                        className="relative h-16 w-28 shrink-0 overflow-hidden border border-white/10 transition hover:border-[#1D6FFF]/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 aria-current:border-[#F3C743]/60 cursor-pointer"
                       >
                         <Image
                           src={screenshot.src}
@@ -373,7 +384,7 @@ function DeckImages({
 }: DeckImagesProps) {
   if (screenshots.length === 0) {
     return (
-      <div className="flex h-full min-h-full items-center justify-center bg-[radial-gradient(circle_at_35%_20%,rgba(29,111,255,0.16),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.055),rgba(255,255,255,0.015))] text-[#8C96A3]">
+      <div className="flex h-full min-h-full items-center justify-center bg-[radial-gradient(circle_at_35%_20%,rgba(29,111,255,0.16),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.055),rgba(255,255,255,0.015))] text-[#8C96A3]" style={{ pointerEvents: 'none' }}>
         <ImageOff aria-hidden size={22} strokeWidth={1.7} />
       </div>
     );
@@ -382,10 +393,10 @@ function DeckImages({
   return (
     <div
       className="flex h-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-      style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+      style={{ transform: `translateX(-${activeIndex * 100}%)`, pointerEvents: 'none' }}
     >
       {screenshots.map((screenshot) => (
-        <div key={screenshot.src} className="relative h-full min-w-full">
+        <div key={screenshot.src} className="relative h-full min-w-full" style={{ pointerEvents: 'none' }}>
           <Image
             src={screenshot.src}
             alt={screenshot.alt || `${title} screenshot`}

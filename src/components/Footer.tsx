@@ -38,7 +38,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Daniel Chernov on LinkedIn"
-                className="inline-flex size-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.03] text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+                className="epyk-icon-button inline-flex size-8 items-center justify-center border border-white/10 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
               >
                 <LinkedInIcon className="size-4" />
               </a>
@@ -47,7 +47,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Daniel Chernov on GitHub"
-                className="inline-flex size-8 items-center justify-center rounded-md border border-white/10 bg-white/[0.03] text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+                className="epyk-icon-button inline-flex size-8 items-center justify-center border border-white/10 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
               >
                 <GitHubIcon className="size-4" />
               </a>

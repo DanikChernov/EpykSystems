@@ -137,7 +137,7 @@ export function SolutionDirectory({
                               toggleSolution(solution.slug);
                             }
                           }}
-                          className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-md border border-white/12 bg-white/[0.04] px-4 py-2 text-sm font-semibold text-[#DDE3EA] transition hover:border-[#1D6FFF]/40 hover:bg-white/[0.07] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] motion-reduce:transition-none"
+                          className="epyk-button epyk-button-secondary inline-flex min-h-11 shrink-0 items-center justify-center border px-4 py-2 text-sm font-semibold text-[#DDE3EA] transition hover:border-[#1D6FFF]/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] motion-reduce:transition-none"
                         >
                           Quick overview
                           <ChevronDown
@@ -209,7 +209,7 @@ export function SolutionDirectory({
                             <Link
                               href={`/solutions/${solution.slug}`}
                               tabIndex={isOpen ? undefined : -1}
-                              className="mt-5 inline-flex min-h-11 items-center justify-center rounded-md border border-[#1D6FFF]/42 bg-[#1D6FFF]/10 px-4 py-2 text-sm font-semibold text-[#F4F7FA] transition hover:border-[#1D6FFF]/70 hover:bg-[#1D6FFF]/16 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] motion-reduce:transition-none"
+                              className="epyk-button epyk-button-primary mt-5 inline-flex min-h-11 items-center justify-center border px-4 py-2 text-sm font-semibold text-[#F4F7FA] transition hover:border-[#1D6FFF]/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] motion-reduce:transition-none"
                             >
                               Explore {solution.title}
                             </Link>

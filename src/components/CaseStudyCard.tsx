@@ -39,7 +39,7 @@ export function CaseStudyCard({ item }: CaseStudyCardProps) {
       summary={item.summary}
       screenshots={item.screenshots}
       cardIcon={
-        <div className="flex size-10 shrink-0 items-center justify-center rounded-md border border-[#1D6FFF]/24 bg-[#030405]/74 text-[#DDE3EA] backdrop-blur-sm">
+        <div className="flex size-10 shrink-0 items-center justify-center rounded-md border border-[#1D6FFF]/24 bg-[#030405]/74 text-[#DDE3EA] backdrop-blur-sm" style={{ pointerEvents: 'none' }}>
           <Icon aria-hidden size={20} strokeWidth={1.8} />
         </div>
       }
@@ -48,11 +48,11 @@ export function CaseStudyCard({ item }: CaseStudyCardProps) {
           <Icon aria-hidden size={21} strokeWidth={1.8} />
         </div>
       }
-      cardMaturity={<MaturityBadge maturity={item.status} />}
+      cardMaturity={<div style={{ pointerEvents: 'none' }}><MaturityBadge maturity={item.status} /></div>}
       modalMaturity={<MaturityBadge maturity={item.status} />}
       cardMeta={<PortfolioMeta category={item.category} provenance={item.provenance} />}
       previewTags={
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2" style={{ pointerEvents: 'none' }}>
           {previewTags.map((tag) => (
             <span
               key={tag}
@@ -141,7 +141,7 @@ function PortfolioMeta({
   provenance: string;
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2" style={{ pointerEvents: 'none' }}>
       <span className="rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#8C96A3]">
         {category}
       </span>
@@ -167,7 +167,7 @@ function PortfolioLinkGroup({
           <Link
             key={link.href}
             href={link.href}
-            className="rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+            className="epyk-chip-button border px-2.5 py-1 text-xs font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
           >
             {link.label}
           </Link>

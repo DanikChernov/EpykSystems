@@ -2,7 +2,6 @@ import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
 import { BrandHero } from "@/components/BrandHero";
 import { FounderCard } from "@/components/FounderCard";
 import { MaturityBadge } from "@/components/MaturityBadge";
@@ -11,7 +10,6 @@ import { Section } from "@/components/Section";
 import { brand, createPageMetadata } from "@/lib/brand";
 import {
   engagementSteps,
-  featuredSolutionAreas,
   localFirstPoints,
   proofItems,
   solutionParentLines
@@ -56,16 +54,11 @@ export default function Home() {
       >
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {solutionParentLines.map((line) => {
-            const children = featuredSolutionAreas.filter(
-              (solution) =>
-                solution.parentLine === line.title &&
-                solution.showOnHome !== false
-            );
-
             return (
-              <article
+              <Link
                 key={line.title}
-                className="border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] [clip-path:polygon(0_0,calc(100%-18px)_0,100%_18px,100%_100%,0_100%)]"
+                href="/solutions"
+                className="border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] [clip-path:polygon(0_0,calc(100%-18px)_0,100%_18px,100%_100%,0_100%)] transition hover:border-[#1D6FFF]/35 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#1D6FFF]">
                   {line.title}
@@ -73,42 +66,11 @@ export default function Home() {
                 <p className="mt-4 text-sm leading-6 text-[#A7B0BE]">
                   {line.description}
                 </p>
-                <div className="mt-6 grid gap-4">
-                  {children.map((solution) => {
-                    const Icon = solution.icon;
-
-                    return (
-                      <div
-                        key={solution.slug}
-                        className="border border-white/10 bg-[#030405]/44 p-4"
-                      >
-                        <div className="flex flex-wrap items-center gap-3">
-                          <Icon
-                            aria-hidden
-                            size={18}
-                            strokeWidth={1.8}
-                            className="text-[#1D6FFF]"
-                          />
-                          <h3 className="text-base font-semibold text-[#F4F7FA]">
-                            {solution.title}
-                          </h3>
-                          <MaturityBadge maturity={solution.status} />
-                        </div>
-                        <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
-                          {solution.directorySummary}
-                        </p>
-                        <Link
-                          href={`/solutions/${solution.slug}`}
-                          className="mt-4 inline-flex items-center text-sm font-semibold text-[#DDE3EA] transition hover:text-[#1D6FFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
-                        >
-                          View solution
-                          <ArrowRight aria-hidden size={15} className="ml-2" />
-                        </Link>
-                      </div>
-                    );
-                  })}
+                <div className="mt-6 inline-flex items-center text-sm font-semibold text-[#DDE3EA] transition group-hover:text-[#1D6FFF]">
+                  Explore solutions
+                  <ArrowRight aria-hidden size={15} className="ml-2" />
                 </div>
-              </article>
+              </Link>
             );
           })}
         </div>
@@ -203,25 +165,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section
-        className="border-y border-white/10 bg-white/[0.02]"
-        eyebrow="The larger ecosystem"
-        title="One ecosystem being constructed in useful layers."
-        intro="The larger system covers infrastructure, intelligence, interfaces, control, perception, communications, energy, personal computing, and fabrication."
-      >
-        <div className="mt-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-          <ArchitectureDiagram compact />
-          <div className="max-w-xl">
-            <Link
-              href="/ecosystem"
-              className="inline-flex items-center text-sm font-semibold text-[#DDE3EA] transition hover:text-[#1D6FFF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
-            >
-              See the Complete Ecosystem
-              <ArrowRight aria-hidden size={16} className="ml-2" />
-            </Link>
-          </div>
-        </div>
-      </Section>
+
 
       <Section
         eyebrow="Lived principles"
@@ -253,7 +197,7 @@ export default function Home() {
           </div>
           <Link
             href="/contact"
-            className="mt-8 inline-flex min-h-12 items-center justify-center rounded-md border border-[#1D6FFF]/45 bg-gradient-to-b from-[#1D6FFF] to-[#174FC2] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_26px_rgba(29,111,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(29,111,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] lg:mt-0"
+            className="epyk-button epyk-button-primary mt-8 inline-flex min-h-12 items-center justify-center border px-5 py-3 text-sm font-semibold text-white shadow-[0_0_26px_rgba(29,111,255,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(29,111,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] lg:mt-0"
           >
             Discuss Your Operation
             <ArrowRight aria-hidden size={17} className="ml-2" />

@@ -56,6 +56,124 @@ textarea {
   outline-color: rgba(29, 111, 255, 0.75);
 }
 
+.epyk-button,
+.epyk-chip-button,
+.epyk-nav-link,
+.epyk-upload-control {
+  --epyk-cut-size: 12px;
+  border-radius: 0 !important;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--epyk-cut-size)) 0,
+    100% var(--epyk-cut-size),
+    100% 100%,
+    var(--epyk-cut-size) 100%,
+    0 calc(100% - var(--epyk-cut-size))
+  );
+}
+
+.epyk-icon-button {
+  /* Remove clip-path from icon buttons to ensure clickability */
+  border-radius: 0 !important;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.epyk-card-button {
+  /* Simple clickable button without clip-path */
+  border-radius: 0 !important;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+
+
+.epyk-button,
+.epyk-upload-control {
+  background: linear-gradient(
+    135deg,
+    rgba(17, 21, 26, 0.94) 0%,
+    rgba(8, 10, 13, 0.96) 52%,
+    rgba(29, 111, 255, 0.14) 100%
+  );
+}
+
+.epyk-button-primary {
+  border-color: rgba(29, 111, 255, 0.52);
+  background: linear-gradient(135deg, #1d6fff 0%, #174fc2 58%, #071a45 100%);
+}
+
+.epyk-button-secondary,
+.epyk-upload-control {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(8, 10, 13, 0.9) 54%,
+    rgba(243, 199, 67, 0.11) 100%
+  );
+}
+
+.epyk-button-primary:hover {
+  background: linear-gradient(135deg, #2d7bff 0%, #1d5ee0 58%, #0a2258 100%);
+}
+
+.epyk-button-secondary:hover,
+.epyk-upload-control:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(8, 10, 13, 0.94) 52%,
+    rgba(29, 111, 255, 0.16) 100%
+  );
+}
+
+.epyk-icon-button {
+  --epyk-cut-size: 8px;
+  background: linear-gradient(
+    135deg,
+    rgba(3, 4, 5, 0.86) 0%,
+    rgba(17, 21, 26, 0.9) 54%,
+    rgba(29, 111, 255, 0.13) 100%
+  );
+}
+
+
+
+.epyk-chip-button {
+  --epyk-cut-size: 6px;
+  border-color: rgba(255, 255, 255, 0.12);
+  background: linear-gradient(
+    135deg,
+    rgba(3, 4, 5, 0.72) 0%,
+    rgba(17, 21, 26, 0.78) 58%,
+    rgba(29, 111, 255, 0.1) 100%
+  );
+}
+
+.epyk-chip-button:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(8, 10, 13, 0.86) 0%,
+    rgba(17, 21, 26, 0.9) 52%,
+    rgba(29, 111, 255, 0.16) 100%
+  );
+}
+
+.epyk-nav-link {
+  --epyk-cut-size: 7px;
+}
+
+.epyk-button:focus-visible,
+.epyk-icon-button:focus-visible,
+.epyk-card-button:focus-visible,
+.epyk-chip-button:focus-visible,
+.epyk-nav-link:focus-visible,
+.epyk-upload-control:focus-within {
+  outline: 2px solid rgba(29, 111, 255, 0.72);
+  outline-offset: 3px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

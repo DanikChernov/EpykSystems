@@ -216,8 +216,8 @@ export const founderProfile = {
   name: contactDetails.founder,
   title: contactDetails.founderTitle,
   initials: "DC",
-  photoSrc: "/brand/founder.jpg",
-  photoAvailable: false,
+  photoSrc: "/images/founder-pic.jpg",
+  photoAvailable: true,
   directWorkLine:
     "Clients work directly with me — from the first operational assessment through design, build, testing, and handover.",
   aboutHref: "/about",

@@ -82,7 +82,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <div className="relative min-h-screen overflow-hidden bg-[#030405] text-[#F4F7FA]">
-          <NeuralBackground />
+          {/* <NeuralBackground /> */}
           <div className="relative z-10 flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">{children}</main>

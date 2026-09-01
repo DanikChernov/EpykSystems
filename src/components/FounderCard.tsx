@@ -20,7 +20,7 @@ export function FounderCard({ showAboutLink = true }: FounderCardProps) {
           width={320}
           height={320}
           sizes="(min-width: 1024px) 18rem, 12rem"
-          className="size-28 border border-[#1D6FFF]/25 object-cover"
+          className="epyk-card-button size-28 border border-[#1D6FFF]/25 object-cover"
         />
       ) : (
         <div
@@ -44,7 +44,7 @@ export function FounderCard({ showAboutLink = true }: FounderCardProps) {
           href={founderProfile.links[0].href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+          className="epyk-button epyk-button-secondary inline-flex items-center gap-3 border border-white/10 px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
         >
           <LinkedInIcon className="size-[17px]" />
           LinkedIn
@@ -53,21 +53,21 @@ export function FounderCard({ showAboutLink = true }: FounderCardProps) {
           href={founderProfile.links[1].href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+          className="epyk-button epyk-button-secondary inline-flex items-center gap-3 border border-white/10 px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
         >
           <GitHubIcon className="size-[17px]" />
           GitHub
         </a>
         <a
           href={founderProfile.links[2].href}
-          className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+          className="epyk-button epyk-button-secondary inline-flex items-center gap-3 border border-white/10 px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
         >
           <Mail aria-hidden size={17} />
           Email
         </a>
         <a
           href={founderProfile.links[3].href}
-          className="inline-flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+          className="epyk-button epyk-button-secondary inline-flex items-center gap-3 border border-white/10 px-4 py-3 text-sm font-medium text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
         >
           <Phone aria-hidden size={17} />
           {founderProfile.links[3].label}

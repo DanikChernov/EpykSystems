@@ -210,7 +210,7 @@ export function ContactForm() {
           <span className="text-sm font-medium text-[#DDE3EA]">
             Attachment
           </span>
-          <span className="flex min-h-14 cursor-pointer items-center gap-3 rounded-md border border-dashed border-white/14 bg-[#030405]/54 px-4 py-3 text-sm text-[#A7B0BE] transition hover:border-[#1D6FFF]/40 hover:bg-[#030405]/72">
+          <span className="epyk-upload-control flex min-h-14 cursor-pointer items-center gap-3 border border-dashed px-4 py-3 text-sm text-[#A7B0BE] transition hover:border-[#1D6FFF]/40">
             <Upload aria-hidden size={18} className="text-[#1D6FFF]" />
             <span className="truncate">
               {attachment
@@ -263,7 +263,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex min-h-12 items-center justify-center rounded-md border border-[#1D6FFF]/45 bg-gradient-to-b from-[#1D6FFF] to-[#174FC2] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(29,111,255,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(29,111,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] disabled:cursor-not-allowed disabled:opacity-60"
+          className="epyk-button epyk-button-primary inline-flex min-h-12 items-center justify-center border px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(29,111,255,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(29,111,255,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === "submitting" ? (
             <>

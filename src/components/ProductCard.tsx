@@ -18,7 +18,7 @@ export function ProductCard({
   return (
     <Link
       href={href}
-      className="group relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.32)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#1D6FFF]/45 hover:bg-white/[0.045] hover:shadow-[0_28px_110px_rgba(29,111,255,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/65"
+      className="epyk-card-button group relative overflow-hidden border border-white/10 p-6 shadow-[0_24px_90px_rgba(0,0,0,0.32)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-[#1D6FFF]/45 hover:shadow-[0_28px_110px_rgba(29,111,255,0.14)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/65"
     >
       <div
         className="absolute right-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#1D6FFF]/32 to-transparent transition group-hover:via-[#F3C743]/30"
