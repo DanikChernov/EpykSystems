@@ -5,8 +5,7 @@ import { homePage, systemSignals } from "@/lib/site";
 
 export function BrandHero() {
   return (
-    <section className="relative isolate overflow-hidden border-b border-white/10 px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#8C96A3]/45 to-transparent" />
+    <section className="relative isolate overflow-hidden px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
       <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
         <div className="max-w-4xl">
           <p className="text-sm font-semibold uppercase tracking-[0.38em] text-[#F3C743]">
@@ -44,15 +43,6 @@ export function BrandHero() {
         </div>
 
         <div className="relative min-h-[440px]" aria-label="Epyk operating map">
-          <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(140,150,163,0.14)_38%,transparent_39%,transparent_62%,rgba(29,111,255,0.16)_63%,transparent_68%)]" />
-          <div className="absolute left-[10%] top-[12%] h-[70%] w-px bg-gradient-to-b from-transparent via-[#8C96A3]/45 to-transparent" />
-          <div className="absolute left-[30%] top-[4%] h-[88%] w-px bg-gradient-to-b from-transparent via-[#1D6FFF]/45 to-transparent" />
-          <div className="absolute left-[58%] top-[12%] h-[74%] w-px bg-gradient-to-b from-transparent via-[#8C96A3]/28 to-transparent" />
-          <div className="absolute left-[82%] top-[24%] h-[58%] w-px bg-gradient-to-b from-transparent via-[#F3C743]/40 to-transparent" />
-          <div className="absolute inset-x-0 top-[26%] h-px bg-gradient-to-r from-transparent via-[#8C96A3]/35 to-transparent" />
-          <div className="absolute inset-x-0 top-[54%] h-px bg-gradient-to-r from-transparent via-[#1D6FFF]/35 to-transparent" />
-          <div className="absolute inset-x-0 top-[78%] h-px bg-gradient-to-r from-transparent via-[#8C96A3]/25 to-transparent" />
-
           <div className="relative grid h-full gap-4 sm:grid-cols-2">
             {systemSignals.map((signal, index) => {
               const Icon = signal.icon;

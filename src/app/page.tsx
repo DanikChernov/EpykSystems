@@ -28,7 +28,7 @@ export default function Home() {
     <>
       <BrandHero />
 
-      <Section className="border-b border-white/10 bg-white/[0.02]">
+      <Section className="border-b border-white/10">
         <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <FounderCard />
           <div className="max-w-3xl">
@@ -76,7 +76,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section className="border-y border-white/10 bg-[#080A0D]/56">
+      <Section className="border-y border-white/10">
         <div className="grid gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F3C743]">
@@ -173,7 +173,7 @@ export default function Home() {
         intro="The site, the service model, and the long-term environment should behave consistently with the company promise."
       >
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div className="border border-[#F3C743]/20 bg-[#F3C743]/[0.055] p-6">
+          <div className="border border-[#F3C743]/20 p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F3C743]">
               God-centered, never coercive
             </p>
@@ -184,7 +184,7 @@ export default function Home() {
           <PrincipleList />
         </div>
 
-        <div className="mt-12 border border-white/10 bg-[linear-gradient(135deg,rgba(17,21,26,0.92),rgba(8,10,13,0.98),rgba(3,4,5,0.96))] p-8 [clip-path:polygon(0_0,calc(100%-22px)_0,100%_22px,100%_100%,0_100%)] sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
+        <div className="mt-12 border border-white/10 p-8 [clip-path:polygon(0_0,calc(100%-22px)_0,100%_22px,100%_100%,0_100%)] sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-semibold tracking-tight text-[#F4F7FA]">
               Start with one real problem.

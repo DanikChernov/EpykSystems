@@ -8,6 +8,18 @@
   --epyk-blue-deep: #174fc2;
   --epyk-gold: #f3c743;
   --epyk-muted: #a7b0be;
+  --epyk-gradient-blue: linear-gradient(
+    135deg,
+    #1d6fff 0%,
+    #174fc2 58%,
+    #071a45 100%
+  );
+  --epyk-gradient-gold: linear-gradient(
+    135deg,
+    rgba(3, 4, 5, 0.96) 0%,
+    rgba(17, 21, 26, 0.95) 48%,
+    rgba(243, 199, 67, 0.24) 100%
+  );
 }
 
 * {
@@ -20,10 +32,7 @@ html {
 
 body {
   margin: 0;
-  background:
-    linear-gradient(125deg, rgba(37, 43, 50, 0.32), transparent 34%),
-    linear-gradient(215deg, rgba(140, 150, 163, 0.08), transparent 48%),
-    linear-gradient(180deg, #030405 0%, #080a0d 42%, #11151a 100%);
+  background: #030405;
   color: var(--foreground);
   font-family:
     Geist, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -86,10 +95,9 @@ textarea {
   pointer-events: auto;
 }
 
-
-
 .epyk-button,
 .epyk-upload-control {
+  transition-property: transform, border-color, box-shadow, color, background;
   background: linear-gradient(
     135deg,
     rgba(17, 21, 26, 0.94) 0%,
@@ -100,32 +108,27 @@ textarea {
 
 .epyk-button-primary {
   border-color: rgba(29, 111, 255, 0.52);
-  background: linear-gradient(135deg, #1d6fff 0%, #174fc2 58%, #071a45 100%);
+  background: var(--epyk-gradient-blue);
 }
 
 .epyk-button-secondary,
 .epyk-upload-control {
   border-color: rgba(255, 255, 255, 0.14);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.07) 0%,
-    rgba(8, 10, 13, 0.9) 54%,
-    rgba(243, 199, 67, 0.11) 100%
-  );
+  background: var(--epyk-gradient-gold);
 }
 
 .epyk-button-primary:hover {
-  background: linear-gradient(135deg, #2d7bff 0%, #1d5ee0 58%, #0a2258 100%);
+  border-color: rgba(243, 199, 67, 0.58);
+  background: var(--epyk-gradient-gold);
+  box-shadow: 0 0 34px rgba(243, 199, 67, 0.18);
 }
 
 .epyk-button-secondary:hover,
 .epyk-upload-control:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.09) 0%,
-    rgba(8, 10, 13, 0.94) 52%,
-    rgba(29, 111, 255, 0.16) 100%
-  );
+  border-color: rgba(29, 111, 255, 0.62);
+  background: var(--epyk-gradient-blue);
+  box-shadow: 0 0 34px rgba(29, 111, 255, 0.28);
+  color: #f4f7fa;
 }
 
 .epyk-icon-button {
@@ -138,7 +141,12 @@ textarea {
   );
 }
 
-
+.epyk-icon-button:hover {
+  border-color: rgba(29, 111, 255, 0.62);
+  background: var(--epyk-gradient-blue);
+  box-shadow: 0 0 26px rgba(29, 111, 255, 0.24);
+  color: #f4f7fa;
+}
 
 .epyk-chip-button {
   --epyk-cut-size: 6px;
@@ -152,12 +160,10 @@ textarea {
 }
 
 .epyk-chip-button:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(8, 10, 13, 0.86) 0%,
-    rgba(17, 21, 26, 0.9) 52%,
-    rgba(29, 111, 255, 0.16) 100%
-  );
+  border-color: rgba(29, 111, 255, 0.62);
+  background: var(--epyk-gradient-blue);
+  box-shadow: 0 0 26px rgba(29, 111, 255, 0.22);
+  color: #f4f7fa;
 }
 
 .epyk-nav-link {

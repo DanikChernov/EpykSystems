@@ -18,7 +18,7 @@ export function CTASection({
   return (
     <section className="relative py-20">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
-        <div className="relative overflow-hidden border border-white/10 bg-[linear-gradient(135deg,rgba(17,21,26,0.92),rgba(8,10,13,0.98),rgba(3,4,5,0.96))] p-8 shadow-[0_28px_120px_rgba(0,0,0,0.48)] [clip-path:polygon(0_0,calc(100%-22px)_0,100%_22px,100%_100%,0_100%)] sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
+        <div className="relative overflow-hidden border border-white/10 bg-[linear-gradient(100deg,rgba(17,21,26,0.92),rgba(8,10,13,0.98),rgba(3,4,5,0.96))] p-8 shadow-[0_28px_120px_rgba(0,0,0,0.48)] [clip-path:polygon(0_0,calc(100%-22px)_0,100%_22px,100%_100%,0_100%)] sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
           <div
             className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F3C743]/42 to-transparent"
             aria-hidden
