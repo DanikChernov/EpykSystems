@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type SectionProps = {
+  id?: string;
   eyebrow?: string;
   title?: string;
   intro?: string;
@@ -12,6 +13,7 @@ type SectionProps = {
 };
 
 export function Section({
+  id,
   eyebrow,
   title,
   intro,
@@ -20,7 +22,7 @@ export function Section({
   contentClassName
 }: SectionProps) {
   return (
-    <section className={cn("relative py-20 sm:py-24", className)}>
+    <section id={id} className={cn("relative py-20 sm:py-24", className)}>
       <div className={cn("mx-auto max-w-7xl px-5 lg:px-8", contentClassName)}>
         {(eyebrow || title || intro) && (
           <div className="max-w-3xl">

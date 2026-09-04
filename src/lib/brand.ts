@@ -49,41 +49,53 @@ type PageMetadataOptions = {
   title: string;
   description: string;
   path: string;
+  canonical?: string | null;
+  robots?: Metadata["robots"];
 };
 
 export function createPageMetadata({
   title,
   description,
-  path
+  path,
+  canonical,
+  robots
 }: PageMetadataOptions): Metadata {
-  return {
+  const socialImage = {
+    url: "/opengraph-image",
+    width: 1200,
+    height: 630,
+    alt: "Epyk Systems industrial software and private infrastructure"
+  };
+  const metadata: Metadata = {
     title: {
       absolute: title
     },
     description,
-    alternates: {
-      canonical: path
-    },
     openGraph: {
       type: "website",
       url: path,
       siteName: brand.name,
       title,
       description,
-      images: [
-        {
-          url: brand.assets.logo,
-          width: 1345,
-          height: 360,
-          alt: "Epyk Systems logo"
-        }
-      ]
+      images: [socialImage]
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [brand.assets.logo]
+      images: [socialImage.url]
     }
   };
+
+  if (canonical !== null) {
+    metadata.alternates = {
+      canonical: canonical ?? path
+    };
+  }
+
+  if (robots) {
+    metadata.robots = robots;
+  }
+
+  return metadata;
 }

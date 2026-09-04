@@ -13,15 +13,18 @@ type EnvironmentDisclosureProps = {
   zones: EnvironmentZone[];
   optionalTechnologyPrinciples: string[];
   hospitalityCommitments: string[];
+  defaultOpen?: boolean;
 };
 
 export function EnvironmentDisclosure({
   zones,
   optionalTechnologyPrinciples,
-  hospitalityCommitments
+  hospitalityCommitments,
+  defaultOpen = false
 }: EnvironmentDisclosureProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
   const panelId = "epyk-environment-panel";
+  const buttonId = "epyk-environment-trigger";
   const toggleDisclosure = () => setIsOpen((open) => !open);
 
   return (
@@ -48,16 +51,11 @@ export function EnvironmentDisclosure({
           </div>
 
           <button
+            id={buttonId}
             type="button"
             aria-expanded={isOpen}
             aria-controls={panelId}
             onClick={toggleDisclosure}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                toggleDisclosure();
-              }
-            }}
             className="epyk-button epyk-button-secondary inline-flex min-h-11 shrink-0 items-center justify-center border px-4 py-2 text-sm font-semibold text-[#DDE3EA] transition hover:border-[#F3C743]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F3C743]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] motion-reduce:transition-none"
           >
             Long-term environment
@@ -74,6 +72,8 @@ export function EnvironmentDisclosure({
 
         <div
           id={panelId}
+          role="region"
+          aria-labelledby={buttonId}
           aria-hidden={!isOpen}
           className={cn(
             "grid transition-[grid-template-rows,opacity] duration-200 ease-out motion-reduce:transition-none",

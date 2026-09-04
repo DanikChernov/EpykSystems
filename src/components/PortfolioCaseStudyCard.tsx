@@ -51,12 +51,12 @@ export function PortfolioCaseStudyCard({
   modalDetails,
   previewTags
 }: PortfolioCaseStudyCardProps) {
-  console.log('PortfolioCaseStudyCard rendered for:', title);
   const [isOpen, setIsOpen] = useState(false);
   const [isCardActive, setIsCardActive] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const dialogId = useId();
   const titleId = useId();
+  const summaryId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLElement>(null);
@@ -165,19 +165,24 @@ export function PortfolioCaseStudyCard({
   }, [closeModal, isOpen, showNext, showPrevious]);
 
   return (
-    <article className="h-full">
+    <article className="h-full min-w-0 break-words">
       <div
-        onClick={(e) => {
-          console.log('Article div clicked:', title, e.target);
-          setIsOpen(true);
-        }}
-        onMouseDown={(e) => {
-          console.log('Mouse down on article:', title, e.target);
-        }}
-        style={{ cursor: 'pointer', position: 'relative', zIndex: 1 }}
-        className="group flex h-full w-full flex-col overflow-hidden border border-white/10 text-left shadow-[0_24px_90px_rgba(0,0,0,0.3)] transition duration-300 hover:-translate-y-0.5 hover:border-[#1D6FFF]/35 bg-[#030405]"
+        className="group relative flex h-full min-w-0 flex-col overflow-hidden border border-white/10 bg-[#030405] text-left shadow-[0_24px_90px_rgba(0,0,0,0.3)] transition duration-300 hover:-translate-y-0.5 hover:border-[#1D6FFF]/35"
+        onMouseEnter={() => setIsCardActive(true)}
+        onMouseLeave={() => setIsCardActive(false)}
       >
-        <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-[#030405]" style={{ pointerEvents: 'none' }}>
+        <button
+          ref={triggerRef}
+          type="button"
+          onClick={() => setIsOpen(true)}
+          onFocus={() => setIsCardActive(true)}
+          onBlur={() => setIsCardActive(false)}
+          className="absolute inset-0 z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405]"
+          aria-label={`Open ${title} case study`}
+          aria-describedby={summaryId}
+        />
+
+        <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-[#030405]">
           <DeckImages
             title={title}
             screenshots={screenshots}
@@ -185,14 +190,15 @@ export function PortfolioCaseStudyCard({
             sizes="(min-width: 1280px) 30vw, (min-width: 768px) 48vw, 100vw"
             imageClassName="object-cover object-top opacity-88 transition duration-500 group-hover:opacity-100"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030405]/86 via-[#030405]/10 to-transparent" style={{ pointerEvents: 'none' }} />
-          <div className="absolute left-4 top-4" style={{ pointerEvents: 'none' }}>{cardIcon}</div>
-          <div className="absolute right-4 top-4 max-w-[13rem]" style={{ pointerEvents: 'none' }}>{cardMaturity}</div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030405]/86 via-[#030405]/10 to-transparent" />
+          <div className="absolute left-4 top-4">{cardIcon}</div>
+          <div className="absolute right-4 top-4 max-w-[13rem]">
+            {cardMaturity}
+          </div>
           {count > 1 ? (
             <div
               className="absolute bottom-4 left-4 flex gap-1.5"
               aria-hidden="true"
-              style={{ pointerEvents: 'none' }}
             >
               {screenshots.map((screenshot, index) => (
                 <span
@@ -209,16 +215,21 @@ export function PortfolioCaseStudyCard({
           ) : null}
         </div>
 
-        <div className="flex flex-1 flex-col p-5" style={{ pointerEvents: 'none' }}>
+        <div className="flex min-w-0 flex-1 flex-col p-5">
           {cardMeta}
           <h3 className="mt-4 text-xl font-semibold tracking-tight text-[#F4F7FA]">
             {title}
           </h3>
-          <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">{summary}</p>
+          <p
+            id={summaryId}
+            className="mt-3 text-sm leading-6 text-[#A7B0BE]"
+          >
+            {summary}
+          </p>
           {previewTags ? <div className="mt-5">{previewTags}</div> : null}
           <div className="mt-auto flex items-center justify-between gap-3 pt-6">
             <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8C96A3] transition group-hover:text-[#F4F7FA]">
-              Case study
+              Open case study
             </span>
             <span className="flex size-9 items-center justify-center border border-white/10 text-[#DDE3EA] transition group-hover:border-[#1D6FFF]/35 group-hover:text-white">
               <ArrowUpRight aria-hidden size={17} strokeWidth={1.8} />
@@ -229,7 +240,7 @@ export function PortfolioCaseStudyCard({
 
       {isOpen ? (
         <div
-          className="fixed inset-0 z-[9999] overflow-y-auto bg-[#030405]/92 p-3 backdrop-blur-sm sm:p-6"
+          className="fixed inset-0 z-[9999] h-[100dvh] overflow-y-auto overscroll-contain bg-[#030405]/92 p-3 backdrop-blur-sm sm:p-6"
           onPointerDown={(event) => {
             if (event.target === event.currentTarget) {
               closeModal();
@@ -242,9 +253,9 @@ export function PortfolioCaseStudyCard({
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className="mx-auto my-6 flex min-h-0 w-full max-w-6xl flex-col overflow-hidden rounded-md border border-white/12 bg-[#07090D] shadow-[0_32px_120px_rgba(0,0,0,0.55)] relative z-[10000]"
+            className="relative z-[10000] mx-auto my-0 flex min-h-0 w-full max-w-6xl flex-col overflow-hidden rounded-md border border-white/12 bg-[#07090D] shadow-[0_32px_120px_rgba(0,0,0,0.55)] sm:my-6 lg:max-h-[calc(100dvh-3rem)] lg:overflow-hidden"
           >
-            <header className="flex items-start justify-between gap-4 border-b border-white/10 px-4 py-4 sm:px-5">
+            <header className="flex min-w-0 items-start justify-between gap-4 border-b border-white/10 px-4 py-4 sm:px-5">
               <div className="flex min-w-0 items-start gap-3">
                 <div className="mt-0.5">{modalIcon}</div>
                 <div className="min-w-0">
@@ -253,7 +264,7 @@ export function PortfolioCaseStudyCard({
                   </p>
                   <h2
                     id={titleId}
-                    className="mt-1 text-2xl font-semibold tracking-tight text-[#F4F7FA]"
+                    className="mt-1 break-words text-2xl font-semibold tracking-tight text-[#F4F7FA]"
                   >
                     {title}
                   </h2>
@@ -263,10 +274,7 @@ export function PortfolioCaseStudyCard({
               <button
                 ref={closeButtonRef}
                 type="button"
-                onClick={(e) => {
-                  console.log('Close button clicked');
-                  closeModal();
-                }}
+                onClick={closeModal}
                 className="epyk-icon-button flex size-10 shrink-0 items-center justify-center border border-white/10 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
                 aria-label="Close case study"
               >
@@ -274,8 +282,8 @@ export function PortfolioCaseStudyCard({
               </button>
             </header>
 
-            <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(22rem,0.88fr)]">
-              <div className="border-b border-white/10 bg-[#030405] lg:border-b-0 lg:border-r">
+            <div className="grid min-w-0 lg:grid-cols-[minmax(0,1.12fr)_minmax(22rem,0.88fr)] lg:overflow-hidden">
+              <div className="min-w-0 border-b border-white/10 bg-[#030405] lg:border-b-0 lg:border-r">
                 <div
                   className={cn(
                     "relative overflow-hidden",
@@ -296,22 +304,16 @@ export function PortfolioCaseStudyCard({
                     <>
                       <button
                         type="button"
-                        onClick={(e) => {
-                          console.log('Previous button clicked');
-                          showPrevious();
-                        }}
-                        className="epyk-icon-button absolute left-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center border border-white/10 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+                        onClick={showPrevious}
+                        className="epyk-icon-button absolute left-3 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center border border-white/10 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
                         aria-label="Previous screenshot"
                       >
                         <ChevronLeft aria-hidden size={22} strokeWidth={1.8} />
                       </button>
                       <button
                         type="button"
-                        onClick={(e) => {
-                          console.log('Next button clicked');
-                          showNext();
-                        }}
-                        className="epyk-icon-button absolute right-3 top-1/2 flex size-10 -translate-y-1/2 items-center justify-center border border-white/10 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+                        onClick={showNext}
+                        className="epyk-icon-button absolute right-3 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center border border-white/10 text-[#DDE3EA] transition hover:border-[#1D6FFF]/35 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
                         aria-label="Next screenshot"
                       >
                         <ChevronRight aria-hidden size={22} strokeWidth={1.8} />
@@ -327,20 +329,17 @@ export function PortfolioCaseStudyCard({
                 ) : null}
 
                 {count > 1 ? (
-                  <div className="flex gap-2 overflow-x-auto border-t border-white/10 p-3">
+                  <div className="flex gap-2 overflow-x-auto overscroll-x-contain border-t border-white/10 p-3">
                     {screenshots.map((screenshot, index) => (
                       <button
                         key={screenshot.src}
                         type="button"
-                        onClick={(e) => {
-                          console.log('Thumbnail clicked:', index);
-                          setCurrentIndex(index);
-                        }}
+                        onClick={() => setCurrentIndex(index)}
                         aria-current={
                           index === activeIndex ? "true" : undefined
                         }
                         aria-label={`View screenshot ${index + 1}`}
-                        className="relative h-16 w-28 shrink-0 overflow-hidden border border-white/10 transition hover:border-[#1D6FFF]/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 aria-current:border-[#F3C743]/60 cursor-pointer"
+                        className="relative h-16 w-28 shrink-0 cursor-pointer overflow-hidden border border-white/10 transition hover:border-[#1D6FFF]/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 aria-current:border-[#F3C743]/60"
                       >
                         <Image
                           src={screenshot.src}
@@ -356,7 +355,7 @@ export function PortfolioCaseStudyCard({
                 ) : null}
               </div>
 
-              <div className="max-h-[72vh] overflow-y-auto p-5 sm:p-6">
+              <div className="max-h-none min-w-0 overflow-y-auto p-5 sm:p-6 lg:max-h-[72vh]">
                 {modalDetails}
               </div>
             </div>
@@ -384,7 +383,7 @@ function DeckImages({
 }: DeckImagesProps) {
   if (screenshots.length === 0) {
     return (
-      <div className="flex h-full min-h-full items-center justify-center bg-[radial-gradient(circle_at_35%_20%,rgba(29,111,255,0.16),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.055),rgba(255,255,255,0.015))] text-[#8C96A3]" style={{ pointerEvents: 'none' }}>
+      <div className="flex h-full min-h-full items-center justify-center bg-[radial-gradient(circle_at_35%_20%,rgba(29,111,255,0.16),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.055),rgba(255,255,255,0.015))] text-[#8C96A3]">
         <ImageOff aria-hidden size={22} strokeWidth={1.7} />
       </div>
     );
@@ -393,10 +392,10 @@ function DeckImages({
   return (
     <div
       className="flex h-full transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
-      style={{ transform: `translateX(-${activeIndex * 100}%)`, pointerEvents: 'none' }}
+      style={{ transform: `translateX(-${activeIndex * 100}%)` }}
     >
       {screenshots.map((screenshot) => (
-        <div key={screenshot.src} className="relative h-full min-w-full" style={{ pointerEvents: 'none' }}>
+        <div key={screenshot.src} className="relative h-full min-w-full">
           <Image
             src={screenshot.src}
             alt={screenshot.alt || `${title} screenshot`}

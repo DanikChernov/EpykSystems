@@ -18,9 +18,6 @@ export const metadata: Metadata = {
   description:
     "Founder-led operational software, inventory and material-control systems, private AI, and owner-controlled infrastructure for manufacturers.",
   applicationName: "Epyk Systems",
-  alternates: {
-    canonical: "/"
-  },
   keywords: [
     "local-first technology",
     "private AI",
@@ -42,10 +39,10 @@ export const metadata: Metadata = {
       "Founder-led operational software, inventory and material-control systems, private AI, and owner-controlled infrastructure for manufacturers.",
     images: [
       {
-        url: brand.assets.logo,
-        width: 1345,
-        height: 360,
-        alt: "Epyk Systems logo"
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Epyk Systems industrial software and private infrastructure"
       }
     ]
   },
@@ -55,7 +52,7 @@ export const metadata: Metadata = {
       "Epyk Systems | Operational Software and Private Infrastructure for Manufacturers",
     description:
       "Founder-led operational software, inventory and material-control systems, private AI, and owner-controlled infrastructure for manufacturers.",
-    images: [brand.assets.logo]
+    images: ["/opengraph-image"]
   },
   icons: {
     icon: brand.assets.favicon,

@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
+import { assessmentOffer } from "@/lib/assessment";
 import { createPageMetadata } from "@/lib/brand";
 import {
   contactDetails,
@@ -86,6 +87,17 @@ export default function ContactPage() {
                   <li key={point}>{point}</li>
                 ))}
               </ul>
+            </div>
+            <div className="mt-6 border-t border-white/10 pt-6">
+              <p className="text-sm font-medium text-[#DDE3EA]">
+                Assessment entry point
+              </p>
+              <Link
+                href={`${assessmentOffer.path}#${assessmentOffer.bookHash}`}
+                className="mt-2 inline-flex text-sm font-semibold text-[#1D6FFF] transition hover:text-[#DDE3EA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+              >
+                Start the Manufacturing Friction Assessment intake
+              </Link>
             </div>
             <div className="mt-6 border-t border-white/10 pt-6">
               <p className="text-sm font-medium text-[#DDE3EA]">

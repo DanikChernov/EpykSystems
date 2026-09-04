@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { CTASection } from "@/components/CTASection";
 import { PageHero } from "@/components/PageHero";
 import { Section } from "@/components/Section";
+import { assessmentOffer, homepageAssessment } from "@/lib/assessment";
 import { createPageMetadata } from "@/lib/brand";
 import { engagementPage } from "@/lib/site";
 
@@ -107,6 +108,41 @@ export default function EngagementPage() {
             {engagementPage.pricingEvidence}
           </p>
         </div>
+      </Section>
+
+      <Section
+        className="border-y border-white/10 bg-[#080A0D]/56"
+        eyebrow={homepageAssessment.eyebrow}
+        title="When scope is unclear, start with the Manufacturing Friction Assessment."
+        intro={homepageAssessment.description}
+      >
+        <div className="mt-10 grid gap-5 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+          <div className="border border-[#F3C743]/24 bg-[#F3C743]/[0.07] p-6">
+            <p className="text-3xl font-semibold tracking-tight text-[#F4F7FA]">
+              {assessmentOffer.priceDisplay}
+            </p>
+            <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
+              One facility, one workflow domain, one onsite working day, and a
+              founder-led report walkthrough.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {homepageAssessment.bullets.map((item) => (
+              <div
+                key={item}
+                className="border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA]"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+        <a
+          href={`${assessmentOffer.path}#${assessmentOffer.bookHash}`}
+          className="epyk-button epyk-button-primary mt-8 inline-flex min-h-12 items-center justify-center border px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(29,111,255,0.22)] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405]"
+        >
+          Start the Intake
+        </a>
       </Section>
 
       <Section className="border-y border-white/10 bg-white/[0.02]">

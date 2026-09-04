@@ -2,14 +2,14 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 import {
-  buildContactLeadEmailBody,
-  buildContactLeadEmailSubject,
-  contactLeadFailureMessage,
-  contactLeadSuccessMessage,
-  contactLeadValidationMessage,
-  hasContactSpamTrap,
-  validateContactLeadPayload
-} from "@/lib/contactLead";
+  assessmentLeadFailureMessage,
+  assessmentLeadSuccessMessage,
+  assessmentLeadValidationMessage,
+  buildAssessmentLeadEmailBody,
+  buildAssessmentLeadEmailSubject,
+  hasAssessmentSpamTrap,
+  validateAssessmentLeadPayload
+} from "@/lib/assessmentLead";
 
 export const runtime = "nodejs";
 
@@ -105,7 +105,7 @@ function hasAllowedOrigin(request: Request) {
 function isDevelopmentDryRun() {
   return (
     process.env.NODE_ENV !== "production" &&
-    process.env.CONTACT_FORM_DRY_RUN === "true"
+    process.env.ASSESSMENT_INTAKE_DRY_RUN === "true"
   );
 }
 
@@ -115,14 +115,14 @@ export async function POST(request: Request) {
 
     if (!contentType.includes("application/json")) {
       return NextResponse.json(
-        { message: contactLeadFailureMessage },
+        { message: assessmentLeadFailureMessage },
         { status: 400 }
       );
     }
 
     if (!hasAllowedOrigin(request)) {
       return NextResponse.json(
-        { message: contactLeadFailureMessage },
+        { message: assessmentLeadFailureMessage },
         { status: 403 }
       );
     }
@@ -136,16 +136,16 @@ export async function POST(request: Request) {
 
     const payload = await request.json();
 
-    if (hasContactSpamTrap(payload)) {
-      return NextResponse.json({ message: contactLeadSuccessMessage });
+    if (hasAssessmentSpamTrap(payload)) {
+      return NextResponse.json({ message: assessmentLeadSuccessMessage });
     }
 
-    const validation = validateContactLeadPayload(payload);
+    const validation = validateAssessmentLeadPayload(payload);
 
     if (!validation.ok) {
       return NextResponse.json(
         {
-          message: contactLeadValidationMessage,
+          message: assessmentLeadValidationMessage,
           errors: validation.errors
         },
         { status: 400 }
@@ -156,15 +156,15 @@ export async function POST(request: Request) {
     const timestamp = new Date().toISOString();
 
     if (isDevelopmentDryRun()) {
-      return NextResponse.json({ message: contactLeadSuccessMessage });
+      return NextResponse.json({ message: assessmentLeadSuccessMessage });
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
 
     if (!resendApiKey) {
-      console.error("Contact form email delivery is missing RESEND_API_KEY.");
+      console.error("Assessment intake email delivery is missing RESEND_API_KEY.");
       return NextResponse.json(
-        { message: contactLeadFailureMessage },
+        { message: assessmentLeadFailureMessage },
         { status: 500 }
       );
     }
@@ -172,37 +172,36 @@ export async function POST(request: Request) {
     const resend = new Resend(resendApiKey);
     const toEmail = process.env.CONTACT_TO_EMAIL?.trim() || defaultToEmail;
     const fromEmail = process.env.CONTACT_FROM_EMAIL?.trim() || defaultFromEmail;
-    const emailPayload = {
+
+    const result = await resend.emails.send({
       from: fromEmail,
-      subject: buildContactLeadEmailSubject(validation.data),
-      text: buildContactLeadEmailBody(validation.data, {
+      replyTo: validation.data.email,
+      subject: buildAssessmentLeadEmailSubject(validation.data),
+      text: buildAssessmentLeadEmailBody(validation.data, {
         sourceDomain,
         sourcePage,
         timestamp
       }),
-      to: toEmail,
-      ...(validation.data.email ? { replyTo: validation.data.email } : {})
-    };
-
-    const result = await resend.emails.send(emailPayload);
+      to: toEmail
+    });
 
     if (result.error) {
-      console.error("Contact form email delivery failed.");
+      console.error("Assessment intake email delivery failed.");
       return NextResponse.json(
-        { message: contactLeadFailureMessage },
+        { message: assessmentLeadFailureMessage },
         { status: 500 }
       );
     }
 
-    return NextResponse.json({ message: contactLeadSuccessMessage });
+    return NextResponse.json({ message: assessmentLeadSuccessMessage });
   } catch (error) {
     console.error(
-      "Contact request failed:",
+      "Assessment intake request failed:",
       error instanceof Error ? error.message : "Unknown error"
     );
 
     return NextResponse.json(
-      { message: contactLeadFailureMessage },
+      { message: assessmentLeadFailureMessage },
       { status: 500 }
     );
   }

@@ -2,7 +2,12 @@ import { MapPin } from "lucide-react";
 import Link from "next/link";
 
 import { brand } from "@/lib/brand";
-import { contactDetails, footerInquiryAreas, footerNavItems } from "@/lib/site";
+import {
+  contactDetails,
+  footerInquiryAreas,
+  footerNavItems,
+  legalNavItems
+} from "@/lib/site";
 
 import { Logo } from "./Logo";
 import { GitHubIcon, LinkedInIcon } from "./SocialIcons";
@@ -86,10 +91,23 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 px-5 py-5">
-        <p className="mx-auto max-w-7xl text-xs text-[#7B8794] lg:px-8">
-          &copy; {year} Epyk Systems. All rights reserved. Hospitality without
-          pressure. Technology without unnecessary dependence.
-        </p>
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs text-[#7B8794] sm:flex-row sm:items-center sm:justify-between lg:px-8">
+          <p>
+            &copy; {year} Epyk Systems. All rights reserved. Hospitality
+            without pressure. Technology without unnecessary dependence.
+          </p>
+          <nav aria-label="Legal links" className="flex flex-wrap gap-4">
+            {legalNavItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="transition hover:text-[#F4F7FA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
       </div>
     </footer>
   );

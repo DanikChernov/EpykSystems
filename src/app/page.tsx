@@ -7,6 +7,7 @@ import { FounderCard } from "@/components/FounderCard";
 import { MaturityBadge } from "@/components/MaturityBadge";
 import { PrincipleList } from "@/components/PrincipleList";
 import { Section } from "@/components/Section";
+import { assessmentOffer, homepageAssessment } from "@/lib/assessment";
 import { brand, createPageMetadata } from "@/lib/brand";
 import {
   engagementSteps,
@@ -165,7 +166,52 @@ export default function Home() {
         </div>
       </Section>
 
-
+      <Section
+        className="border-y border-white/10 bg-[#080A0D]/56"
+        eyebrow={homepageAssessment.eyebrow}
+        title={homepageAssessment.title}
+        intro={homepageAssessment.description}
+      >
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.72fr] lg:items-start">
+          <div className="grid gap-3 sm:grid-cols-2">
+            {homepageAssessment.bullets.map((item) => (
+              <div
+                key={item}
+                className="border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-[#DDE3EA]"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+          <div className="border border-[#F3C743]/24 bg-[#F3C743]/[0.07] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] [clip-path:polygon(0_0,calc(100%-18px)_0,100%_18px,100%_100%,0_100%)]">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#F3C743]">
+              Bounded first step
+            </p>
+            <p className="mt-4 text-3xl font-semibold tracking-tight text-[#F4F7FA]">
+              {assessmentOffer.priceDisplay}
+            </p>
+            <p className="mt-3 text-sm leading-6 text-[#A7B0BE]">
+              Starts with a free 15-20 minute intake, then one onsite
+              observation day if the assessment is the right fit.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <Link
+                href={`${assessmentOffer.path}#${assessmentOffer.bookHash}`}
+                className="epyk-button epyk-button-primary inline-flex min-h-12 items-center justify-center border px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(29,111,255,0.22)] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405]"
+              >
+                Book an Assessment
+                <ArrowRight aria-hidden size={16} className="ml-2" />
+              </Link>
+              <Link
+                href={assessmentOffer.path}
+                className="epyk-button epyk-button-secondary inline-flex min-h-12 items-center justify-center border px-5 py-3 text-sm font-semibold text-[#DDE3EA] transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405]"
+              >
+                View Assessment Scope
+              </Link>
+            </div>
+          </div>
+        </div>
+      </Section>
 
       <Section
         eyebrow="Lived principles"

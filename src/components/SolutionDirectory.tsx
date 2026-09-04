@@ -131,12 +131,6 @@ export function SolutionDirectory({
                           aria-expanded={isOpen}
                           aria-controls={panelId}
                           onClick={() => toggleSolution(solution.slug)}
-                          onKeyDown={(event) => {
-                            if (event.key === "Enter" || event.key === " ") {
-                              event.preventDefault();
-                              toggleSolution(solution.slug);
-                            }
-                          }}
                           className="epyk-button epyk-button-secondary inline-flex min-h-11 shrink-0 items-center justify-center border px-4 py-2 text-sm font-semibold text-[#DDE3EA] transition hover:border-[#1D6FFF]/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405] motion-reduce:transition-none"
                         >
                           Quick overview

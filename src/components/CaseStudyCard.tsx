@@ -48,11 +48,11 @@ export function CaseStudyCard({ item }: CaseStudyCardProps) {
           <Icon aria-hidden size={21} strokeWidth={1.8} />
         </div>
       }
-      cardMaturity={<div style={{ pointerEvents: 'none' }}><MaturityBadge maturity={item.status} /></div>}
+      cardMaturity={<div><MaturityBadge maturity={item.status} /></div>}
       modalMaturity={<MaturityBadge maturity={item.status} />}
       cardMeta={<PortfolioMeta category={item.category} provenance={item.provenance} />}
       previewTags={
-        <div className="flex flex-wrap gap-2" style={{ pointerEvents: 'none' }}>
+        <div className="flex min-w-0 flex-wrap gap-2 break-words">
           {previewTags.map((tag) => (
             <span
               key={tag}
@@ -141,7 +141,7 @@ function PortfolioMeta({
   provenance: string;
 }) {
   return (
-    <div className="flex flex-wrap gap-2" style={{ pointerEvents: 'none' }}>
+    <div className="flex min-w-0 flex-wrap gap-2 break-words">
       <span className="rounded-sm border border-white/10 bg-[#030405]/44 px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#8C96A3]">
         {category}
       </span>
