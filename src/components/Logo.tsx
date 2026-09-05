@@ -62,7 +62,7 @@ export function Logo({
     <Link
       href={href}
       className={cn(
-        "group inline-flex shrink-0 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1D6FFF]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030405]",
+        "group inline-flex shrink-0 items-center focus-visible:outline-none focus-visible:drop-shadow-[0_0_18px_rgba(29,111,255,0.55)]",
         className
       )}
       aria-label={`${brand.name} home`}

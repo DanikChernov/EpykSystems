@@ -1,12 +1,12 @@
 const surfaceBackground = [
-  "linear-gradient(130deg, rgba(3,4,5,0.95), rgba(8,10,13,0.98) 42%, rgba(17,21,26,0.95))",
-  "linear-gradient(18deg, rgba(37,43,50,0.9), transparent 34%, rgba(140,150,163,0.6) 58%, transparent 72%)"
+  "linear-gradient(130deg, rgba(1,2,4,0.98), rgba(3,5,11,0.99) 42%, rgba(8,9,13,0.98))",
+  "linear-gradient(18deg, rgba(18,24,34,0.72), transparent 34%, rgba(59,70,88,0.34) 58%, transparent 72%)"
 ].join(", ");
 
 const atmosphereBackground = [
-  "radial-gradient(ellipse 92% 120% at -12% 64%, rgba(29,111,255,0.34) 0%, rgba(29,111,255,0.2) 34%, rgba(29,111,255,0) 70%)",
-  "radial-gradient(ellipse 92% 120% at 112% 38%, rgba(243,199,67,0.24) 0%, rgba(243,199,67,0.16) 40%, rgba(243,199,67,0) 74%)",
-  "linear-gradient(100deg, rgba(3,4,5,0.16) 0%, rgba(8,10,13,0.78) 38%, rgba(25,27,32,0.94) 52%, rgba(3,4,5,0.16) 100%)"
+  "radial-gradient(ellipse 94% 122% at -13% 64%, rgba(11,73,215,0.36) 0%, rgba(15,62,162,0.26) 34%, rgba(4,12,31,0) 70%)",
+  "radial-gradient(ellipse 94% 122% at 113% 38%, rgba(202,126,18,0.25) 0%, rgba(123,78,18,0.2) 40%, rgba(31,19,4,0) 74%)",
+  "linear-gradient(100deg, rgba(0,0,0,0.22) 0%, rgba(3,5,12,0.84) 38%, rgba(8,10,16,0.96) 52%, rgba(0,0,0,0.24) 100%)"
 ].join(", ");
 
 const patternBackground = [
